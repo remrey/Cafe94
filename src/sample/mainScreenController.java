@@ -99,6 +99,26 @@ public class mainScreenController {
         return tempStaffList;
     }
 
+    public void onRemoveEmployeePressButton(ActionEvent event) throws SQLException, IOException {
+        int id = staffTable.getSelectionModel().getSelectedItem().getId();
+        String query = "DELETE from staff where id = ?;";
+        connection = DBManager.DBConnection();
+        try {
+            pst = connection.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+        }
+        catch (Exception e){
+            System.out.println("Problem is here: " + e);
+        }
+        finally {
+            pst.close();
+            connection.close();
+            onShowEmployeePressButton(event);
+        }
+
+    }
+
     public void onShowPressButton(ActionEvent event) throws IOException{
         list.clear();
         boolean itemCheck = popularItem.isSelected();
@@ -116,8 +136,6 @@ public class mainScreenController {
         tableViewName.setCellValueFactory(new PropertyValueFactory<Report,String>("Name"));
         tableViewCount.setCellValueFactory(new PropertyValueFactory<Report,Integer>("Amount"));
         table.setItems(list);
-
-
 
     }
 }

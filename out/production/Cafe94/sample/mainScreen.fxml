@@ -88,7 +88,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <Button layoutX="493.0" layoutY="38.0" mnemonicParsing="false" text="Remove Employee" />
+                              <Button fx:id="removeEmployeeButton" layoutX="493.0" layoutY="38.0" mnemonicParsing="false" onAction="#onRemoveEmployeePressButton" text="Remove Employee" />
                               <Button fx:id="addEmployee" layoutX="59.0" layoutY="38.0" mnemonicParsing="false" onAction="#onPressButton" prefHeight="27.0" prefWidth="120.0" text="Add Employee" />
                               <Button fx:id="showEmployee" layoutX="266.0" layoutY="38.0" mnemonicParsing="false" onAction="#onShowEmployeePressButton" prefHeight="27.0" prefWidth="120.0" text="Show Employee" />
                            </children>
