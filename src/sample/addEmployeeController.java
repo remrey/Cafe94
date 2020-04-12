@@ -1,9 +1,12 @@
 package sample;
 
 import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,15 +19,22 @@ import java.sql.*;
 public class addEmployeeController {
     @FXML private TextField username;
     @FXML private TextField lastName;
-    @FXML private TextField type;
     @FXML private Label firstNameError;
     @FXML private Label lastNameError;
     @FXML private Label typeError;
     @FXML private Label successLabel;
+    @FXML private ComboBox<String> typeComboBox;
+
 
     Connection connection = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    ObservableList<String>  typeComboBoxList = FXCollections.observableArrayList("Chef","Delivery Driver","Waiter");
+
+    @FXML
+    public void initialize(){
+        typeComboBox.setItems(typeComboBoxList);
+    }
 
     public void onPressCancel(ActionEvent event) throws IOException{
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -46,16 +56,16 @@ public class addEmployeeController {
         else firstNameError.setVisible(false);
         if(lastName.getText().isEmpty()) lastNameError.setVisible(true);
         else lastNameError.setVisible(false);
-        if(type.getText().isEmpty()) typeError.setVisible(true);
+        if(typeComboBox.getSelectionModel().isEmpty()) typeError.setVisible(true);
         else typeError.setVisible(false);
-        if(!username.getText().isEmpty() && !lastName.getText().isEmpty() && !type.getText().isEmpty()) {
+        if(!username.getText().isEmpty() && !lastName.getText().isEmpty() && !typeComboBox.getSelectionModel().isEmpty()) {
             try{
                 PreparedStatement tableCheck = connection.prepareStatement((sql));
                 tableCheck.executeUpdate();
                 pst = connection.prepareStatement(query);
                 pst.setString(1,username.getText());
                 pst.setString(2,lastName.getText());
-                pst.setString(3,type.getText());
+                pst.setString(3,typeComboBox.getSelectionModel().getSelectedItem());
                 pst.setInt(4,0);
                 pst.setInt(5,0);
                 pst.executeUpdate();
@@ -63,8 +73,7 @@ public class addEmployeeController {
                 successLabel.setVisible(true);
                 username.clear();
                 lastName.clear();
-                type.clear();
-
+                typeComboBox.valueProperty().set(null);
             }
             catch(Exception e){
                 System.out.println("Error occured here: " + e);
