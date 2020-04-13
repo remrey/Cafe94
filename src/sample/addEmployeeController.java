@@ -97,9 +97,6 @@ public class addEmployeeController {
             catch(SQLException e){
                 userNameTakenError.setVisible(true);
             }
-            catch(Exception e ){
-                System.out.println("Error has occured here: " + e);
-            }
 
         }
 

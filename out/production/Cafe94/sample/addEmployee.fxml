@@ -21,6 +21,6 @@
       <TextField fx:id="userName" layoutX="123.0" layoutY="48.0" />
       <Label layoutX="22.0" layoutY="53.0" text="Username" />
       <Label fx:id="userNameEmptyError" layoutX="119.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
-      <Label fx:id="userNameTakenError" layoutX="119.0" layoutY="8.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
+      <Label fx:id="userNameTakenError" layoutX="119.0" layoutY="8.0" prefHeight="27.0" prefWidth="181.0" text="This username is already taken !" textFill="#da0f0f" />
    </children>
 </AnchorPane>
