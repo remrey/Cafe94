@@ -4,19 +4,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addEmployeeController">
+<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addEmployeeController">
    <children>
-      <Button fx:id="addButton" layoutX="54.0" layoutY="248.0" mnemonicParsing="false" onAction="#onPressButton" text="Add Employee" />
-      <TextField fx:id="username" layoutX="122.0" layoutY="28.0" />
-      <TextField fx:id="lastName" layoutX="122.0" layoutY="83.0" />
-      <Label layoutX="20.0" layoutY="33.0" text="First Name" />
-      <Label layoutX="20.0" layoutY="88.0" text="Last Name" />
-      <Label layoutX="20.0" layoutY="143.0" text="Type" />
-      <Button fx:id="closeButton" layoutX="206.0" layoutY="248.0" mnemonicParsing="false" onAction="#onPressCancel" prefHeight="27.0" prefWidth="98.0" text="Cancel" />
-      <Label fx:id="firstNameError" layoutX="119.0" layoutY="1.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
-      <Label fx:id="lastNameError" layoutX="119.0" layoutY="56.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
-      <Label fx:id="typeError" layoutX="122.0" layoutY="110.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
-      <Label fx:id="successLabel" layoutX="54.0" layoutY="212.0" text="has been added to the System !" textFill="#2d9718" visible="false" />
-      <ComboBox fx:id="typeComboBox" layoutX="122.0" layoutY="138.0" prefHeight="27.0" prefWidth="161.0" promptText="Select Staff Type" />
+      <Button fx:id="addButton" layoutX="55.0" layoutY="274.0" mnemonicParsing="false" onAction="#onPressButton" text="Add Employee" />
+      <TextField fx:id="name" layoutX="124.0" layoutY="96.0" />
+      <TextField fx:id="lastName" layoutX="124.0" layoutY="151.0" />
+      <Label layoutX="22.0" layoutY="101.0" text="First Name" />
+      <Label layoutX="22.0" layoutY="156.0" text="Last Name" />
+      <Label layoutX="22.0" layoutY="211.0" text="Type" />
+      <Button fx:id="closeButton" layoutX="207.0" layoutY="274.0" mnemonicParsing="false" onAction="#onPressCancel" prefHeight="27.0" prefWidth="98.0" text="Cancel" />
+      <Label fx:id="firstNameError" layoutX="120.0" layoutY="70.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
+      <Label fx:id="lastNameError" layoutX="124.0" layoutY="123.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
+      <Label fx:id="typeError" layoutX="121.0" layoutY="178.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
+      <Label fx:id="successLabel" layoutX="55.0" layoutY="238.0" text="has been added to the System !" textFill="#2d9718" visible="false" />
+      <ComboBox fx:id="typeComboBox" layoutX="124.0" layoutY="206.0" prefHeight="27.0" prefWidth="161.0" promptText="Select Staff Type" />
+      <TextField fx:id="userName" layoutX="123.0" layoutY="48.0" />
+      <Label layoutX="22.0" layoutY="53.0" text="Username" />
+      <Label fx:id="userNameEmptyError" layoutX="119.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
+      <Label fx:id="userNameTakenError" layoutX="119.0" layoutY="8.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
    </children>
 </AnchorPane>
