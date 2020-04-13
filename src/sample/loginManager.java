@@ -22,7 +22,6 @@ public class loginManager {
 
     public String userType(String usern, String passw){
         String query = "SELECT type FROM users WHERE (firstName = ? and password = ?) ";
-
         try{
             pst = connection.prepareStatement(query);
             pst.setString(1,usern);
@@ -31,7 +30,6 @@ public class loginManager {
             String result = rs.getString(1);
             rs.close();
             pst.close();
-            connection.close();
             if(result != null) return result;
             else return " ";
 
@@ -56,8 +54,10 @@ public class loginManager {
         try{
             PreparedStatement tableCheck = connection.prepareStatement(sql);
             tableCheck.executeUpdate();
+//            tableCheck.close();
             PreparedStatement addAdmin = connection.prepareStatement(admin);
             addAdmin.executeUpdate();
+//            addAdmin.close();
             pst = connection.prepareStatement(query);
             pst.setString(1,usern);
             pst.setString(2,passw);

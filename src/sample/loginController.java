@@ -22,9 +22,8 @@ public class loginController {
         String us = user.getText();
         String pas = pass.getText();
         if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("manager")) secondScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("customer")) customerScreen(event);        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("customer")) customerScreen(event);
-        //remember to change bottomLine to different screen
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("staff")) customerScreen(event);
+        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("customer")) customerScreen(event);
+        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Chef")) customerScreen(event);
         else wrongScreen(event);
     }
     public void customerScreen(ActionEvent event) throws IOException{
