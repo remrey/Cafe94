@@ -31,11 +31,11 @@ public class loginController {
         else wrongScreen(event);
     }
     public void customerScreen(ActionEvent event) throws IOException{
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("userScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("customerScreen/customerScreen.fxml"));
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
-        primaryStage.setMinHeight(651);
-        primaryStage.setMinWidth(603);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
         rootPane.getChildren().setAll(temp);
     }
 
