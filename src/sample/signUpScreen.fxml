@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="408.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="316.0">
+         <center>
+            <VBox prefHeight="275.0" prefWidth="392.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="userNameEmptyError" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="userNameTakenError" prefHeight="27.0" prefWidth="167.0" text="Username is already taken !" textFill="#da0f0f" visible="false" />
+                  <TextField fx:id="signUpUserName">
+                     <VBox.margin>
+                        <Insets left="20.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="firstNameError" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="signUpFirstName">
+                     <VBox.margin>
+                        <Insets left="20.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="lastNameError" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="signUpLastName">
+                     <VBox.margin>
+                        <Insets left="20.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="passwordError" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <PasswordField fx:id="signUpPassword">
+                     <VBox.margin>
+                        <Insets left="20.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#onPressButton" prefHeight="27.0" prefWidth="62.0" text="Sign Up">
+                     <VBox.margin>
+                        <Insets left="40.0" right="50.0" top="25.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <VBox prefHeight="322.0" prefWidth="97.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Username">
+                     <VBox.margin>
+                        <Insets left="20.0" top="65.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="76.0" text="First Name">
+                     <VBox.margin>
+                        <Insets left="20.0" top="40.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Last Name">
+                     <VBox.margin>
+                        <Insets left="20.0" top="40.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Password">
+                     <VBox.margin>
+                        <Insets left="20.0" top="40.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>

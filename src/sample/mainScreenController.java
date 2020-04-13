@@ -1,8 +1,5 @@
 package sample;
 
-import com.sun.tools.javac.comp.Check;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

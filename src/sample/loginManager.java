@@ -21,7 +21,7 @@ public class loginManager {
     }
 
     public String userType(String usern, String passw){
-        String query = "SELECT type FROM users WHERE (firstName = ? and password = ?) ";
+        String query = "SELECT type FROM users WHERE (userName = ? and password = ?) ";
         try{
             pst = connection.prepareStatement(query);
             pst.setString(1,usern);
@@ -40,24 +40,11 @@ public class loginManager {
         return " ";
     }
 
-    public boolean isUserLegit(String usern, String passw){
-        String query = "SELECT * FROM users WHERE (firstName = ? and password = ?) ";
-        String sql = "CREATE TABLE IF NOT EXISTS users(\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	firstName varchar(255) NOT NULL,\n"
-                + "	lastName varchar(255) NOT NULL, \n"
-                + " password varchar(255) NOT NULL, \n"
-                + " type varchar(255) NOT NULL \n"
-                + ");";
-        String admin = "INSERT or IGNORE INTO users(id, firstName, lastName, password,type) VALUES(1, 'Admin', 'admin','admin','manager')";
 
+
+    public boolean isUserLegit(String usern, String passw){
+        String query = "SELECT * FROM users WHERE (userName = ? and password = ?) ";
         try{
-            PreparedStatement tableCheck = connection.prepareStatement(sql);
-            tableCheck.executeUpdate();
-//            tableCheck.close();
-            PreparedStatement addAdmin = connection.prepareStatement(admin);
-            addAdmin.executeUpdate();
-//            addAdmin.close();
             pst = connection.prepareStatement(query);
             pst.setString(1,usern);
             pst.setString(2,passw);
