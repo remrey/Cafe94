@@ -13,7 +13,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.7030075187969925" layoutX="210.0" layoutY="124.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.4849624060150376" layoutX="210.0" layoutY="124.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
@@ -75,17 +75,125 @@
                                                   <items>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                          <children>
-                                                            <TableView fx:id="finalOrderView" layoutX="15.0" layoutY="71.0" prefHeight="416.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                              <columns>
-                                                                <TableColumn fx:id="itemName" prefWidth="117.0" text="Item Name" />
-                                                                <TableColumn fx:id="itemPrice" prefWidth="111.0" text="Price" />
-                                                              </columns>
-                                                            </TableView>
+                                                            <HBox prefHeight="416.0" prefWidth="402.0">
+                                                               <children>
+                                                                  <GridPane>
+                                                                    <columnConstraints>
+                                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                     <children>
+                                                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                                                           <children>
+                                                                              <Label text="2-Seat Tables" textFill="#c30a0a" underline="true">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </Label>
+                                                                              <RadioButton fx:id="table1" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #1">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table2" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #2">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table3" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #3">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table4" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #4">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                                                           <children>
+                                                                              <Label text="4-Seat Tables" textFill="#c30a0a" underline="true">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </Label>
+                                                                              <RadioButton fx:id="table5" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #5">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table6" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #6">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table7" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #7">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table8" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #8">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                                                           <children>
+                                                                              <Label text="8-Seat Tables" textFill="#c30a0a" underline="true">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </Label>
+                                                                              <RadioButton fx:id="table9" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #9">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="table10" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #10">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                                           <children>
+                                                                              <Label text="10-Seat Tables" textFill="#c30a0a" underline="true">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </Label>
+                                                                              <RadioButton fx:id="table11" mnemonicParsing="false" onAction="#onToggleGroupSelected" text="Table #11">
+                                                                                 <padding>
+                                                                                    <Insets top="5.0" />
+                                                                                 </padding>
+                                                                              </RadioButton>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <TableView fx:id="finalOrderView" layoutX="15.0" layoutY="71.0" prefHeight="416.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <columns>
+                                                                      <TableColumn fx:id="itemName" prefWidth="117.0" text="Item Name" />
+                                                                      <TableColumn fx:id="itemPrice" prefWidth="111.0" text="Price" />
+                                                                    </columns>
+                                                                  </TableView>
+                                                               </children>
+                                                            </HBox>
                                                          </children>
                                                       </AnchorPane>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                          <children>
-                                                            <Label fx:id="menuResultPrice" layoutX="78.0" layoutY="6.0" prefHeight="28.0" prefWidth="229.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            <Label fx:id="menuResultPrice" alignment="CENTER" layoutX="78.0" layoutY="6.0" prefHeight="28.0" prefWidth="229.0" text="0.00" textFill="#3dbc32" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                          </children>
                                                       </AnchorPane>
                                                   </items>

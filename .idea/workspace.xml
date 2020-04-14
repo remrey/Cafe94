@@ -3,22 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe94.db" beforeDir="false" afterPath="$PROJECT_DIR$/cafe94.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/WaiterBookingApprovalController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterBookingApproval.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterHomeScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterHomeScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterOrder.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterOrderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/loginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/loginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/WaiterBookingApprovalController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterBookingApproval.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterHomeScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterHomeScreenController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterOrder.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterOrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/loginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/loginManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreenController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +286,7 @@
       <workItem from="1586247634162" duration="2401000" />
       <workItem from="1586270648136" duration="9967000" />
       <workItem from="1586427502342" duration="44445000" />
-      <workItem from="1586630278219" duration="48666000" />
+      <workItem from="1586630278219" duration="52620000" />
     </task>
     <servers />
   </component>
@@ -333,28 +321,28 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1586248126702" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1586428564157" />
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1586879927208">
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1586884851866">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1586879927208" />
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1586884851866" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1586876451152" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1586875321282" />
-    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1586879927208">
+    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1586884851866">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1586879927208" />
+    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1586884851866" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1586875321281" />
-    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1586879927207">
+    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1586884851865">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1586879927207" />
+    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1586884851865" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1586876451150" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1586875321280" />
-    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1586879927208">
+    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1586884851866">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1586879927208" />
+    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1586884851866" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1586875321281" />
     <state width="1398" height="256" key="GridCell.Tab.1.bottom" timestamp="1586778889870">
@@ -381,6 +369,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="456" y="116" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.23.1440.805@0.23.1440.805" timestamp="1586532873834" />
+    <state x="503" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586882546404">
+      <screen x="0" y="23" width="1440" height="805" />
+    </state>
+    <state x="503" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.805@0.23.1440.805" timestamp="1586882546404" />
     <state x="332" y="130" key="new project wizard" timestamp="1586591854638">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

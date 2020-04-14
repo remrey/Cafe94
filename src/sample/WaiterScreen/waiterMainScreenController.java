@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class waiterMainScreenController {
+    @FXML private ComboBox<String> tableList;
     @FXML private ComboBox<item> favoriteList;
     @FXML private ComboBox<item> starterList;
     @FXML private ComboBox<item> mainList;
@@ -29,7 +30,22 @@ public class waiterMainScreenController {
     @FXML private TableColumn<item, String> itemName;
     @FXML private TableColumn<item, Double> itemPrice;
     @FXML private Label menuResultPrice;
+    @FXML private RadioButton table1;
+    @FXML private RadioButton table2;
+    @FXML private RadioButton table3;
+    @FXML private RadioButton table4;
+    @FXML private RadioButton table5;
+    @FXML private RadioButton table6;
+    @FXML private RadioButton table7;
+    @FXML private RadioButton table8;
+    @FXML private RadioButton table9;
+    @FXML private RadioButton table10;
+    @FXML private RadioButton table11;
+
+
+    ToggleGroup toggleGroup = new ToggleGroup();
     private double totalCost;
+    private String tableChoice = "";
 
     Connection connection = null;
     ResultSet rs = null;
@@ -44,6 +60,19 @@ public class waiterMainScreenController {
     public ObservableList<item> resultList = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
+        table1.setToggleGroup(toggleGroup);
+        table2.setToggleGroup(toggleGroup);
+        table3.setToggleGroup(toggleGroup);
+        table4.setToggleGroup(toggleGroup);
+        table5.setToggleGroup(toggleGroup);
+        table6.setToggleGroup(toggleGroup);
+        table7.setToggleGroup(toggleGroup);
+        table8.setToggleGroup(toggleGroup);
+        table9.setToggleGroup(toggleGroup);
+        table10.setToggleGroup(toggleGroup);
+        table11.setToggleGroup(toggleGroup);
+
+
         String query = "SELECT * FROM menu";
 //        String sql = "CREATE TABLE IF NOT EXISTS menu(\n"
 //                + "	id integer PRIMARY KEY,\n"
@@ -89,6 +118,10 @@ public class waiterMainScreenController {
 
     }
 
+    public void setTableSelection(ActionEvent event){
+        tableChoice = tableList.getSelectionModel().getSelectedItem();
+    }
+
     public void fillMenuLists(ResultSet rs) throws SQLException {
         while(rs.next()){
             item temp = new item();
@@ -115,7 +148,9 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+
+
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
         catch (Exception e){
@@ -132,7 +167,8 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
         catch (Exception e){
@@ -149,7 +185,8 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
         catch (Exception e){
@@ -166,7 +203,8 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
 
         }
@@ -184,7 +222,8 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
         catch (Exception e){
@@ -201,7 +240,8 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-                menuResultPrice.setText(String.valueOf(totalCost));
+                menuResultPrice.setStyle("-fx-text-fill: green");
+                menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
 
         }
@@ -210,17 +250,33 @@ public class waiterMainScreenController {
         }
     }
 
+    public void onToggleGroupSelected(ActionEvent event){
+        RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+        menuResultPrice.setStyle("-fx-text-fill: green");
+        String tableId = selectedRadioButton.getText();
+        tableChoice = "Total price for " + tableId  + " is:  ";
+        menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
+    }
+
     public void onFinalizeOrderButtonPressed(ActionEvent event){
-        try {
-            itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-            itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
-            finalOrderView.setItems(resultList);
-            resultList.clear();
-            totalCost += 0.0;
-            menuResultPrice.setText("0.00");
+        RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+        if(toggleGroup.getSelectedToggle() == null){
+            menuResultPrice.setStyle("-fx-text-fill: red");
+            menuResultPrice.setText("Please select a table! ");
         }
-        catch (Exception e){
-            System.out.println(e);
+        else {
+            try {
+                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                finalOrderView.setItems(resultList);
+                resultList.clear();
+                totalCost = 0.0;
+                menuResultPrice.setStyle("-fx-text-fill: green");
+                menuResultPrice.setText("0.00");
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
 
     }
