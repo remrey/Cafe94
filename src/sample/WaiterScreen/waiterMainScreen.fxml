@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WaiterScreen.waiterMainScreenController">
+   <children>
+      <TabPane layoutX="93.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Create Order">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7030075187969925" layoutX="210.0" layoutY="124.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <VBox layoutX="198.0" layoutY="99.0" prefHeight="565.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Favorites" />
+                                                <ComboBox fx:id="favoriteList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addFavorite" mnemonicParsing="false" onAction="#onAddFavoriteButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Starter" />
+                                                <ComboBox fx:id="starterList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addStarter" mnemonicParsing="false" onAction="#onAddStarterButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Main" />
+                                                <ComboBox fx:id="mainList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addMain" mnemonicParsing="false" onAction="#onAddMainButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Side" />
+                                                <ComboBox fx:id="sideList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addSide" mnemonicParsing="false" onAction="#onAddSideButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Dessert" />
+                                                <ComboBox fx:id="dessertList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addDessert" mnemonicParsing="false" onAction="#onAddDessertButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Drinks" />
+                                                <ComboBox fx:id="drinkList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button fx:id="addDrinks" mnemonicParsing="false" onAction="#onAddDrinkButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.8134991119005328" layoutX="256.0" layoutY="139.0" orientation="VERTICAL" prefHeight="565.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.9292035398230089" layoutX="14.0" layoutY="99.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <TableView fx:id="finalOrderView" layoutX="15.0" layoutY="71.0" prefHeight="416.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <columns>
+                                                                <TableColumn fx:id="itemName" prefWidth="117.0" text="Item Name" />
+                                                                <TableColumn fx:id="itemPrice" prefWidth="111.0" text="Price" />
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <Label fx:id="menuResultPrice" alignment="CENTER" layoutX="78.0" layoutY="6.0" prefHeight="28.0" prefWidth="229.0" text="0.00" textFill="#3dbc32" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <Button fx:id="finalizeOrderButton" layoutX="68.0" layoutY="24.0" mnemonicParsing="false" onAction="#onFinalizeOrderButtonPressed" prefHeight="101.0" prefWidth="231.0" text="Finalize Order" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Outstanding Order">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.29797979797979796" layoutX="291.0" layoutY="84.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView layoutY="8.0" prefHeight="565.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Order ID" />
+                                        <TableColumn prefWidth="75.0" text="Customer ID" />
+                                          <TableColumn prefWidth="83.0" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView layoutX="137.0" layoutY="43.0" prefHeight="565.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Item ID" />
+                                        <TableColumn prefWidth="272.0" text="Item Name" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Delivery Requests">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Bookings">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.8123893805309734" layoutX="240.0" layoutY="104.0" orientation="VERTICAL" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TableView fx:id="bookingTable" prefHeight="279.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="iDColumn" prefWidth="124.0" text="Customer ID" />
+                                          <TableColumn fx:id="dateColumn" prefWidth="140.0" text="Date" />
+                                          <TableColumn fx:id="timeColumn" prefWidth="167.8431396484375" text="Time" />
+                                          <TableColumn fx:id="numberOfGuestsColumn" prefWidth="106.0" text="Number of Guests" />
+                                          <TableColumn fx:id="extendedColumn" prefWidth="151.0" text="Extension request?" />
+                                          <TableColumn prefWidth="107.0" text="Approval Status" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button layoutX="79.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="98.0" text="Approve" />
+                                    <Button layoutX="350.0" layoutY="38.0" mnemonicParsing="false" text="Load Bookings" />
+                                    <Button layoutX="611.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="98.0" text="Decline" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

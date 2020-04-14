@@ -82,7 +82,7 @@ public class loginController {
     }
 
     public void waiterScreen(ActionEvent event) throws IOException {
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("WaiterScreen/waiterHomeScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("WaiterScreen/waiterMainScreen.fxml"));
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
