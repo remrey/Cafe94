@@ -39,6 +39,32 @@ public class Main extends Application {
         addAdmin.close();
 
 
+//
+//        String menuQuery = "CREATE TABLE IF NOT EXISTS menu(\n"
+//                + "	id integer PRIMARY KEY,\n"
+//                + "	name varchar(255) NOT NULL,\n"
+//                + "	price real NOT NULL, \n"
+//                + " type varchar(255) NOT NULL \n"
+//                + ");";
+//        String addMenuItemsQuery = "INSERT INTO menu(name,price,type) "
+//                + "VALUES"
+//                + "('Favorite1','5.21','favorite'), \n"
+//                + "('Favorite2','3.21','favorite'), \n"
+//                + "('Onion Rings','5.21','starter'), \n"
+//                + "('Garlic Bread','4.23','starter'), \n"
+//                + "('Chicken Burger','7.21','main'), \n"
+//                + "('Newyork Steak','9.00','main'), \n"
+//                + "('French Fries','2.21','side'), \n"
+//                + "('Spicy Fried','3.00','side'), \n"
+//                + "('Vanilla Cheesecake','4.12','dessert'), \n"
+//                + "('Fosters','6.00','drink'), \n"
+//                + "('Sprite','2.20','drink');";
+//        PreparedStatement menuCheck = connection.prepareStatement(menuQuery);
+//        menuCheck.executeUpdate();
+//        PreparedStatement menuItemCheck = connection.prepareStatement(addMenuItemsQuery);
+//        menuItemCheck.executeUpdate();
+
+
         rootPane = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);

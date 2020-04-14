@@ -211,12 +211,13 @@ public class mainScreenController {
 
     }
 
-    public void logoutButtonPushed(ActionEvent event) throws IOException {
+    public void logoutButtonPushed(ActionEvent event) throws IOException, SQLException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        connection.close();
 
         window.setScene(tableViewScene);
         window.show();

@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class loginController {
@@ -19,7 +20,7 @@ public class loginController {
     @FXML private Label signUpLabel;
     @FXML private AnchorPane rootPane;
 
-    public void pressButton(ActionEvent event) throws IOException {
+    public void pressButton(ActionEvent event) throws IOException, SQLException {
         String us = user.getText();
         String pas = pass.getText();
         if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Manager")) managerScreen(event);
@@ -28,16 +29,16 @@ public class loginController {
         else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Waiter")) waiterScreen(event);
         else wrongScreen(event);
     }
-    public void customerScreen(ActionEvent event) throws IOException{
+    public void customerScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("../../../Downloads/Cafe94/src/sample/customerHomeScreen.fxml"));
-
+        logModel.connection.close();
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
         rootPane.getChildren().setAll(temp);
     }
 
-    public void wrongScreen(ActionEvent event)throws IOException{
+    public void wrongScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("wrongInputLogin.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Wrong input!");
@@ -45,7 +46,7 @@ public class loginController {
         stage.show();
     }
 
-    public void signUpOnMouseClicked(MouseEvent event) throws IOException {
+    public void signUpOnMouseClicked(MouseEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("signUpScreen.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Sign Up!");
@@ -63,8 +64,9 @@ public class loginController {
         signUpLabel.setUnderline(false);
     }
 
-    public void managerScreen(ActionEvent event) throws IOException {
+    public void managerScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("ManagerScreen/mainScreen.fxml"));
+        logModel.connection.close();
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
@@ -72,8 +74,9 @@ public class loginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void chefScreen(ActionEvent event) throws IOException {
+    public void chefScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("ChefScreen/chefHomeScreen.fxml"));
+        logModel.connection.close();
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
@@ -81,8 +84,9 @@ public class loginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void waiterScreen(ActionEvent event) throws IOException {
+    public void waiterScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("WaiterScreen/waiterMainScreen.fxml"));
+        logModel.connection.close();
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
