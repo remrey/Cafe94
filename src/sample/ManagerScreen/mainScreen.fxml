@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="secondPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainScreenController">
+<AnchorPane fx:id="secondPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerScreen.mainScreenController">
    <children>
       <TabPane layoutX="20.0" layoutY="14.0" prefHeight="603.0" prefWidth="651.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Home Screen">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="105.0" layoutY="37.0" prefHeight="450.0" prefWidth="600.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="600.0" text="Welcome back Manager!">
+                                 <font>
+                                    <Font name="System Italic" size="50.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="259.0" layoutY="71.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Logout" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Customer">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+               <content>
+                  <SplitPane dividerPositions="0.8140350877192982" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TableView fx:id="customerTable" layoutX="126.0" layoutY="83.0" prefHeight="428.0" prefWidth="651.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TableColumn fx:id="customerId" prefWidth="71.0" text="ID" />
+                                    <TableColumn fx:id="customerFirstName" prefWidth="356.73995208740234" text="First Name" />
+                                    <TableColumn fx:id="customerLastName" prefWidth="372.2601013183594" text="Last Name" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="removeEmployeeButton1" layoutX="493.0" layoutY="38.0" mnemonicParsing="false" onAction="#onRemoveCustomerPressButton" text="Remove Customer" />
+                              <Button layoutX="59.0" layoutY="38.0" mnemonicParsing="false" onAction="#onAddCustomerPressButton" prefHeight="27.0" prefWidth="120.0" text="Add Customer" />
+                              <Button fx:id="showEmployee1" layoutX="266.0" layoutY="38.0" mnemonicParsing="false" onAction="#onShowCustomersPressButton" prefHeight="27.0" prefWidth="120.0" text="Show Customers" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </content>
             </Tab>
             <Tab text="Reports">
               <content>

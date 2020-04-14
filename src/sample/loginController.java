@@ -1,10 +1,7 @@
 package sample;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -25,13 +22,14 @@ public class loginController {
     public void pressButton(ActionEvent event) throws IOException {
         String us = user.getText();
         String pas = pass.getText();
-        if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Manager")) secondScreen(event);
+        if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Manager")) managerScreen(event);
         else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Customer")) customerScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Staff")) customerScreen(event);
+        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Chef")) chefScreen(event);
+        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Waiter")) waiterScreen(event);
         else wrongScreen(event);
     }
     public void customerScreen(ActionEvent event) throws IOException{
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("customerScreen/customerScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("../../../Downloads/Cafe94/src/sample/customerHomeScreen.fxml"));
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
@@ -50,7 +48,7 @@ public class loginController {
     public void signUpOnMouseClicked(MouseEvent event) throws IOException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("signUpScreen.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Wrong input!");
+        stage.setTitle("Sign Up!");
         stage.setScene(new Scene(temp));
         stage.show();
     }
@@ -65,17 +63,30 @@ public class loginController {
         signUpLabel.setUnderline(false);
     }
 
-
-
-
-
-    public void secondScreen(ActionEvent event) throws IOException {
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
+    public void managerScreen(ActionEvent event) throws IOException {
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("ManagerScreen/mainScreen.fxml"));
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
-        primaryStage.setMinHeight(651);
-        primaryStage.setMinWidth(603);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
         rootPane.getChildren().setAll(temp);
     }
 
+    public void chefScreen(ActionEvent event) throws IOException {
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("ChefScreen/chefHomeScreen.fxml"));
+
+        Stage primaryStage = (Stage) rootPane.getScene().getWindow();
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        rootPane.getChildren().setAll(temp);
+    }
+
+    public void waiterScreen(ActionEvent event) throws IOException {
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("WaiterScreen/waiterHomeScreen.fxml"));
+
+        Stage primaryStage = (Stage) rootPane.getScene().getWindow();
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        rootPane.getChildren().setAll(temp);
+    }
 }

@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addEmployeeController">
+<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerScreen.addEmployeeController">
    <children>
       <Button fx:id="addButton" layoutX="55.0" layoutY="274.0" mnemonicParsing="false" onAction="#onPressButton" text="Add Employee" />
       <TextField fx:id="name" layoutX="124.0" layoutY="96.0" />
@@ -21,6 +21,6 @@
       <TextField fx:id="userName" layoutX="123.0" layoutY="48.0" />
       <Label layoutX="22.0" layoutY="53.0" text="Username" />
       <Label fx:id="userNameEmptyError" layoutX="119.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
-      <Label fx:id="userNameTakenError" layoutX="119.0" layoutY="8.0" prefHeight="27.0" prefWidth="181.0" text="This username is already taken !" textFill="#da0f0f" />
+      <Label fx:id="userNameTakenError" layoutX="119.0" layoutY="8.0" prefHeight="27.0" prefWidth="167.0" text="This Field Cannot be left blank." textFill="#da0f0f" visible="false" />
    </children>
 </AnchorPane>

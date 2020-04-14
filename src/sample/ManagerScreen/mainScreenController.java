@@ -1,10 +1,11 @@
-package sample;
+package sample.ManagerScreen;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -13,6 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.DBManager;
+import sample.Report;
+import sample.Staff;
+import sample.user;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -37,14 +42,84 @@ public class mainScreenController {
     @FXML private TableColumn<Staff,String> staffLastName;
     @FXML private TableColumn<Staff,Integer> staffHoursToWork;
     @FXML private TableColumn<Staff,Integer> staffTotalHoursWorked;
+    @FXML private TableView<user> customerTable;
+    @FXML private TableColumn<user, Integer> customerId;
+    @FXML private TableColumn<user, String> customerFirstName;
+    @FXML private TableColumn<user, String> customerLastName;
+
+
     Connection connection = null;
+    Connection connection1 = null;
     ResultSet rs = null;
     ResultSet rsEmployee = null;
+    ResultSet rsCustomer = null;
     PreparedStatement pst = null;
 
 
     public ObservableList<Report> list = FXCollections.observableArrayList();
 
+    public void onAddCustomerPressButton(ActionEvent Event)throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/signUpScreen.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Add Customer");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void onShowCustomersPressButton(ActionEvent event) throws IOException, SQLException {
+        String query = "SELECT * FROM users where type = 'Customer'";
+        connection1 = DBManager.DBConnection();
+        try{
+            pst = connection1.prepareStatement(query);
+            rsCustomer = pst.executeQuery();
+            ObservableList<user> userList = getUserList(rsCustomer);
+            customerId.setCellValueFactory(new PropertyValueFactory<user,Integer>("id"));
+            customerFirstName.setCellValueFactory(new PropertyValueFactory<user,String>("firstName"));
+            customerLastName.setCellValueFactory(new PropertyValueFactory<user,String>("lastName"));
+            customerTable.setItems(userList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            rsCustomer.close();
+            pst.close();
+            connection1.close();
+        }
+
+    }
+
+    private ObservableList<user> getUserList(ResultSet rsCustomer) throws SQLException {
+        ObservableList<user> tempUserList = FXCollections.observableArrayList();
+        while(rsCustomer.next()){
+            user temp = new user();
+            temp.setId(rsCustomer.getInt("id"));
+            temp.setFirstName(rsCustomer.getString("firstName"));
+            temp.setLastName(rsCustomer.getString("lastName"));
+            tempUserList.add(temp);
+
+        }
+        return tempUserList;
+    }
+
+    public void onRemoveCustomerPressButton(ActionEvent event) throws SQLException, IOException {
+        int id = customerTable.getSelectionModel().getSelectedItem().getId();
+        String query = "DELETE from users where id = ?;";
+        connection1 = DBManager.DBConnection();
+        try {
+            pst = connection1.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+        }
+        catch (Exception e){
+            System.out.println("Problem is here: " + e);
+        }
+        finally {
+            pst.close();
+            connection1.close();
+            onShowCustomersPressButton(event);
+        }
+
+    }
 
 
     public void onPressButton(ActionEvent Event)throws IOException{
@@ -134,5 +209,16 @@ public class mainScreenController {
         tableViewCount.setCellValueFactory(new PropertyValueFactory<Report,Integer>("Amount"));
         table.setItems(list);
 
+    }
+
+    public void logoutButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 }

@@ -1,4 +1,4 @@
-package sample;
+package sample.ManagerScreen;
 
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import sample.DBManager;
 
 import java.io.IOException;
 import java.sql.*;
@@ -96,6 +97,9 @@ public class addEmployeeController {
             }
             catch(SQLException e){
                 userNameTakenError.setVisible(true);
+            }
+            catch(Exception e ){
+                System.out.println("Error has occured here: " + e);
             }
 
         }

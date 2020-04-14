@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WaiterScreen.waiterOrderController">
+   <left>
+      <Accordion prefHeight="372.0" prefWidth="496.0" BorderPane.alignment="CENTER">
+        <panes>
+            <TitledPane animated="false" text="Favourites">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="409.0" prefWidth="494.0">
+                          <columns>
+                            <TableColumn prefWidth="103.0" text="Name" />
+                            <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="433.0" layoutY="26.0" prefHeight="381.0" prefWidth="61.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="fav1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="fav8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding></VBox>
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+          <TitledPane animated="false" prefHeight="264.0" prefWidth="476.0" text="Starter">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="236.0" prefWidth="469.0">
+                     <children>
+                        <TableView layoutY="-1.0" prefHeight="410.0" prefWidth="494.0">
+                           <columns>
+                              <TableColumn prefWidth="103.0" text="Name" />
+                              <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="434.0" layoutY="27.0" prefHeight="382.0" prefWidth="61.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="start1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="start8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="264.0" prefWidth="1001.0" text="Main">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="409.0" prefWidth="494.0">
+                           <columns>
+                              <TableColumn prefWidth="103.0" text="Name" />
+                              <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="432.0" layoutY="26.0" prefHeight="382.0" prefWidth="60.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="main1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="main8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Side">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="410.0" prefWidth="494.0">
+                           <columns>
+                              <TableColumn prefWidth="103.0" text="Name" />
+                              <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="434.0" layoutY="27.0" prefHeight="381.0" prefWidth="60.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="side1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="side8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="Dessert">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="408.0" prefWidth="494.0">
+                           <columns>
+                              <TableColumn prefWidth="103.0" text="Name" />
+                              <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="432.0" layoutY="26.0" prefHeight="381.0" prefWidth="61.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="dessert1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="dessert8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Drinks">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="410.0" prefWidth="494.0">
+                           <columns>
+                              <TableColumn prefWidth="103.0" text="Name" />
+                              <TableColumn prefWidth="191.0" text="Description" />
+                              <TableColumn prefWidth="138.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" layoutX="433.0" layoutY="26.0" prefHeight="385.0" prefWidth="62.0" spacing="20.0">
+                           <children>
+                              <CheckBox fx:id="drink1CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink2CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink3CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink4CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink5CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink6CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink7CheckBox" mnemonicParsing="false" />
+                              <CheckBox fx:id="drink8CheckBox" mnemonicParsing="false" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </left>
+   <top>
+      <HBox prefHeight="58.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#homeButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Home" />
+            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="100.0" text="View Bookings" />
+            <Button mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Logout" />
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <VBox prefHeight="542.0" prefWidth="304.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#checkOrderButtonPushed" prefHeight="25.0" prefWidth="300.0" text="Check Order" />
+            <Label fx:id="totalOrderLabel" alignment="TOP_LEFT" prefHeight="447.0" prefWidth="300.0" text="Total order consists of:" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="Finalise Order" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
