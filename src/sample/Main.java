@@ -91,6 +91,20 @@ public class Main extends Application {
         PreparedStatement orderTableCheck = connection.prepareStatement(orderTableQuery);
         orderTableCheck.executeUpdate();
 
+        String bookingQuery = "CREATE TABLE IF NOT EXISTS booking (\n"
+                + "	bookingID integer PRIMARY KEY ,\n"
+                + " date date NOT NULL,\n"
+                + "	timePeriod integer NOT NULL,\n"
+                + " numberOfGuests integer NOT NULL, \n"
+                + " extended boolean NOT NULL,\n"
+                + "	approved boolean NOT NULL, \n"
+                + " checked boolean NOT NULL, \n"
+                + " customerID boolean NOT NULL"
+                + ");";
+
+        PreparedStatement bookingCheck = connection.prepareStatement(bookingQuery);
+        bookingCheck.executeUpdate();
+
 
         rootPane = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(rootPane);

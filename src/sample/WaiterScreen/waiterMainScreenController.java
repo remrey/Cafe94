@@ -50,6 +50,22 @@ public class waiterMainScreenController {
     @FXML private TableColumn<order,String> typeColumn;
     @FXML private TableColumn<order, Integer> tableIdColumn;
     @FXML private TableColumn<order,String> statusColumn;
+    @FXML private TableView<order> orderTable;
+    @FXML private TableColumn<order,Integer> deliveryOrderIdColumn;
+    @FXML private TableColumn<order,Integer> deliveryCustomerIdColumn;
+    @FXML private TableColumn<order,Boolean> deliveryStatusColumn;
+    @FXML private TableView<order> orderItemTable;
+    @FXML private TableColumn<order,Integer> deliveryItemIdColumn;
+    @FXML private TableColumn<order,String> deliveryItemNameColumn;
+
+    @FXML private TableView<Booking> bookingTable;
+    @FXML private TableColumn<Booking, Integer> iDColumn;
+    @FXML private TableColumn<Booking, String> dateColumn;
+    @FXML private TableColumn<Booking, String> timeColumn;
+    @FXML private TableColumn<Booking, Integer> numberOfGuestsColumn;
+    @FXML private TableColumn<Booking, Boolean> extendedColumn;
+    @FXML private Label displayMessage;
+    @FXML private Button loadButton;
 
 
     ToggleGroup toggleGroup = new ToggleGroup();
@@ -68,6 +84,7 @@ public class waiterMainScreenController {
     public ObservableList<item> dessertObservableList = FXCollections.observableArrayList();
     public ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
     public ObservableList<item> resultList = FXCollections.observableArrayList();
+    public ObservableList<Booking> data = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
         table1.setToggleGroup(toggleGroup);
@@ -117,6 +134,100 @@ public class waiterMainScreenController {
 
     public void setTableSelection(ActionEvent event){
         tableChoice = tableList.getSelectionModel().getSelectedItem();
+    }
+
+    public void onRefreshButtonClickedInDeliveryRequest(ActionEvent event) throws SQLException {
+        String query = "SELECT * FROM orders where (orderType = 'delivery' and waiterServed = 'False') group by orderNo;";
+        connection = DBManager.DBConnection();
+        try {
+            pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            ObservableList<order> orderList = fillDeliveryRequestTable(rs);
+            deliveryOrderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderNo"));
+            deliveryCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("customerID"));
+            deliveryStatusColumn.setCellValueFactory(new PropertyValueFactory<order, Boolean>("delivered"));
+            orderTable.setItems(orderList);
+        }
+        catch(Exception e){
+            System.out.println("Problem is here: " + e);
+        }
+        finally {
+            pst.close();
+            connection.close();
+        }
+    }
+
+    public void onDeclineButtonClicked(ActionEvent event) throws SQLException {
+        String query = "DELETE from orders WHERE orderNo = ?";
+        int orderNo =  orderTable.getSelectionModel().selectedItemProperty().get().getOrderNo();
+        connection = DBManager.DBConnection();
+        try{
+            pst = connection.prepareStatement(query);
+            pst.setInt(1,orderNo);
+            pst.executeUpdate();
+            onRefreshButtonClickedInDeliveryRequest(event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            pst.close();
+            connection.close();
+        }
+    }
+
+    public void onAcceptButtonClicked(ActionEvent event) throws SQLException {
+        String query = "UPDATE orders SET waiterServed = True WHERE orderNo = ?;";
+        int orderNo =  orderTable.getSelectionModel().selectedItemProperty().get().getOrderNo();
+        connection = DBManager.DBConnection();
+        try{
+            pst = connection.prepareStatement(query);
+            pst.setInt(1,orderNo);
+            pst.executeUpdate();
+            onRefreshButtonClickedInDeliveryRequest(event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            pst.close();
+            connection.close();
+        }
+
+    }
+
+    public void onMouseClickOrderTable() throws SQLException {
+        order order =  orderTable.getSelectionModel().selectedItemProperty().get();
+        int orderNo = order.getOrderNo();
+        String query = "SELECT * from orders where orderNo = ?;";
+        connection = DBManager.DBConnection();
+        try{
+            pst = connection.prepareStatement(query);
+            pst.setInt(1,orderNo);
+            ResultSet rs = pst.executeQuery();
+            ObservableList<order> orderList = fillDeliveryRequestTable(rs);
+            deliveryItemIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("itemID"));
+            deliveryItemNameColumn.setCellValueFactory(new PropertyValueFactory<order, String>("itemName"));
+            orderItemTable.setItems(orderList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            pst.close();
+            connection.close();
+        }
+    }
+
+    public ObservableList<order> fillDeliveryRequestTable(ResultSet rs) throws SQLException {
+        ObservableList<order> tempList = FXCollections.observableArrayList();
+        while(rs.next()){
+            order temp = new order();
+            temp.setOrderNo(rs.getInt("orderNo"));
+            temp.setItemID((rs.getInt("itemID")));
+            temp.setItemName(rs.getString("itemName"));
+            temp.setCustomerID(rs.getInt("customerID"));
+            temp.setDelivered(rs.getBoolean("delivered"));
+            tempList.add(temp);
+        }
+        return tempList;
     }
 
     public void fillMenuLists(ResultSet rs) throws SQLException {
@@ -256,7 +367,7 @@ public class waiterMainScreenController {
     }
 
     public void onRefreshButtonPressed (ActionEvent event) throws SQLException {
-        String query = "SELECT * FROM orders WHERE waiterServed = 'False';";
+        String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and orderType = 'eatin');";
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);
@@ -359,8 +470,103 @@ public class waiterMainScreenController {
     }
 
 
+    //*************************************************************************
+    // below is the update for the waiter main screen
 
+    private ObservableList<Booking> getBookingList(ResultSet rsBooking) throws SQLException {
+        ObservableList<Booking> tempBookingList = FXCollections.observableArrayList();
+        while(rsBooking.next()){
+            this.data.add(new Booking(rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getInt(4),
+                    rs.getBoolean(5),
+                    rs.getString(6) ));
+        }
+        return this.data;
+    }
 
+    @FXML private void loadBookingData(ActionEvent event) throws SQLException {
+        data.clear();
+        String sql = "SELECT * FROM booking WHERE checked = 0;";
+        connection = DBManager.DBConnection();
+        try{
 
+            pst = connection.prepareStatement(sql);
+            rs = pst.executeQuery();
+            ObservableList<Booking> bookingList = getBookingList(rs);
+            this.iDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
+            this.dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("date"));
+            this.timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("time"));
+            this.numberOfGuestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
+            this.extendedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("extended"));
+            bookingTable.setItems(bookingList);
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            rs.close();
+            pst.close();
+            connection.close();
+        }
+    }
 
+    @FXML public void declineBooking(ActionEvent event) throws SQLException, IOException {
+        connection = DBManager.DBConnection();
+        if (bookingTable.getSelectionModel().getSelectedCells().isEmpty()) {
+            displayMessage.setText("Please select a booking");
+            displayMessage.setVisible(true);
+        } else {
+            int id = bookingTable.getSelectionModel().getSelectedItem().getBookingID();
+            String updateSql = "UPDATE booking SET approved = 0, checked = 1 WHERE bookingID = ?;";
+            PreparedStatement pr = null;
+            try {
+                pr = connection.prepareStatement(updateSql);
+                pr.setInt(1,id);
+                pr.executeUpdate();
+                displayMessage.setText("Booking successfully declined");
+            }
+            catch(NullPointerException ex) {
+                System.err.println("Please select a row to update");
+            }
+            finally{
+                bookingTable.getItems().clear();
+                loadBookingData(event);
+                rs.close();
+                pr.close();
+                connection.close();
+            }
+        }
+    }
+
+    @FXML public void approveBooking(ActionEvent event) throws SQLException, IOException {
+        connection = DBManager.DBConnection();
+        if (bookingTable.getSelectionModel().getSelectedCells().isEmpty()) {
+            displayMessage.setText("Please select a booking");
+            displayMessage.setVisible(false);
+            displayMessage.setVisible(true);
+        } else {
+            int id = bookingTable.getSelectionModel().getSelectedItem().getBookingID();
+            String updateSql = "UPDATE booking SET approved = 1, checked = 1 WHERE bookingID = ?;";
+            PreparedStatement pr = null;
+            try {
+                pr = connection.prepareStatement(updateSql);
+                pr.setInt(1,id);
+                pr.executeUpdate();
+                displayMessage.setText("Booking successfully approved");
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+            finally{
+                bookingTable.getItems().clear();
+                loadBookingData(event);
+                rs.close();
+                pr.close();
+                connection.close();
+            }
+        }
+
+    }
 }
