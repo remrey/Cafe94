@@ -65,6 +65,33 @@ public class Main extends Application {
         menuItemCheck.executeUpdate();
 
 
+        String orderQuery = "CREATE TABLE IF NOT EXISTS Orders(\n"
+                + "	orderID integer PRIMARY KEY ,\n"
+                + " orderNo integer ,\n"
+                + "	itemID integer ,\n"
+                + " itemName varchar(255), \n"
+                + " customerID integer ,\n"
+                + "	orderType varchar(255) NOT NULL, \n"
+                + " deliveryAddress varchar(255) NOT NULL, \n"
+                + " chefCompleted boolean ,\n"
+                + " delivered boolean ,\n"
+                + " waiterServed boolean ,\n"
+                + " orderDate datetime ,\n"
+                + " pickupTime datetime ,\n"
+                + " driverID integer ,\n"
+                + " tableID integer"
+                + ");";
+        PreparedStatement orderCheck = connection.prepareStatement(orderQuery);
+        orderCheck.executeUpdate();
+
+        String orderTableQuery = "CREATE TABLE IF NOT EXISTS ordertable(\n"
+                + "	id integer PRIMARY KEY,\n"
+                + " table_id integer NOT NULL \n"
+                + ");";
+        PreparedStatement orderTableCheck = connection.prepareStatement(orderTableQuery);
+        orderTableCheck.executeUpdate();
+
+
         rootPane = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);

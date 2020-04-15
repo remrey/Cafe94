@@ -255,18 +255,18 @@ public class waiterMainScreenController {
         menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
     }
 
-    public void onRefreshButtonPressed(ActionEvent event) throws SQLException {
-        String query = "SELECT * FROM orders WHERE status = 'waiting';";
+    public void onRefreshButtonPressed (ActionEvent event) throws SQLException {
+        String query = "SELECT * FROM orders WHERE waiterServed = 'False';";
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             ObservableList<order> outStandingOrderList = getOutStandingOrder(rs);
-            orderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderId"));
+            orderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderNo"));
             itemNameColumn.setCellValueFactory(new PropertyValueFactory<order, String>("itemName"));
             typeColumn.setCellValueFactory(new PropertyValueFactory<order, String>("orderType"));
-            statusColumn.setCellValueFactory(new PropertyValueFactory<order, String>("orderStatus"));
-            tableIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("tableId"));
+            statusColumn.setCellValueFactory(new PropertyValueFactory<order, String>("waiterServed"));
+            tableIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("tableID"));
             standingOrderTableView.setItems(outStandingOrderList);
         }
         catch (Exception e){
@@ -278,11 +278,12 @@ public class waiterMainScreenController {
         ObservableList<order> tempList = FXCollections.observableArrayList();
         while(rs.next()){
             order temp = new order();
-            temp.setOrderId(rs.getInt("order_id"));
-            temp.setItemName(rs.getString("item_name"));
-            temp.setOrderType(rs.getString("type"));
-            temp.setOrderStatus(rs.getString("status"));
-            temp.setTableId(rs.getInt("table_id"));
+            temp.setOrderNo(rs.getInt("orderNo"));
+            temp.setItemName(rs.getString("itemName"));
+            temp.setOrderType(rs.getString("orderType"));
+            temp.setWaiterServed(rs.getBoolean("waiterServed"));
+
+            temp.setTableID(rs.getInt("tableID"));
             tempList.add(temp);
         }
         return tempList;
@@ -319,17 +320,32 @@ public class waiterMainScreenController {
 
                 //put all items in the order to a new table
                 // with the orders id
-                String insertOrder = "INSERT INTO orders(order_id,item_name,type,status,table_id) VALUES("
+                String insertOrder = "INSERT INTO Orders(orderNo,itemID,itemName,customerID,orderType,deliveryAddress" +
+                        ",chefCompleted,delivered,waiterServed,orderDate,pickupTime,driverID,tableID) "
+                        + "VALUES("
                         + id + ", "
                         + "?, "
+                        + "?, "
+                        + "-1,"
                         + "'eatin',"
-                        + "'waiting',"
+                        + "'None',"
+                        + "'False',"
+                        + "'False',"
+                        + "'False',"
+                        + "'now',"
+                        + "'now',"
+                        + "-1,"
                         + "?);";
                 PreparedStatement sendOrder = connection.prepareStatement(insertOrder);
+
+                String tempWord ="Table #";
+                String tableIdString = tableId.replaceAll(tempWord, "");
                 for(item i : resultList){
                     String tempName = i.getItemName();
-                    sendOrder.setString(1,tempName);
-                    sendOrder.setString(2,tableId);
+                    int tempID = i.getId();
+                    sendOrder.setInt(1,tempID);
+                    sendOrder.setString(2,tempName);
+                    sendOrder.setInt(3,Integer.parseInt(tableIdString));
                     sendOrder.executeUpdate();
                 }
                 resultList.clear();
