@@ -242,27 +242,33 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.29797979797979796" layoutX="291.0" layoutY="84.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.7706766917293233" layoutX="291.0" layoutY="84.0" prefHeight="567.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView layoutY="8.0" prefHeight="565.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="standingOrderTableView" prefHeight="565.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Order ID" />
-                                        <TableColumn prefWidth="75.0" text="Customer ID" />
-                                          <TableColumn prefWidth="83.0" text="Status" />
+                                        <TableColumn fx:id="orderIdColumn" prefWidth="75.0" text="Order Id" />
+                                        <TableColumn fx:id="itemNameColumn" prefWidth="175.0" text="Item Name" />
+                                          <TableColumn fx:id="typeColumn" prefWidth="131.0" text="Type" />
+                                          <TableColumn fx:id="tableIdColumn" prefWidth="110.0" text="Table Id" />
+                                          <TableColumn fx:id="statusColumn" prefWidth="119.0" text="Status" />
                                       </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView layoutX="137.0" layoutY="43.0" prefHeight="565.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <columns>
-                                        <TableColumn prefWidth="75.0" text="Item ID" />
-                                        <TableColumn prefWidth="272.0" text="Item Name" />
-                                      </columns>
-                                    </TableView>
+                                    <SplitPane dividerPositions="0.7282415630550622" layoutX="10.0" layoutY="128.0" orientation="VERTICAL" prefHeight="565.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <Button layoutX="61.0" layoutY="60.0" mnemonicParsing="false" onAction="#onRefreshButtonPressed" prefHeight="221.0" prefWidth="177.0" text="Refresh" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
                                  </children>
                               </AnchorPane>
                           </items>

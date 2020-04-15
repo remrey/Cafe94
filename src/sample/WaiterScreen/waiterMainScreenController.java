@@ -11,10 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.DBManager;
-import sample.Report;
-import sample.item;
-import sample.user;
+import sample.*;
 
 
 import javax.swing.*;
@@ -47,6 +44,12 @@ public class waiterMainScreenController {
     @FXML private RadioButton table9;
     @FXML private RadioButton table10;
     @FXML private RadioButton table11;
+    @FXML private TableView<order> standingOrderTableView;
+    @FXML private TableColumn<order,Integer> orderIdColumn;
+    @FXML private TableColumn<order,String> itemNameColumn;
+    @FXML private TableColumn<order,String> typeColumn;
+    @FXML private TableColumn<order, Integer> tableIdColumn;
+    @FXML private TableColumn<order,String> statusColumn;
 
 
     ToggleGroup toggleGroup = new ToggleGroup();
@@ -56,6 +59,7 @@ public class waiterMainScreenController {
     Connection connection = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+
 
     public ObservableList<item> favoriteObservableList = FXCollections.observableArrayList();
     public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
@@ -251,6 +255,39 @@ public class waiterMainScreenController {
         menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
     }
 
+    public void onRefreshButtonPressed(ActionEvent event) throws SQLException {
+        String query = "SELECT * FROM orders WHERE status = 'waiting';";
+        connection = DBManager.DBConnection();
+        try {
+            pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            ObservableList<order> outStandingOrderList = getOutStandingOrder(rs);
+            orderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderId"));
+            itemNameColumn.setCellValueFactory(new PropertyValueFactory<order, String>("itemName"));
+            typeColumn.setCellValueFactory(new PropertyValueFactory<order, String>("orderType"));
+            statusColumn.setCellValueFactory(new PropertyValueFactory<order, String>("orderStatus"));
+            tableIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("tableId"));
+            standingOrderTableView.setItems(outStandingOrderList);
+        }
+        catch (Exception e){
+            System.out.println("Problem is here: " + e);
+        }
+    }
+
+    private ObservableList<order> getOutStandingOrder(ResultSet rs) throws SQLException {
+        ObservableList<order> tempList = FXCollections.observableArrayList();
+        while(rs.next()){
+            order temp = new order();
+            temp.setOrderId(rs.getInt("order_id"));
+            temp.setItemName(rs.getString("item_name"));
+            temp.setOrderType(rs.getString("type"));
+            temp.setOrderStatus(rs.getString("status"));
+            temp.setTableId(rs.getInt("table_id"));
+            tempList.add(temp);
+        }
+        return tempList;
+    }
+
     public void onFinalizeOrderButtonPressed(ActionEvent event){
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         if(toggleGroup.getSelectedToggle() == null){
@@ -259,13 +296,44 @@ public class waiterMainScreenController {
         }
         else {
             try {
+                String tableId = selectedRadioButton.getText();
                 itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
-                resultList.clear();
                 totalCost = 0.0;
                 menuResultPrice.setStyle("-fx-text-fill: green");
                 menuResultPrice.setText("0.00");
+                //Updates the orders table with new Order
+                // Complete status is waiting by default
+                String insertIntoOrderTable = "INSERT INTO ordertable(table_id) VALUES(?);";
+                connection = DBManager.DBConnection();
+                pst = connection.prepareStatement(insertIntoOrderTable);
+                pst.setString(1,tableId);
+                pst.executeUpdate();
+                String getLastInsertedId = "select last_insert_rowid();";
+
+                //gets the id of the last inserted Order
+                PreparedStatement getLastId = connection.prepareStatement(getLastInsertedId);
+                ResultSet lastId = getLastId.executeQuery();
+                int id = lastId.getInt(1);
+
+                //put all items in the order to a new table
+                // with the orders id
+                String insertOrder = "INSERT INTO orders(order_id,item_name,type,status,table_id) VALUES("
+                        + id + ", "
+                        + "?, "
+                        + "'eatin',"
+                        + "'waiting',"
+                        + "?);";
+                PreparedStatement sendOrder = connection.prepareStatement(insertOrder);
+                for(item i : resultList){
+                    String tempName = i.getItemName();
+                    sendOrder.setString(1,tempName);
+                    sendOrder.setString(2,tableId);
+                    sendOrder.executeUpdate();
+                }
+                resultList.clear();
+                connection.close();
 
             } catch (Exception e) {
                 System.out.println(e);
