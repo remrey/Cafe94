@@ -26,13 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class mainScreenController {
-    @FXML private AnchorPane employeePane;
-    @FXML private CheckBox popularItem;
-    @FXML private CheckBox busiestPeriod;
-    @FXML private CheckBox activeCustomer;
-    @FXML private CheckBox highestWork;
     @FXML private TableView<Report> table;
-    @FXML private TableColumn<Report,Integer> tableViewId;
     @FXML private TableColumn<Report,String> tableViewReport;
     @FXML private TableColumn<Report,String> tableViewName;
     @FXML private TableColumn<Report,Integer> tableViewCount;
@@ -53,13 +47,21 @@ public class mainScreenController {
 
     Connection connection = null;
     Connection connection1 = null;
-    ResultSet rs = null;
+    Connection connection3 = null;
+    ResultSet rsQueryItem = null;
+    ResultSet rsQueryCustomer = null;
+    ResultSet rsQueryBooking = null;
     ResultSet rsEmployee = null;
     ResultSet rsCustomer = null;
     PreparedStatement pst = null;
+    PreparedStatement pstItem = null;
+    PreparedStatement pstCustomer = null;
+    PreparedStatement pstBooking = null;
 
 
     public ObservableList<Report> list = FXCollections.observableArrayList();
+
+
 
     public void onAddCustomerPressButton(ActionEvent Event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/sample/signUpScreen.fxml"));
@@ -105,11 +107,10 @@ public class mainScreenController {
     }
 
     public void onRemoveCustomerPressButton(ActionEvent event) throws SQLException, IOException {
-
+        int id = customerTable.getSelectionModel().getSelectedItem().getId();
+        String query = "DELETE from users where id = ?;";
+        connection1 = DBManager.DBConnection();
         try {
-            int id = customerTable.getSelectionModel().getSelectedItem().getId();
-            String query = "DELETE from users where id = ?;";
-            connection1 = DBManager.DBConnection();
             pst = connection1.prepareStatement(query);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -177,11 +178,10 @@ public class mainScreenController {
     }
 
     public void onRemoveEmployeePressButton(ActionEvent event) throws SQLException, IOException {
-
+        int id = staffTable.getSelectionModel().getSelectedItem().getId();
+        String query = "DELETE from staff where id = ?;";
+        connection = DBManager.DBConnection();
         try {
-            int id = staffTable.getSelectionModel().getSelectedItem().getId();
-            String query = "DELETE from staff where id = ?;";
-            connection = DBManager.DBConnection();
             pst = connection.prepareStatement(query);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -198,54 +198,50 @@ public class mainScreenController {
     }
 
     public void onEditEmployeePressButton(ActionEvent event) throws SQLException, IOException {
-        try {
-            employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
-            System.out.println(employeeIdFromTable);
-            Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Edit Employee");
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        catch (Exception e ){
-            System.out.println("Problem is here " + e);
-        }
+        employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+        System.out.println(employeeIdFromTable);
+        Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Edit Employee");
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 
-    public void onShowPressButton(ActionEvent event) throws IOException{
+    public void onResfreshButtonPush() throws SQLException{
         list.clear();
-        boolean itemCheck = popularItem.isSelected();
-        boolean periodCheck = busiestPeriod.isSelected();
-        boolean customerCheck = activeCustomer.isSelected();
-        boolean workCheck = highestWork.isSelected();
+        String itemQuery = "SELECT itemName, COUNT('itemName') AS 'value_occurence' FROM Orders GROUP BY itemName ORDER BY 'value_occurence' ASC LIMIT 1;";
+        String customerQuery = "SELECT customerID, COUNT('customerID') AS 'value_occurence' FROM Orders GROUP BY customerID ORDER BY 'value_occurence' ASC LIMIT 1;";
+        String bookingQuery = "SELECT timePeriod, COUNT('timePeriod') AS 'value_occurence' FROM booking GROUP BY timePeriod ORDER BY 'value_occurence' DESC LIMIT 1;";
+        connection3 = DBManager.DBConnection();
+        pstItem = connection3.prepareStatement(itemQuery);
+        pstCustomer = connection3.prepareStatement(customerQuery);
+        pstBooking = connection3.prepareStatement(bookingQuery);
+        rsQueryItem = pstItem.executeQuery();
+        rsQueryCustomer = pstCustomer.executeQuery();
+        rsQueryBooking = pstBooking.executeQuery();
+        String item = rsQueryItem.getString(1);
+        int itemTimes = rsQueryItem.getInt(2);
+        String customer = rsQueryCustomer.getString(1);
+        int customerTimes = rsQueryCustomer.getInt(2);
+        String time = rsQueryBooking.getString(1);
+        int timeTimes = rsQueryBooking.getInt(2);
 
-        if(workCheck) list.addAll(new Report(234,"Highest Number of Hours Work","Stefan",250));
-        if(itemCheck) list.addAll(new Report(12,"Most Popular Item","Chicken Burger",25));
-        if(periodCheck) list.addAll(new Report(14,"Busiest Period","5.00-6.00",12));
-        if(customerCheck) list.addAll(new Report(26,"Most Active Customer","Joe",15));
-
-        tableViewId.setCellValueFactory(new PropertyValueFactory<Report,Integer>("Id"));
+        list.addAll(new Report(1,"Most Popular Item",item,itemTimes));
+        list.addAll(new Report(2,"Most Active Customer",customer,customerTimes));
+        list.addAll(new Report(3, "Busiest Time Period",time,timeTimes));
         tableViewReport.setCellValueFactory(new PropertyValueFactory<Report,String>("Description"));
         tableViewName.setCellValueFactory(new PropertyValueFactory<Report,String>("Name"));
         tableViewCount.setCellValueFactory(new PropertyValueFactory<Report,Integer>("Amount"));
         table.setItems(list);
 
-    }
-
-    public void onAddHoursButtonPushed(ActionEvent event) throws IOException {
-       try {
-           employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
-           System.out.println(employeeIdFromTable);
-           Parent root = FXMLLoader.load(getClass().getResource("addHours.fxml"));
-           Stage stage = new Stage();
-           stage.setTitle("Add Hours");
-           stage.setScene(new Scene(root));
-           stage.show();
-       }
-       catch (Exception e){
-           System.out.println("Problem is in here: " + e);
-       }
+        connection3.close();
+        pstItem.close();
+        pstCustomer.close();
+        pstBooking.close();
+        rsQueryBooking.close();
+        rsQueryCustomer.close();
+        rsQueryItem.close();
     }
 
     public void logoutButtonPushed(ActionEvent event) throws IOException, SQLException {
