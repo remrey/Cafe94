@@ -42,10 +42,13 @@ public class mainScreenController {
     @FXML private TableColumn<Staff,String> staffLastName;
     @FXML private TableColumn<Staff,Integer> staffHoursToWork;
     @FXML private TableColumn<Staff,Integer> staffTotalHoursWorked;
+    @FXML private TableColumn<Staff,String> staffType;
     @FXML private TableView<user> customerTable;
     @FXML private TableColumn<user, Integer> customerId;
     @FXML private TableColumn<user, String> customerFirstName;
     @FXML private TableColumn<user, String> customerLastName;
+
+    public static int employeeIdFromTable;
 
 
     Connection connection = null;
@@ -57,6 +60,8 @@ public class mainScreenController {
 
 
     public ObservableList<Report> list = FXCollections.observableArrayList();
+
+
 
     public void onAddCustomerPressButton(ActionEvent Event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/sample/signUpScreen.fxml"));
@@ -143,6 +148,7 @@ public class mainScreenController {
             staffLastName.setCellValueFactory(new PropertyValueFactory<Staff,String>("lastName"));
             staffHoursToWork.setCellValueFactory(new PropertyValueFactory<Staff,Integer>("hourToWork"));
             staffTotalHoursWorked.setCellValueFactory(new PropertyValueFactory<Staff,Integer>("totalHoursWorked"));
+            staffType.setCellValueFactory(new PropertyValueFactory<Staff,String>("type"));
             staffTable.setItems(staffList);
 
         } catch (SQLException e) {
@@ -188,6 +194,17 @@ public class mainScreenController {
             connection.close();
             onShowEmployeePressButton(event);
         }
+
+    }
+
+    public void onEditEmployeePressButton(ActionEvent event) throws SQLException, IOException {
+        employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+        System.out.println(employeeIdFromTable);
+        Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Edit Employee");
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 

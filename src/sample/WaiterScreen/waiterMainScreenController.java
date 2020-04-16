@@ -385,7 +385,7 @@ public class waiterMainScreenController {
     }
 
     public void onRefreshButtonPressed (ActionEvent event) throws SQLException {
-        String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and (orderType = 'eatin' or orderType = 'takeaway'));";
+        String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and chefCompleted ='True'and (orderType = 'eatin' or orderType = 'takeaway'));";
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);

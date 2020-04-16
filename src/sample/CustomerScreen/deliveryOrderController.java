@@ -248,6 +248,7 @@ public class deliveryOrderController {
 
     public void onFinaliseOrderButtonPressed(ActionEvent event){
         try {
+            int curCustomer = sample.UserDetails.getInstance().getUserID();
             totalCost = 0.0;
             menuResultPrice.setStyle("-fx-text-fill: green");
             menuResultPrice.setText("0.00");
@@ -290,7 +291,7 @@ public class deliveryOrderController {
                 int tempID = i.getId();
                 sendOrder.setInt(1, tempID);
                 sendOrder.setString(2, tempName);
-                sendOrder.setInt(3, 12);
+                sendOrder.setInt(3, curCustomer);
                 sendOrder.executeUpdate();
             }
             resultList.clear();

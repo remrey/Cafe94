@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CustomerScreen.personOverview">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CustomerScreen.personOverview">
     <children>
       <HBox prefHeight="58.0" prefWidth="800.0">
          <children>
@@ -48,19 +49,13 @@
                                 <Label text="Last Name" GridPane.rowIndex="2" />
                                 <Label text="Username" />
                                 <Label text="Customer ID" GridPane.rowIndex="3" />
-                                <Label fx:id="usernameLabel" text="Label" GridPane.columnIndex="1" />
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label fx:id="userNameLabel" text="Label" GridPane.columnIndex="1" />
+                                <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label fx:id="customerIDLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                         </GridPane>
-                        <HBox layoutX="197.0" layoutY="236.0" spacing="10.0">
-                            <children>
-                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="63.0" text="New Customer" />
-                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="Edit Customer" />
-                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="Delete" />
-                            </children>
-                        </HBox>
+                        <HBox layoutX="197.0" layoutY="236.0" spacing="10.0" />
                     </children>
                 </AnchorPane>
             </items>

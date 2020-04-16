@@ -51,7 +51,7 @@ public class takeawayOrderController {
     public ObservableList<item> resultList = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
-//        userID = sample.UserDetails.getInstance().getUserID();
+
         String query = "SELECT * FROM menu;";
         connection = DBManager.DBConnection();
         try{
@@ -107,6 +107,7 @@ public class takeawayOrderController {
 
     public void finaliseOrderButtonPushed(ActionEvent event) throws IOException {
         try {
+            int curCustomer = sample.UserDetails.getInstance().getUserID();
             totalCost = 0.0;
             menuResultPrice.setStyle("-fx-text-fill: green");
             menuResultPrice.setText("0.00");
@@ -149,7 +150,7 @@ public class takeawayOrderController {
                 int tempID = i.getId();
                 sendOrder.setInt(1, tempID);
                 sendOrder.setString(2, tempName);
-                sendOrder.setInt(3, 12);
+                sendOrder.setInt(3, curCustomer);
                 sendOrder.executeUpdate();
             }
             resultList.clear();

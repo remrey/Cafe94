@@ -30,7 +30,11 @@ public class personOverview {
     @FXML private TableColumn<Order, Integer> orderNoColumn;
     @FXML private TableColumn<Order, String> orderTypeColumn;
     @FXML private TableColumn<Order, String> itemColumn;
-    @FXML private Label usernameLabel;
+    @FXML private Label userNameLabel;
+    @FXML private Label firstNameLabel;
+    @FXML private Label lastNameLabel;
+    @FXML private Label customerIDLabel;
+
     Connection connection = null;
     ResultSet rsOrders = null;
     PreparedStatement pst = null;
@@ -82,7 +86,15 @@ public class personOverview {
     public void initialize() throws SQLException {
         int userID = sample.UserDetails.getInstance().getUserID();
 
-        usernameLabel.setText(sample.UserDetails.getInstance().getUsern());
+        sample.UserDetails.getInstance().getUserID();
+        userNameLabel.setText(sample.UserDetails.getInstance().getUsern());
+        firstNameLabel.setText(sample.UserDetails.getInstance().getUserFirst());
+        lastNameLabel.setText(sample.UserDetails.getInstance().getUserLast());
+        customerIDLabel.setText("" + userID);
+
+
+
+
         String query = "SELECT orderNo, itemName, orderType FROM orders WHERE customerID =" + userID;
         connection = DBManager.DBConnection();
         pst = connection.prepareStatement(query);
