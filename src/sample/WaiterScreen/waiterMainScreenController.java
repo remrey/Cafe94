@@ -330,6 +330,7 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
+
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
@@ -369,7 +370,7 @@ public class waiterMainScreenController {
         String query = "UPDATE orders SET waiterServed = True WHERE orderID = ?;";
         int orderID =  standingOrderTableView.getSelectionModel().selectedItemProperty().get().getOrderID();
         connection = DBManager.DBConnection();
-        try {
+        try{
             pst = connection.prepareStatement(query);
             pst.setInt(1,orderID);
             pst.executeUpdate();
@@ -486,6 +487,10 @@ public class waiterMainScreenController {
 
     }
 
+
+    //*************************************************************************
+    // below is the update for the waiter main screen
+
     private ObservableList<Booking> getBookingList(ResultSet rsBooking) throws SQLException {
         ObservableList<Booking> tempBookingList = FXCollections.observableArrayList();
         while(rsBooking.next()){
@@ -494,7 +499,7 @@ public class waiterMainScreenController {
                     rs.getString(3),
                     rs.getInt(4),
                     rs.getBoolean(5),
-                    rs.getInt(6) ));
+                    rs.getString(6) ));
         }
         return this.data;
     }
@@ -503,13 +508,14 @@ public class waiterMainScreenController {
         data.clear();
         String sql = "SELECT * FROM booking WHERE checked = 0;";
         connection = DBManager.DBConnection();
-        try {
+        try{
+
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             ObservableList<Booking> bookingList = getBookingList(rs);
             this.iDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
             this.dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("date"));
-            this.timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("timePeriod"));
+            this.timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("time"));
             this.numberOfGuestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
             this.extendedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("extended"));
             bookingTable.setItems(bookingList);
