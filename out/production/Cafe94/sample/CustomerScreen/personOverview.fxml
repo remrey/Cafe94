@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CustomerScreen.personOverview">
+    <children>
+      <HBox prefHeight="58.0" prefWidth="800.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#homeButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Home" />
+            <Button mnemonicParsing="false" onAction="#bookingButtonPushed" prefHeight="58.0" prefWidth="110.0" text="Make a Booking" />
+            <Button mnemonicParsing="false" onAction="#menuButtonPushed" prefHeight="58.0" prefWidth="100.0" text="View Menu" />
+            <Button mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Logout" />
+         </children>
+      </HBox>
+        <SplitPane dividerPositions="0.5" layoutX="183.0" layoutY="58.0" prefHeight="542.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
+            <items>
+            <BorderPane prefHeight="540.0" prefWidth="350.0">
+               <top>
+                  <Label prefHeight="17.0" prefWidth="77.0" text="Order History" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <TableView fx:id="orderHistoryView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="orderNoColumn" prefWidth="56.0" text="OrderNo" />
+                      <TableColumn fx:id="itemColumn" prefWidth="125.0" text="Item" />
+                        <TableColumn fx:id="orderTypeColumn" prefWidth="89.0" text="Type" />
+                        <TableColumn fx:id="orderDateColumn" prefWidth="124.0" text="Date" />
+                    </columns>
+                  </TableView>
+               </center>
+            </BorderPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="498.0">
+                    <children>
+                        <GridPane layoutX="68.0" layoutY="20.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="First Name" GridPane.rowIndex="1" />
+                                <Label text="Last Name" GridPane.rowIndex="2" />
+                                <Label text="Username" />
+                                <Label text="Customer ID" GridPane.rowIndex="3" />
+                                <Label fx:id="usernameLabel" text="Label" GridPane.columnIndex="1" />
+                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            </children>
+                        </GridPane>
+                        <HBox layoutX="197.0" layoutY="236.0" spacing="10.0">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="63.0" text="New Customer" />
+                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="Edit Customer" />
+                                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="Delete" />
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

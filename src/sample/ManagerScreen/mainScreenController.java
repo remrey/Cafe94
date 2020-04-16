@@ -217,7 +217,6 @@ public class mainScreenController {
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        connection.close();
 
         window.setScene(tableViewScene);
         window.show();

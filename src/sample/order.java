@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDateTime;
 
-public class order {
+public class Order {
 
     private SimpleIntegerProperty orderID;
     private SimpleIntegerProperty orderNo;
@@ -22,7 +22,7 @@ public class order {
     private SimpleIntegerProperty driverID;
     private SimpleIntegerProperty tableID;
 
-    public order(SimpleIntegerProperty orderID, SimpleIntegerProperty orderNo, SimpleIntegerProperty itemID, SimpleStringProperty itemName, SimpleIntegerProperty customerID, SimpleStringProperty orderType, SimpleStringProperty deliveryAddress, SimpleBooleanProperty delivered, SimpleBooleanProperty waiterServed, LocalDateTime orderData, LocalDateTime pickupTime, SimpleIntegerProperty driverID, SimpleIntegerProperty tableID) {
+    public Order(SimpleIntegerProperty orderID, SimpleIntegerProperty orderNo, SimpleIntegerProperty itemID, SimpleStringProperty itemName, SimpleIntegerProperty customerID, SimpleStringProperty orderType, SimpleStringProperty deliveryAddress, SimpleBooleanProperty delivered, SimpleBooleanProperty waiterServed, LocalDateTime orderData, LocalDateTime pickupTime, SimpleIntegerProperty driverID, SimpleIntegerProperty tableID) {
         this.orderID = orderID;
         this.orderNo = orderNo;
         this.itemID = itemID;
@@ -38,7 +38,7 @@ public class order {
         this.tableID = tableID;
     }
 
-    public order(){
+    public Order(){
         this.orderID = new SimpleIntegerProperty(-1);
         this.orderNo = new SimpleIntegerProperty(-1);
         this.itemID = new SimpleIntegerProperty(-1);

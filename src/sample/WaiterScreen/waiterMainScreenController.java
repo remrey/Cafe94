@@ -44,19 +44,19 @@ public class waiterMainScreenController {
     @FXML private RadioButton table9;
     @FXML private RadioButton table10;
     @FXML private RadioButton table11;
-    @FXML private TableView<order> standingOrderTableView;
-    @FXML private TableColumn<order,Integer> orderIdColumn;
-    @FXML private TableColumn<order,String> itemNameColumn;
-    @FXML private TableColumn<order,String> typeColumn;
-    @FXML private TableColumn<order, Integer> tableIdColumn;
-    @FXML private TableColumn<order,String> statusColumn;
-    @FXML private TableView<order> orderTable;
-    @FXML private TableColumn<order,Integer> deliveryOrderIdColumn;
-    @FXML private TableColumn<order,Integer> deliveryCustomerIdColumn;
-    @FXML private TableColumn<order,Boolean> deliveryStatusColumn;
-    @FXML private TableView<order> orderItemTable;
-    @FXML private TableColumn<order,Integer> deliveryItemIdColumn;
-    @FXML private TableColumn<order,String> deliveryItemNameColumn;
+    @FXML private TableView<Order> standingOrderTableView;
+    @FXML private TableColumn<Order,Integer> orderIdColumn;
+    @FXML private TableColumn<Order,String> itemNameColumn;
+    @FXML private TableColumn<Order,String> typeColumn;
+    @FXML private TableColumn<Order, Integer> tableIdColumn;
+    @FXML private TableColumn<Order,String> statusColumn;
+    @FXML private TableView<Order> orderTable;
+    @FXML private TableColumn<Order,Integer> deliveryOrderIdColumn;
+    @FXML private TableColumn<Order,Integer> deliveryCustomerIdColumn;
+    @FXML private TableColumn<Order,Boolean> deliveryStatusColumn;
+    @FXML private TableView<Order> orderItemTable;
+    @FXML private TableColumn<Order,Integer> deliveryItemIdColumn;
+    @FXML private TableColumn<Order,String> deliveryItemNameColumn;
 
     @FXML private TableView<Booking> bookingTable;
     @FXML private TableColumn<Booking, Integer> iDColumn;
@@ -142,10 +142,10 @@ public class waiterMainScreenController {
         try {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            ObservableList<order> orderList = fillDeliveryRequestTable(rs);
-            deliveryOrderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderNo"));
-            deliveryCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("customerID"));
-            deliveryStatusColumn.setCellValueFactory(new PropertyValueFactory<order, Boolean>("delivered"));
+            ObservableList<Order> orderList = fillDeliveryRequestTable(rs);
+            deliveryOrderIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderNo"));
+            deliveryCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("customerID"));
+            deliveryStatusColumn.setCellValueFactory(new PropertyValueFactory<Order, Boolean>("delivered"));
             orderTable.setItems(orderList);
         }
         catch(Exception e){
@@ -195,7 +195,7 @@ public class waiterMainScreenController {
     }
 
     public void onMouseClickOrderTable() throws SQLException {
-        order order =  orderTable.getSelectionModel().selectedItemProperty().get();
+        Order order =  orderTable.getSelectionModel().selectedItemProperty().get();
         int orderNo = order.getOrderNo();
         String query = "SELECT * from orders where orderNo = ?;";
         connection = DBManager.DBConnection();
@@ -203,9 +203,9 @@ public class waiterMainScreenController {
             pst = connection.prepareStatement(query);
             pst.setInt(1,orderNo);
             ResultSet rs = pst.executeQuery();
-            ObservableList<order> orderList = fillDeliveryRequestTable(rs);
-            deliveryItemIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("itemID"));
-            deliveryItemNameColumn.setCellValueFactory(new PropertyValueFactory<order, String>("itemName"));
+            ObservableList<Order> orderList = fillDeliveryRequestTable(rs);
+            deliveryItemIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("itemID"));
+            deliveryItemNameColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("itemName"));
             orderItemTable.setItems(orderList);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -216,10 +216,10 @@ public class waiterMainScreenController {
         }
     }
 
-    public ObservableList<order> fillDeliveryRequestTable(ResultSet rs) throws SQLException {
-        ObservableList<order> tempList = FXCollections.observableArrayList();
+    public ObservableList<Order> fillDeliveryRequestTable(ResultSet rs) throws SQLException {
+        ObservableList<Order> tempList = FXCollections.observableArrayList();
         while(rs.next()){
-            order temp = new order();
+            Order temp = new Order();
             temp.setOrderNo(rs.getInt("orderNo"));
             temp.setItemID((rs.getInt("itemID")));
             temp.setItemName(rs.getString("itemName"));
@@ -367,17 +367,17 @@ public class waiterMainScreenController {
     }
 
     public void onRefreshButtonPressed (ActionEvent event) throws SQLException {
-        String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and orderType = 'eatin');";
+        String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and (orderType = 'eatin' or orderType = 'takeaway'));";
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            ObservableList<order> outStandingOrderList = getOutStandingOrder(rs);
-            orderIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("orderNo"));
-            itemNameColumn.setCellValueFactory(new PropertyValueFactory<order, String>("itemName"));
-            typeColumn.setCellValueFactory(new PropertyValueFactory<order, String>("orderType"));
-            statusColumn.setCellValueFactory(new PropertyValueFactory<order, String>("waiterServed"));
-            tableIdColumn.setCellValueFactory(new PropertyValueFactory<order, Integer>("tableID"));
+            ObservableList<Order> outStandingOrderList = getOutStandingOrder(rs);
+            orderIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderNo"));
+            itemNameColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("itemName"));
+            typeColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("orderType"));
+            statusColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("waiterServed"));
+            tableIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("tableID"));
             standingOrderTableView.setItems(outStandingOrderList);
         }
         catch (Exception e){
@@ -385,10 +385,10 @@ public class waiterMainScreenController {
         }
     }
 
-    private ObservableList<order> getOutStandingOrder(ResultSet rs) throws SQLException {
-        ObservableList<order> tempList = FXCollections.observableArrayList();
+    private ObservableList<Order> getOutStandingOrder(ResultSet rs) throws SQLException {
+        ObservableList<Order> tempList = FXCollections.observableArrayList();
         while(rs.next()){
-            order temp = new order();
+            Order temp = new Order();
             temp.setOrderNo(rs.getInt("orderNo"));
             temp.setItemName(rs.getString("itemName"));
             temp.setOrderType(rs.getString("orderType"));

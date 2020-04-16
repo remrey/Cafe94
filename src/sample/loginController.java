@@ -30,7 +30,7 @@ public class loginController {
         else wrongScreen(event);
     }
     public void customerScreen(ActionEvent event) throws IOException, SQLException {
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("../../../Downloads/Cafe94/src/sample/customerHomeScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("CustomerScreen/customerHomeScreen.fxml"));
         logModel.connection.close();
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
         primaryStage.setMinHeight(600);
@@ -75,7 +75,7 @@ public class loginController {
     }
 
     public void chefScreen(ActionEvent event) throws IOException, SQLException {
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("ChefScreen/chefHomeScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("ChefScreen/chefMainScreen.fxml"));
         logModel.connection.close();
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();

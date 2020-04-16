@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChefScreen.chefMainScreenController">
+   <children>
+      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Home Screen">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="105.0" layoutY="37.0" prefHeight="450.0" prefWidth="600.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="600.0" text="Welcome back!">
+                                 <font>
+                                    <Font name="System Italic" size="50.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="259.0" layoutY="71.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Logout" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Check Menu">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="542.0" prefWidth="465.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Daily Special" />
+                                    <ComboBox fx:id="favoriteList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Starter" />
+                                    <ComboBox fx:id="starterList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Main" />
+                                    <ComboBox fx:id="mainList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Side" />
+                                    <ComboBox fx:id="sideList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Dessert" />
+                                    <ComboBox fx:id="dessertList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="100.0" text="Drinks" />
+                                    <ComboBox fx:id="drinkList" prefHeight="40.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button layoutX="465.0" layoutY="213.0" mnemonicParsing="false" onAction="#changeItemButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Change Item" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Check Orders">
+               <content>
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="800.0">
+                     <center>
+                        <TableView fx:id="chefOrderView" prefHeight="475.0" prefWidth="801.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="orderIDColumn" prefWidth="50.0" text="ID" />
+                              <TableColumn fx:id="orderNoColumn" prefWidth="213.84906387329102" text="OrderNo" />
+                              <TableColumn fx:id="itemNameColumn" prefWidth="281.1509323120117" text="ItemName" />
+                              <TableColumn fx:id="orderTypeColumn" maxWidth="526.9999694824219" minWidth="0.0" prefWidth="255.68026733398438" text="Type" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <Pane prefHeight="65.0" prefWidth="559.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="refreshButton" layoutX="34.0" mnemonicParsing="false" onAction="#refreshButtonAction" prefHeight="42.0" prefWidth="78.0" text="Refresh" />
+                              <Button fx:id="completedButton" layoutX="124.0" layoutY="1.0" mnemonicParsing="false" onAction="#completeOrder" prefHeight="41.0" prefWidth="87.0" text="Completed" />
+                           </children>
+                        </Pane>
+                     </bottom>
+                  </BorderPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
