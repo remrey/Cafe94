@@ -25,23 +25,19 @@ import java.sql.SQLException;
 public class menuController {
 
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> favoriteList;
+    @FXML private ComboBox<item> dailyList;
     @FXML private ComboBox<item> starterList;
     @FXML private ComboBox<item> mainList;
     @FXML private ComboBox<item> sideList;
     @FXML private ComboBox<item> dessertList;
     @FXML private ComboBox<item> drinkList;
-    @FXML private TableView<item> finalOrderView;
-    @FXML private TableColumn<item, String> itemName;
-    @FXML private TableColumn<item, Double> itemPrice;
-    @FXML private Label menuResultPrice;
 
-    private double totalCost;
 
     Connection connection = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
+    public ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
     public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
     public ObservableList<item> mainObservableList = FXCollections.observableArrayList();
     public ObservableList<item> sideObservableList = FXCollections.observableArrayList();
@@ -62,6 +58,7 @@ public class menuController {
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
             fillMenuLists(rs);
+            dailyList.setItems(dailyObservableList);
             starterList.setItems(starterObservableList);
             mainList.setItems(mainObservableList);
             sideList.setItems(sideObservableList);
@@ -83,7 +80,8 @@ public class menuController {
             temp.setPrice(rs.getDouble("price") );
             String type = rs.getString("type");
             temp.setType(type);
-            if(type.equals("starter")) starterObservableList.add(temp);
+            if (type.equals("dailySpecial")) dailyObservableList.add(temp);
+            else if(type.equals("starter")) starterObservableList.add(temp);
             else if(type.equals("main")) mainObservableList.add(temp);
             else if(type.equals("side")) sideObservableList.add(temp);
             else if(type.equals("dessert")) dessertObservableList.add(temp);
