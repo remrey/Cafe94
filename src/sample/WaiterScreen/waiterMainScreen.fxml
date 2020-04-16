@@ -56,9 +56,9 @@
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Label prefHeight="40.0" prefWidth="100.0" text="Favorites" />
-                                                <ComboBox fx:id="favoriteList" prefHeight="40.0" prefWidth="200.0" />
-                                                <Button fx:id="addFavorite" mnemonicParsing="false" onAction="#onAddFavoriteButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
+                                                <Label prefHeight="40.0" prefWidth="100.0" text="Daily Specials" />
+                                                <ComboBox fx:id="dailyList" prefHeight="40.0" prefWidth="200.0" />
+                                                <Button mnemonicParsing="false" onAction="#onAddDailyButtonPressed" prefHeight="40.0" prefWidth="80.0" text="ADD" />
                                              </children>
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
@@ -381,7 +381,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <TableView fx:id="bookingTable" onSort="#approveBooking" prefHeight="279.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView onSort="#approveBooking" prefHeight="279.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
                                           <TableColumn fx:id="iDColumn" prefWidth="124.0" text="Customer ID" />
                                           <TableColumn fx:id="dateColumn" prefWidth="140.0" text="Date" />
@@ -397,7 +397,6 @@
                                     <Button layoutX="79.0" layoutY="38.0" mnemonicParsing="false" onAction="#approveBooking" prefHeight="27.0" prefWidth="98.0" text="Approve" />
                                     <Button fx:id="loadButton" layoutX="350.0" layoutY="38.0" mnemonicParsing="false" onAction="#loadBookingData" text="Load Bookings" />
                                     <Button layoutX="611.0" layoutY="38.0" mnemonicParsing="false" onAction="#declineBooking" prefHeight="27.0" prefWidth="98.0" text="Decline" />
-                                    <Label fx:id="displayMessage" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="191.0" />
                                  </children>
                               </AnchorPane>
                           </items>
