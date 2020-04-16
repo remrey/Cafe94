@@ -1,11 +1,14 @@
 package sample.ChefScreen;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import sample.DBManager;
 
 import java.sql.*;
@@ -20,23 +23,20 @@ public class chefChangeItemController {
     @FXML private TextField itemID;
     @FXML private TextField itemName;
     @FXML private TextField itemPrice;
+    @FXML private TextField itemType;
     @FXML private Label itemIDEmptyError;
     @FXML private Label itemNameEmptyError;
     @FXML private Label itemPriceError;
-    @FXML private CheckBox dailySpecial;
     @FXML private Label successLabel;
     @FXML private Label validIDError;
-    @FXML private Button addButton;
+    @FXML private Button changeButton;
+    @FXML private Button returnButton;
 
 
 
     Connection connection = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-
-    public void onPressCancel(ActionEvent event) throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-    }
 
     private boolean isDecimal(String strNum){
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
@@ -58,26 +58,28 @@ public class chefChangeItemController {
         validIDError.setVisible(false);
         successLabel.setVisible(false);
 
-        String query = "UPDATE menu SET name = ?, price = ?, dailySpecial = ? WHERE id = ?;";
-        String updateTable = "Update menu SET dailySpecial = FALSE WHERE dailySpecial = TRUE;";
+        String query = "UPDATE menu SET name = ?, price = ?, type = ? WHERE id = ?;";
+
         connection = DBManager.DBConnection();
 
+        if (!isInt(itemID.getText())) {
+            validIDError.setText("Please enter a valid id");
+            validIDError.setVisible(true);
+        } else {
+            itemIDEmptyError.setVisible(false);
+        }
         if (itemID.getText().isEmpty()) {
             itemIDEmptyError.setText("This field cannot be left blank");
             itemIDEmptyError.setVisible(true);
         } else {
-            if (Integer.parseInt(itemID.getText()) < 1 || Integer.parseInt(itemID.getText()) > 20){
-                validIDError.setText("Please enter a valid id");
-                validIDError.setVisible(true);
-            } else {
-                itemIDEmptyError.setVisible(false);
+            if (isInt(itemID.getText())){
+                if (Integer.parseInt(itemID.getText()) < 1 || Integer.parseInt(itemID.getText()) > 20){
+                    validIDError.setText("Please enter a valid id");
+                    validIDError.setVisible(true);
+                } else {
+                    itemIDEmptyError.setVisible(false);
+                }
             }
-        }
-        if (!isInt(itemID.getText())){
-            validIDError.setText("Please enter a valid id");
-            itemIDEmptyError.setVisible(true);
-        } else {
-            itemIDEmptyError.setVisible(false);
         }
         if (itemName.getText().isEmpty()){
             itemNameEmptyError.setVisible(true);
@@ -99,6 +101,7 @@ public class chefChangeItemController {
         if(!itemName.getText().isEmpty()
                 && !itemID.getText().isEmpty()
                 && !itemPrice.getText().isEmpty()
+                && !itemType.getText().isEmpty()
                 && isInt(itemID.getText())
                 && isDecimal(itemPrice.getText())
                 && Integer.parseInt(itemID.getText()) > 0
@@ -108,12 +111,8 @@ public class chefChangeItemController {
                 pst = connection.prepareStatement(query);
                 pst.setString(1, itemName.getText());
                 pst.setDouble(2, Double.parseDouble(itemPrice.getText()));
-                pst.setBoolean(3, dailySpecial.isSelected());
+                pst.setString(3, itemType.getText());
                 pst.setInt(4, Integer.parseInt(itemID.getText()));
-                if (dailySpecial.isSelected()) {
-                    PreparedStatement update = connection.prepareStatement(updateTable);
-                    update.executeUpdate();
-                }
                 pst.executeUpdate();
                 successLabel.setText(itemName.getText() + " has been updated on the system");
                 successLabel.setVisible(true);
@@ -126,6 +125,17 @@ public class chefChangeItemController {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public void returnButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/ChefScreen/chefMainScreen.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
 }
