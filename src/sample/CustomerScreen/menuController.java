@@ -9,9 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import sample.DBManager;
 import sample.item;
@@ -22,7 +19,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class menuController {
+/**
+ * A controller for the customer's Menu screen. This allows the customer
+ * to view items on the menu.
+ * @author George, Emre
+ * @version 1.0
+ */
+
+public class MenuController {
 
     @FXML private ComboBox<String> tableList;
     @FXML private ComboBox<item> dailyList;
@@ -45,6 +49,11 @@ public class menuController {
     public ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
     public ObservableList<item> resultList = FXCollections.observableArrayList();
 
+    /**
+     * Initialize function connects to the database and sets the list of
+     * viewable items from the menu.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void initialize() throws SQLException {
         String query = "SELECT * FROM menu";
         connection = DBManager.DBConnection();
@@ -70,8 +79,11 @@ public class menuController {
         }
 
     }
-
-
+    /**
+     * Fills the menu lists based in the menu database.
+     * @param rs Result of the query.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void fillMenuLists(ResultSet rs) throws SQLException {
         while(rs.next()){
             item temp = new item();
@@ -90,9 +102,10 @@ public class menuController {
     }
 
     /**
-     * When this button is pressed the menu will switch to the order screen.
+     * Button press to take customer to Takeaway order screen
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
      */
-
     public void placeTakeawayOrderButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/takeawayOrder.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -103,7 +116,11 @@ public class menuController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * Button press to take customer to Delivery order screen
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void placeDeliveryOrderButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/deliveryOrder.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -114,7 +131,11 @@ public class menuController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the home screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void homeButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -125,7 +146,11 @@ public class menuController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the booking screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void bookingButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerCreateBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -136,7 +161,11 @@ public class menuController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the profile screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void profileButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -147,7 +176,11 @@ public class menuController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to sign out of the system.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
