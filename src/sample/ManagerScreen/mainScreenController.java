@@ -19,6 +19,7 @@ import sample.Report;
 import sample.Staff;
 import sample.user;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,6 +44,7 @@ public class mainScreenController {
     @FXML private TableColumn<user, String> customerLastName;
 
     public static int employeeIdFromTable;
+
 
 
     Connection connection = null;
@@ -86,7 +88,6 @@ public class mainScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            rsCustomer.close();
             pst.close();
             connection1.close();
         }
@@ -107,10 +108,10 @@ public class mainScreenController {
     }
 
     public void onRemoveCustomerPressButton(ActionEvent event) throws SQLException, IOException {
-        int id = customerTable.getSelectionModel().getSelectedItem().getId();
-        String query = "DELETE from users where id = ?;";
-        connection1 = DBManager.DBConnection();
         try {
+            int id = customerTable.getSelectionModel().getSelectedItem().getId();
+            String query = "DELETE from users where id = ?;";
+            connection1 = DBManager.DBConnection();
             pst = connection1.prepareStatement(query);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -123,6 +124,7 @@ public class mainScreenController {
             connection1.close();
             onShowCustomersPressButton(event);
         }
+
 
     }
 
@@ -154,7 +156,7 @@ public class mainScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            rsEmployee.close();
+
             pst.close();
             connection.close();
         }
@@ -198,13 +200,18 @@ public class mainScreenController {
     }
 
     public void onEditEmployeePressButton(ActionEvent event) throws SQLException, IOException {
-        employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
-        System.out.println(employeeIdFromTable);
-        Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Employee");
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+            System.out.println(employeeIdFromTable);
+            Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Edit Employee");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (Exception e ){
+            System.out.println("Problem is here " + e);
+        }
 
     }
 
@@ -239,10 +246,25 @@ public class mainScreenController {
         pstItem.close();
         pstCustomer.close();
         pstBooking.close();
-        rsQueryBooking.close();
-        rsQueryCustomer.close();
-        rsQueryItem.close();
     }
+
+    public void onAddHoursButtonPushed(ActionEvent event) throws IOException {
+        try {
+            employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+            System.out.println(employeeIdFromTable);
+            Parent root = FXMLLoader.load(getClass().getResource("addHours.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Add Hours");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+       catch (Exception e){
+            System.out.println("Problem is in here: " + e);
+        }
+
+    }
+
+
 
     public void logoutButtonPushed(ActionEvent event) throws IOException, SQLException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));

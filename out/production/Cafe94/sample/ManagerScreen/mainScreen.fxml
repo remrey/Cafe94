@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -73,45 +70,29 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.2542372881355932" layoutX="135.0" layoutY="125.0" prefHeight="570.0" prefWidth="651.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.7380952380952381" layoutX="135.0" layoutY="125.0" prefHeight="570.0" prefWidth="651.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="565.0" prefWidth="657.0">
                                  <children>
-                                    <CheckBox fx:id="popularItem" layoutX="1.0" layoutY="117.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" text="Most Popular Item">
-                                       <padding>
-                                          <Insets top="20.0" />
-                                       </padding>
-                                    </CheckBox>
-                                    <CheckBox fx:id="busiestPeriod" layoutX="1.0" layoutY="155.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="162.0" text="Busiest Period">
-                                       <padding>
-                                          <Insets top="20.0" />
-                                       </padding>
-                                    </CheckBox>
-                                    <CheckBox fx:id="activeCustomer" layoutX="1.0" layoutY="193.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" text="Most Active Customer">
-                                       <padding>
-                                          <Insets top="20.0" />
-                                       </padding>
-                                    </CheckBox>
-                                    <CheckBox fx:id="highestWork" layoutX="1.0" layoutY="231.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" text="Highest Working hours">
-                                       <padding>
-                                          <Insets top="20.0" />
-                                       </padding>
-                                    </CheckBox>
-                                    <Button fx:id="buttonShow" layoutX="52.0" layoutY="284.0" mnemonicParsing="false" onAction="#onShowPressButton" text="Show" />
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <TableView fx:id="table" layoutX="117.0" layoutY="45.0" prefHeight="568.0" prefWidth="505.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="table" layoutX="117.0" layoutY="45.0" prefHeight="565.0" prefWidth="591.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-196.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn fx:id="tableViewId" prefWidth="74.0" text="ID" />
-                                        <TableColumn fx:id="tableViewReport" prefWidth="145.0" text="Report Description" />
+                                        <TableColumn fx:id="tableViewReport" prefWidth="300.0" text="Report Description" />
                                           <TableColumn fx:id="tableViewName" prefWidth="139.0" text="Name/Period" />
                                           <TableColumn fx:id="tableViewCount" prefWidth="146.0" text="# of times" />
                                       </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
+                              <SplitPane dividerPositions="0.727433628318584" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="205.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#onResfreshButtonPush" prefHeight="154.0" prefWidth="209.0" text="Refresh" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
                           </items>
                         </SplitPane>
                      </children></AnchorPane>
@@ -141,7 +122,7 @@
                               <Button fx:id="addEmployee" layoutX="31.0" layoutY="38.0" mnemonicParsing="false" onAction="#onPressButton" prefHeight="27.0" prefWidth="120.0" text="Add Employee" />
                               <Button fx:id="showEmployee" layoutX="193.0" layoutY="38.0" mnemonicParsing="false" onAction="#onShowEmployeePressButton" prefHeight="27.0" prefWidth="120.0" text="Show Employee" />
                               <Button fx:id="showEmployee2" layoutX="349.0" layoutY="38.0" mnemonicParsing="false" onAction="#onEditEmployeePressButton" prefHeight="27.0" prefWidth="120.0" text="Edit Employee" />
-                              <Button layoutX="648.0" layoutY="37.0" mnemonicParsing="false" onAction="#onAddHoursButtonPushed" prefHeight="27.0" prefWidth="118.0" text="Edit/Add Hours" />
+                              <Button layoutX="655.0" layoutY="39.0" mnemonicParsing="false" onAction="#onAddHoursButtonPushed" text="Edit/Add Hours" />
                            </children>
                         </AnchorPane>
                     </items>

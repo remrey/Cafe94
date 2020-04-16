@@ -499,7 +499,7 @@ public class waiterMainScreenController {
                     rs.getString(3),
                     rs.getInt(4),
                     rs.getBoolean(5),
-                    rs.getString(6) ));
+                    rs.getInt(6) ));
         }
         return this.data;
     }
