@@ -10,10 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.Booking;
 import sample.DBManager;
+import sample.UserDetails;
 
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -35,6 +39,13 @@ public class customerCreateBookingController implements Initializable {
     @FXML Label extendedLabel;
     @FXML Label timeLabel;
     @FXML Label numberLabel;
+    @FXML TableView<Booking> customerBookings;
+    @FXML TableColumn<Booking, LocalDate> dateColumn;
+    @FXML TableColumn<Booking, String> timeColumn;
+    @FXML TableColumn<Booking, Integer> guestsColumn;
+    @FXML TableColumn<Booking, Boolean> approvedColumn;
+    @FXML TableColumn<Booking, Integer> bookingIDColumn;
+
 
     ObservableList<String> timeList = FXCollections.observableArrayList(
             "10:00", "11:00", "12:00", "13:00", "14:00",
@@ -52,11 +63,44 @@ public class customerCreateBookingController implements Initializable {
         bookingTime.setItems(timeList);
         bookingExtended.setItems(extendedList);
         bookingNumberOfGuests.setItems(numberOfGuestsList);
+        try{
+            //showBookings();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // need to change below for customerID
+    public void showBookings() throws IOException, SQLException {
+        int userID = sample.UserDetails.getInstance().getUserID();
+        String query = "SELECT date, timePeriod, numberOfGuests, approved, bookingID FROM booking WHERE customerID = ? AND date > ? ";
+        LocalDate date = LocalDate.now();
+        Connection connection = DBManager.DBConnection();
+        ResultSet rs = null;
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, UserDetails.getInstance().getUserID());
+            pst.setDate(2, Date.valueOf(date));
+            rs = pst.executeQuery();
+            ObservableList<Booking> bookings = getBookingList(rs);
+            dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, LocalDate>("date"));
+            timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("timePeriod"));
+            guestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
+            approvedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("approved"));
+            bookingIDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
+            customerBookings.setItems(bookings);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            pst.close();
+            connection.close();
+            rs.close();
+        }
+    }
+
+
     public void createBooking(ActionEvent event) throws IOException, SQLException {
-        String query = "INSERT INTO booking (date, timePeriod, numberOfGuests, extended, approved, checked, customerID) VALUES (?,?,?,?,0,0,0);";
+        String query = "INSERT INTO booking (date, timePeriod, numberOfGuests, extended, approved, checked, customerID) VALUES (?,?,?,?,0,0,?);";
 
         if (bookingDate.getValue() == null) {
             dateLabel.setText("Please enter booking date");
@@ -95,6 +139,7 @@ public class customerCreateBookingController implements Initializable {
                 }else{
                     pst.setBoolean(4, FALSE);
                 }
+                pst.setInt(5, UserDetails.getInstance().getUserID());
                 if(bookingDate.getValue().isBefore(LocalDate.now())){
                     dateLabel.setText("Date must be for future booking");
                     dateLabel.setVisible(true);
@@ -109,16 +154,80 @@ public class customerCreateBookingController implements Initializable {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            finally {
+
+            }
         }
+    }
+
+    public void deleteBooking(ActionEvent event) throws IOException, SQLException {
+        connection = DBManager.DBConnection();
+        if (customerBookings.getSelectionModel().getSelectedCells().isEmpty()) {
+            //do nothing
+        } else {
+            int id = customerBookings.getSelectionModel().getSelectedItem().getBookingID();
+            String deleteBooking = "DELETE FROM booking where bookingID = " + id;
+            PreparedStatement pr = null;
+            try{
+                pr = connection.prepareStatement(deleteBooking);
+                pr.executeUpdate();
+                showBookings(event);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+            finally {
+                pr.close();
+                connection.close();
+                rs.close();
+            }
+        }
+    }
+
+    public void showBookings(ActionEvent event) throws IOException, SQLException {
+        int userID = sample.UserDetails.getInstance().getUserID();
+        String query = "SELECT date, timePeriod, numberOfGuests, approved, bookingID FROM booking WHERE customerID = ? AND date > ? ";
+        LocalDate date = LocalDate.now();
+        Connection connection = DBManager.DBConnection();
+        ResultSet rs = null;
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, UserDetails.getInstance().getUserID());
+            pst.setDate(2, Date.valueOf(date));
+            rs = pst.executeQuery();
+            ObservableList<Booking> bookings = getBookingList(rs);
+            dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, LocalDate>("date"));
+            timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("timePeriod"));
+            guestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
+            approvedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("approved"));
+            bookingIDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
+            customerBookings.setItems(bookings);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+        }
+    }
+
+    private ObservableList<Booking> getBookingList(ResultSet rsBooking) throws SQLException {
+        ObservableList<Booking> tempBookingList = FXCollections.observableArrayList();
+        while(rsBooking.next()){
+            Booking temp = new Booking();
+            temp.setDate(rsBooking.getString("date"));
+            temp.setTimePeriod(rsBooking.getString("timePeriod"));
+            temp.setNumberOfGuests(rsBooking.getInt("numberOfGuests"));
+            temp.setApproved(rsBooking.getBoolean("approved"));
+            temp.setBookingID(rsBooking.getInt("bookingID"));
+            tempBookingList.add(temp);
+        }
+        return tempBookingList;
     }
 
     public void homeButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
-
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(tableViewScene);
         window.show();
     }
