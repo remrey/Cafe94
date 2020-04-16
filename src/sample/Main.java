@@ -99,7 +99,7 @@ public class Main extends Application {
                 + " extended boolean NOT NULL,\n"
                 + "	approved boolean NOT NULL, \n"
                 + " checked boolean NOT NULL, \n"
-                + " customerID boolean NOT NULL"
+                + " customerID integer NOT NULL"
                 + ");";
 
         PreparedStatement bookingCheck = connection.prepareStatement(bookingQuery);
