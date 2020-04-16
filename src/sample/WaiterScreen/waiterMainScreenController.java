@@ -23,7 +23,7 @@ import java.sql.SQLException;
 
 public class waiterMainScreenController {
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> dailyList;
+    @FXML private ComboBox<item> favoriteList;
     @FXML private ComboBox<item> starterList;
     @FXML private ComboBox<item> mainList;
     @FXML private ComboBox<item> sideList;
@@ -77,7 +77,7 @@ public class waiterMainScreenController {
     PreparedStatement pst = null;
 
 
-    public ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
+    public ObservableList<item> favoriteObservableList = FXCollections.observableArrayList();
     public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
     public ObservableList<item> mainObservableList = FXCollections.observableArrayList();
     public ObservableList<item> sideObservableList = FXCollections.observableArrayList();
@@ -107,7 +107,7 @@ public class waiterMainScreenController {
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
             fillMenuLists(rs);
-            dailyList.setItems(dailyObservableList);
+            favoriteList.setItems(favoriteObservableList);
             starterList.setItems(starterObservableList);
             mainList.setItems(mainObservableList);
             sideList.setItems(sideObservableList);
@@ -191,7 +191,6 @@ public class waiterMainScreenController {
             pst.close();
             connection.close();
         }
-
     }
 
     public void onMouseClickOrderTable() throws SQLException {
@@ -238,7 +237,7 @@ public class waiterMainScreenController {
             temp.setPrice(rs.getDouble("price") );
             String type = rs.getString("type");
             temp.setType(type);
-            if (type.equals("dailySpecial")) dailyObservableList.add(temp);
+            if(type.equals("favorite")) favoriteObservableList.add(temp);
             else if(type.equals("starter")) starterObservableList.add(temp);
             else if(type.equals("main")) mainObservableList.add(temp);
             else if(type.equals("side")) sideObservableList.add(temp);
@@ -247,10 +246,10 @@ public class waiterMainScreenController {
         }
     }
 
-    public void onAddDailyButtonPressed(ActionEvent event){
+    public void onAddFavoriteButtonPressed(ActionEvent event){
         try{
-            if(!dailyList.getSelectionModel().isEmpty()) {
-                item temp = dailyList.getSelectionModel().getSelectedItem();
+            if(!favoriteList.getSelectionModel().isEmpty()) {
+                item temp = favoriteList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
                 itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
@@ -330,7 +329,6 @@ public class waiterMainScreenController {
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
-
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
         }
@@ -370,7 +368,7 @@ public class waiterMainScreenController {
         String query = "UPDATE orders SET waiterServed = True WHERE orderID = ?;";
         int orderID =  standingOrderTableView.getSelectionModel().selectedItemProperty().get().getOrderID();
         connection = DBManager.DBConnection();
-        try{
+        try {
             pst = connection.prepareStatement(query);
             pst.setInt(1,orderID);
             pst.executeUpdate();
@@ -487,10 +485,6 @@ public class waiterMainScreenController {
 
     }
 
-
-    //*************************************************************************
-    // below is the update for the waiter main screen
-
     private ObservableList<Booking> getBookingList(ResultSet rsBooking) throws SQLException {
         ObservableList<Booking> tempBookingList = FXCollections.observableArrayList();
         while(rsBooking.next()){
@@ -499,7 +493,7 @@ public class waiterMainScreenController {
                     rs.getString(3),
                     rs.getInt(4),
                     rs.getBoolean(5),
-                    rs.getString(6) ));
+                    rs.getInt(6) ));
         }
         return this.data;
     }
@@ -508,14 +502,13 @@ public class waiterMainScreenController {
         data.clear();
         String sql = "SELECT * FROM booking WHERE checked = 0;";
         connection = DBManager.DBConnection();
-        try{
-
+        try {
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             ObservableList<Booking> bookingList = getBookingList(rs);
             this.iDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
             this.dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("date"));
-            this.timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("time"));
+            this.timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("timePeriod"));
             this.numberOfGuestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
             this.extendedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("extended"));
             bookingTable.setItems(bookingList);
