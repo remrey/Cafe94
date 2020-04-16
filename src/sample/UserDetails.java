@@ -7,9 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class file to store details of current signed in user to be accessed throughout the system.
+ * @author Lorcan, Luis, Emre
+ * @version 1.0
+ */
+
 public final class UserDetails {
     private static String usern;
-    private static int userID;
     private static String firstName;
     private static String lastName;
     private static UserDetails instance;
@@ -20,6 +25,11 @@ public final class UserDetails {
 
     private UserDetails(){};
 
+    /**
+     * Creates instance of UserDetails and ensures only one exists.
+     * @return created instance
+     */
+
     public static UserDetails getInstance() {
         if (instance == null) {
             instance = new UserDetails();
@@ -27,9 +37,20 @@ public final class UserDetails {
         return instance;
     }
 
+    /**
+     * Sets username of UserDetails to current signed in User.
+     * @param usern_ username of current user.
+     */
+
     public void setUserID(String usern_) {
         usern = usern_;
     }
+
+    /**
+     * Finds the userID from users table in the database and returns.
+     * @return users userID.
+     * @throws SQLException throws if SQLite query fails.
+     */
 
     public int getUserID() throws SQLException {
         String sql = "SELECT id from users WHERE userName = ?;";
@@ -51,6 +72,12 @@ public final class UserDetails {
 
     }
 
+    /**
+     * Finds User First Name from database and returns.
+     * @return users first name.
+     * @throws SQLException throws if SQLite query fails.
+     */
+
     public String getUserFirst() throws SQLException {
         Connection connection = DBManager.DBConnection();
         String sql = "SELECT firstName from users WHERE userName = ?;";
@@ -68,6 +95,12 @@ public final class UserDetails {
             return firstName;
         }
     }
+
+    /**
+     * Gets users last name from database and returns.
+     * @return users last name.
+     * @throws SQLException throws if SQLite query fails.
+     */
 
     public String getUserLast() throws SQLException {
         Connection connection = DBManager.DBConnection();
@@ -87,6 +120,11 @@ public final class UserDetails {
             return lastName;
         }
     }
+
+    /**
+     * Gets users username.
+     * @return users username.
+     */
 
     public String getUsern(){
         return usern;
