@@ -48,17 +48,27 @@ public class Main extends Application {
                 + ");";
         String addMenuItemsQuery = "INSERT or IGNORE INTO menu(id,name,price,type) "
                 + "VALUES"
-                + "(1,'Favorite1','5.21','favorite'), \n"
-                + "(2,'Favorite2','3.21','favorite'), \n"
-                + "(3,'Onion Rings','5.21','starter'), \n"
-                + "(4,'Garlic Bread','4.23','starter'), \n"
-                + "(5,'Chicken Burger','7.21','main'), \n"
-                + "(6,'Newyork Steak','9.00','main'), \n"
-                + "(7,'French Fries','2.21','side'), \n"
-                + "(8,'Spicy Fried','3.00','side'), \n"
-                + "(9,'Vanilla Cheesecake','4.12','dessert'), \n"
-                + "(10,'Fosters','6.00','drink'), \n"
-                + "(11,'Sprite','2.20','drink');";
+                + "(1,'Onion Rings','5.00','starter'), \n"
+                + "(2,'Garlic Bread','3.50','starter'), \n"
+                + "(3,'Calamari','5.80','starter'), \n"
+                + "(4,'Soup of the Day','4.00','starter'), \n"
+                + "(5,'Chicken Burger','7.25','main'), \n"
+                + "(6,'New York Steak','13.50','main'), \n"
+                + "(7,'Pizza Mozzarella','8.75','main'), \n"
+                + "(8,'Lasagna','10.00','main'), \n"
+                + "(9,'Caesar Salad','4.12','main'), \n"
+                + "(10,'Vegetable Bowl','8.00','side'), \n"
+                + "(11,'French Fries','3.00','side'), \n"
+                + "(12, 'Spicy Fries', '3.60', 'side'), \n"
+                + "(13, 'Mozzarella Dippers', '4.00', 'side'), \n"
+                + "(14, 'Ice Cream', '4.80', 'side'), \n"
+                + "(15, 'Vanilla Cheesecake', '5.50', 'dessert'), \n"
+                + "(16, 'Sticky Toffee Pudding', '5.50', 'dessert'), \n"
+                + "(17, 'Wine', '4.80', 'drink'), \n"
+                + "(18, 'Cola', '3.00', 'drink'),\n"
+                + "(19, 'Lemonade', '3.00', 'drink'),\n"
+                + "(20, 'Beer', '4.50', 'drink');";
+
         PreparedStatement menuCheck = connection.prepareStatement(menuQuery);
         menuCheck.executeUpdate();
         PreparedStatement menuItemCheck = connection.prepareStatement(addMenuItemsQuery);
