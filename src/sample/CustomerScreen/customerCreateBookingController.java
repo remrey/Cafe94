@@ -15,9 +15,6 @@ import javafx.stage.Stage;
 import sample.Booking;
 import sample.DBManager;
 import sample.UserDetails;
-
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -27,8 +24,14 @@ import java.util.ResourceBundle;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+/**
+ * A controller for the Customer Booking FXML that allows the
+ * creation and viewing of bookings by a customer.
+ * @author Lorcan, George
+ * @version 1.0
+ */
 
-public class customerCreateBookingController implements Initializable {
+public class CustomerCreateBookingController implements Initializable {
 
     @FXML DatePicker bookingDate;
     @FXML ComboBox<String> bookingExtended;
@@ -47,18 +50,20 @@ public class customerCreateBookingController implements Initializable {
     @FXML TableColumn<Booking, Integer> bookingIDColumn;
 
 
-    ObservableList<String> timeList = FXCollections.observableArrayList(
+    private ObservableList<String> timeList = FXCollections.observableArrayList(
             "10:00", "11:00", "12:00", "13:00", "14:00",
             "15:00", "16:00", "17:00", "18:00", "19:00", "20:00",
             "21:00");
+    private ObservableList<String> extendedList = FXCollections.observableArrayList("Yes", "No");
+    private ObservableList<Integer> numberOfGuestsList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+    private Connection connection = null;
+    private ResultSet rs = null;
+    private PreparedStatement pst = null;
 
-    ObservableList<String> extendedList = FXCollections.observableArrayList("Yes", "No");
-
-    ObservableList<Integer> numberOfGuestsList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8);
-    Connection connection = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
-
+    /**
+     * Finds the customer details from the users database.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     @Override public void initialize(URL url, ResourceBundle rb) {
         bookingTime.setItems(timeList);
         bookingExtended.setItems(extendedList);
@@ -70,7 +75,13 @@ public class customerCreateBookingController implements Initializable {
         }
     }
 
-    public void showBookings() throws IOException, SQLException {
+    /**
+     * Button press to show bookings.
+     * @throws IOException Throws if input fails.
+     * @throws SQLException Throws if SQLite query fails.
+     * @param event
+     */
+    public void showBookings(ActionEvent event) throws IOException, SQLException {
         int userID = sample.UserDetails.getInstance().getUserID();
         String query = "SELECT date, timePeriod, numberOfGuests, approved, bookingID FROM booking WHERE customerID = ? AND date > ? ";
         LocalDate date = LocalDate.now();
@@ -98,7 +109,12 @@ public class customerCreateBookingController implements Initializable {
         }
     }
 
-
+    /**
+     * Button press to create a booking.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void createBooking(ActionEvent event) throws IOException, SQLException {
         String query = "INSERT INTO booking (date, timePeriod, numberOfGuests, extended, approved, checked, customerID) VALUES (?,?,?,?,0,0,?);";
 
@@ -160,6 +176,12 @@ public class customerCreateBookingController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event used to get information in current scene
+     * @throws IOException Throws if input fails
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void deleteBooking(ActionEvent event) throws IOException, SQLException {
         connection = DBManager.DBConnection();
         if (customerBookings.getSelectionModel().getSelectedCells().isEmpty()) {
@@ -183,32 +205,12 @@ public class customerCreateBookingController implements Initializable {
         }
     }
 
-    public void showBookings(ActionEvent event) throws IOException, SQLException {
-        int userID = sample.UserDetails.getInstance().getUserID();
-        String query = "SELECT date, timePeriod, numberOfGuests, approved, bookingID FROM booking WHERE customerID = ? AND date > ? ";
-        LocalDate date = LocalDate.now();
-        Connection connection = DBManager.DBConnection();
-        ResultSet rs = null;
-        try {
-            PreparedStatement pst = connection.prepareStatement(query);
-            pst.setInt(1, UserDetails.getInstance().getUserID());
-            pst.setDate(2, Date.valueOf(date));
-            rs = pst.executeQuery();
-            ObservableList<Booking> bookings = getBookingList(rs);
-            dateColumn.setCellValueFactory(new PropertyValueFactory<Booking, LocalDate>("date"));
-            timeColumn.setCellValueFactory(new PropertyValueFactory<Booking, String>("timePeriod"));
-            guestsColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("numberOfGuests"));
-            approvedColumn.setCellValueFactory(new PropertyValueFactory<Booking, Boolean>("approved"));
-            bookingIDColumn.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
-            customerBookings.setItems(bookings);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-
-        }
-    }
-
+    /**
+     * Gets the list of bookings in the system.
+     * @param rsBooking Result of the query.
+     * @return Result of the query.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     private ObservableList<Booking> getBookingList(ResultSet rsBooking) throws SQLException {
         ObservableList<Booking> tempBookingList = FXCollections.observableArrayList();
         while(rsBooking.next()){
@@ -223,6 +225,11 @@ public class customerCreateBookingController implements Initializable {
         return tempBookingList;
     }
 
+    /**
+     * The following function act as a home button to take the customer to home screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void homeButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -232,6 +239,11 @@ public class customerCreateBookingController implements Initializable {
         window.show();
     }
 
+    /**
+     * The following function can be used to go to the menu screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void menuButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -243,6 +255,11 @@ public class customerCreateBookingController implements Initializable {
         window.show();
     }
 
+    /**
+     * The following function can be used to go to profile screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void profileButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -254,6 +271,11 @@ public class customerCreateBookingController implements Initializable {
         window.show();
     }
 
+    /**
+     * The following function can be used to sign out of the system.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
