@@ -10,31 +10,47 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
 
-public class loginController {
+public class LoginController {
     public loginManager logModel = new loginManager();
     @FXML private TextField user;
     @FXML private TextField pass;
     @FXML private Label signUpLabel;
     @FXML private AnchorPane rootPane;
 
-    public void pressButton(ActionEvent event) throws IOException, SQLException {
-        String us = user.getText();
-        String pas = pass.getText();
-        if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Manager")) managerScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Customer")) customerScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Chef")) chefScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Waiter")) waiterScreen(event);
-        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Delivery Driver")) deliveryDriverScreen(event);
-        else wrongScreen(event);
+    /**
+     * Checks the users identity.
+     * That identity can be; Manager, Customer, Chef, Waiter or Delivery Driver.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
+    @FXML
+    public void pressButton(final ActionEvent event) throws IOException, SQLException {
+        final String username = user.getText();
+        final String passw = pass.getText();
+        final boolean isUserExist = logModel.isUserLegit(username, passw);
+        final String userType = logModel.userType(username, passw);
+
+        if (isUserExist && userType.equals("Manager")) {
+            managerScreen(event);
+        } else if (isUserExist && userType.equals("Customer")) {
+            customerScreen(event);
+        } else if (isUserExist && userType.equals("Chef")) {
+            chefScreen(event);
+        } else if (isUserExist && userType.equals("Waiter")) {
+            waiterScreen(event);
+        } else if (isUserExist && userType.equals("Delivery Driver")) {
+            deliveryDriverScreen(event);
+        } else {
+            wrongScreen(event);
+        }
     }
 
-    public void deliveryDriverScreen(ActionEvent event) throws IOException, SQLException {
+    public void deliveryDriverScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("DeliveryDriverScreen/deliveryDriverMainScreen.fxml"));
         logModel.connection.close();
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
@@ -43,7 +59,7 @@ public class loginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void customerScreen(ActionEvent event) throws IOException, SQLException {
+    public void customerScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("CustomerScreen/customerHomeScreen.fxml"));
         logModel.connection.close();
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
@@ -52,7 +68,7 @@ public class loginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void wrongScreen(ActionEvent event) throws IOException, SQLException {
+    public void wrongScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("wrongInputLogin.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Wrong input!");
