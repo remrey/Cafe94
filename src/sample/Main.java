@@ -65,7 +65,7 @@ public class Main extends Application {
         menuItemCheck.executeUpdate();
 
 
-        String orderQuery = "CREATE TABLE IF NOT EXISTS Orders(\n"
+        String orderQuery = "CREATE TABLE IF NOT EXISTS orders(\n"
                 + "	orderID integer PRIMARY KEY ,\n"
                 + " orderNo integer ,\n"
                 + "	itemID integer ,\n"

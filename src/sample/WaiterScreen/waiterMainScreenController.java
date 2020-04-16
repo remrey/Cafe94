@@ -366,6 +366,24 @@ public class waiterMainScreenController {
         menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
     }
 
+    public void onDoneButtonPressed(ActionEvent event) throws SQLException {
+        String query = "UPDATE orders SET waiterServed = True WHERE orderID = ?;";
+        int orderID =  standingOrderTableView.getSelectionModel().selectedItemProperty().get().getOrderID();
+        connection = DBManager.DBConnection();
+        try{
+            pst = connection.prepareStatement(query);
+            pst.setInt(1,orderID);
+            pst.executeUpdate();
+            onRefreshButtonPressed(event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            pst.close();
+            connection.close();
+        }
+    }
+
     public void onRefreshButtonPressed (ActionEvent event) throws SQLException {
         String query = "SELECT * FROM orders WHERE (waiterServed = 'False' and (orderType = 'eatin' or orderType = 'takeaway'));";
         connection = DBManager.DBConnection();
@@ -373,7 +391,7 @@ public class waiterMainScreenController {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             ObservableList<Order> outStandingOrderList = getOutStandingOrder(rs);
-            orderIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderNo"));
+            orderIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
             itemNameColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("itemName"));
             typeColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("orderType"));
             statusColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("waiterServed"));
@@ -389,7 +407,7 @@ public class waiterMainScreenController {
         ObservableList<Order> tempList = FXCollections.observableArrayList();
         while(rs.next()){
             Order temp = new Order();
-            temp.setOrderNo(rs.getInt("orderNo"));
+            temp.setOrderID(rs.getInt("orderID"));
             temp.setItemName(rs.getString("itemName"));
             temp.setOrderType(rs.getString("orderType"));
             temp.setWaiterServed(rs.getBoolean("waiterServed"));

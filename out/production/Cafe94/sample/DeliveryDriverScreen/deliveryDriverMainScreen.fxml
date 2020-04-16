@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="secondPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeliveryDriverScreen.deliveryDriverMainScreenController">
+    <children>
+        <TabPane layoutX="20.0" layoutY="14.0" prefHeight="586.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab text="Home Screen">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <VBox layoutX="105.0" layoutY="37.0" prefHeight="450.0" prefWidth="600.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="241.0" prefWidth="600.0" text="Welcome back!">
+                                            <font>
+                                                <Font name="System Italic" size="50.0" />
+                                            </font>
+                                        </Label>
+                                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                            <children>
+                                                <Button layoutX="259.0" layoutY="71.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="58.0" prefWidth="100.0" text="Logout" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </VBox>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            <Tab text="Check Orders">
+               <content>
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="802.0">
+                     <center>
+                        <TableView fx:id="deliveryDriverView" prefHeight="494.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="driverIDColumn" prefWidth="93.0" text="Assigned" />
+                              <TableColumn fx:id="orderNoColumn" prefWidth="75.0" text="OrderNo" />
+                              <TableColumn fx:id="deliveryAddressColumn" prefWidth="633.0" text="Address" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <Pane prefHeight="52.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="assignButton" layoutX="31.0" layoutY="2.0" mnemonicParsing="false" onAction="#assignDelivery" prefHeight="36.0" prefWidth="78.0" text="Assign" />
+                              <Button fx:id="refreshButton" layoutX="118.0" layoutY="2.0" mnemonicParsing="false" onAction="#initialize" prefHeight="37.0" prefWidth="79.0" text="Refresh" />
+                              <Button fx:id="deliveredButton" layoutX="207.0" layoutY="2.0" mnemonicParsing="false" onAction="#deliveredOrder" prefHeight="37.0" prefWidth="78.0" text="Delivered" />
+                           </children>
+                        </Pane>
+                     </bottom>
+                  </BorderPane>
+               </content>
+            </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

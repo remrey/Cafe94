@@ -154,6 +154,7 @@ public class takeawayOrderController {
             }
             resultList.clear();
             connection.close();
+            menuResultPrice.setText("You have successfully finished your order.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

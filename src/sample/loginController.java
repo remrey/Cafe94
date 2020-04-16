@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -27,8 +28,19 @@ public class loginController {
         else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Customer")) customerScreen(event);
         else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Chef")) chefScreen(event);
         else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Waiter")) waiterScreen(event);
+        else if(logModel.isUserLegit(user.getText(),pass.getText()) && logModel.userType(user.getText(),pass.getText()).equals("Delivery Driver")) deliveryDriverScreen(event);
         else wrongScreen(event);
     }
+
+    public void deliveryDriverScreen(ActionEvent event) throws IOException, SQLException {
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("DeliveryDriverScreen/deliveryDriverMainScreen.fxml"));
+        logModel.connection.close();
+        Stage primaryStage = (Stage) rootPane.getScene().getWindow();
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        rootPane.getChildren().setAll(temp);
+    }
+
     public void customerScreen(ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("CustomerScreen/customerHomeScreen.fxml"));
         logModel.connection.close();

@@ -21,6 +21,7 @@ public class loginManager {
     }
 
     public String userType(String usern, String passw){
+        UserDetails.getInstance().setUserID(usern);
         String query = "SELECT type FROM users WHERE (userName = ? and password = ?) ";
         try{
             pst = connection.prepareStatement(query);

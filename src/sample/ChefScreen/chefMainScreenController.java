@@ -150,7 +150,7 @@ public class chefMainScreenController {
     public void completeOrder(ActionEvent event) throws SQLException, IOException {
         connection2 = DBManager.DBConnection();
         int id = chefOrderView.getSelectionModel().getSelectedItem().getOrderID();
-        String complete = "UPDATE Orders SET chefCompleted = true WHERE orderID = ?;";
+        String complete = "UPDATE Orders SET chefCompleted = 'True' WHERE orderID = ?;";
         PreparedStatement pr = null;
         try {
             pr = connection2.prepareStatement(complete);

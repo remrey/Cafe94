@@ -2,29 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/UserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafe94.db" beforeDir="false" afterPath="$PROJECT_DIR$/cafe94.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/Staff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefHomeScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefHomeScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefMenu.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefMainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ChefScreen/chefMainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/CustomerScreen/deliveryOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/CustomerScreen/deliveryOrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/CustomerScreen/takeawayOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/CustomerScreen/takeawayOrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/UserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/UserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/loginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/loginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/Staff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefHomeScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefHomeScreenController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefMenu.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefMenuController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/loginManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/loginManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ChefScreen/chefMainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/deliveryOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/deliveryOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/takeawayOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/takeawayOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/UserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/loginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/loginManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +42,30 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cafe94" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cafe94" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cafe94" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cafe94" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="Orders: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DebuggerManager">
@@ -125,6 +145,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
@@ -132,11 +153,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/sample/DeliveryDriverScreen" />
       <recent name="$PROJECT_DIR$/src/sample" />
       <recent name="$PROJECT_DIR$/src/sample/CustomerScreen" />
       <recent name="$PROJECT_DIR$/src/sample/ChefScreen" />
       <recent name="$PROJECT_DIR$/src/sample/WaiterScreen" />
-      <recent name="$PROJECT_DIR$/src/sample/ManagerScreen" />
     </key>
   </component>
   <component name="RunManager">
@@ -273,7 +294,7 @@
       <workItem from="1586247634162" duration="2401000" />
       <workItem from="1586270648136" duration="9967000" />
       <workItem from="1586427502342" duration="44445000" />
-      <workItem from="1586630278219" duration="93346000" />
+      <workItem from="1586630278219" duration="99768000" />
     </task>
     <servers />
   </component>
@@ -308,28 +329,28 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1587039252192" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1586428564157" />
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1587043045196">
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1587051915158">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587043045196" />
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587051915158" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1586876451152" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1587043045195">
+    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1587051915158">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587043045195" />
+    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587051915158" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1587043045195">
+    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1587051915157">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587043045195" />
+    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587051915157" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1586876451150" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1587036509656" />
-    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1587043045196">
+    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1587051915158">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587043045196" />
+    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587051915158" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
     <state width="1398" height="256" key="GridCell.Tab.1.bottom" timestamp="1586778889870">
@@ -379,6 +400,17 @@
     </state>
     <state x="385" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1586774356197" />
     <state x="385" y="152" width="670" height="677" key="search.everywhere.popup/0.23.1440.806@0.23.1440.806" timestamp="1586871794349" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
