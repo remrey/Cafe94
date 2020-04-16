@@ -2,12 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2521c0f5-56cd-4e77-87b2-296900f7d060.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3522338c-c87a-455e-a889-f564814b75a6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7ce8a1a4-513d-4d29-83b1-b17e1a05ba31.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5e85aaf-2912-4df1-8631-cc9a0fcd1223.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cafe94.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cafe94.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafe94.db" beforeDir="false" afterPath="$PROJECT_DIR$/cafe94.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addEmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addEmployeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addHourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addHourController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addHours.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/addHours.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/editEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/editEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/editEmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/editEmployeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/ManagerScreen/mainScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cafe94/sample/WaiterScreen/waiterMainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addHourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/addHourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addHours.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/addHours.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/editEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/editEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/editEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/editEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/loginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +159,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -283,7 +305,8 @@
       <workItem from="1586247634162" duration="2401000" />
       <workItem from="1586270648136" duration="9967000" />
       <workItem from="1586427502342" duration="44445000" />
-      <workItem from="1586630278219" duration="115476000" />
+      <workItem from="1586630278219" duration="117126000" />
+      <workItem from="1587072289401" duration="7859000" />
     </task>
     <servers />
   </component>
@@ -309,39 +332,44 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="417" y="235" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.805@0.23.1440.805" timestamp="1586861146944" />
-    <state x="533" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1586961343241">
-      <screen x="0" y="23" width="1440" height="805" />
+    <state x="669" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1587078355922">
+      <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="533" y="142" key="#com.intellij.ide.util.MemberChooser/0.23.1440.805@0.23.1440.805" timestamp="1586961343241" />
-    <state x="533" y="142" key="#com.intellij.ide.util.MemberChooser/0.23.1440.806@0.23.1440.806" timestamp="1586876430832" />
+    <state x="669" y="151" key="#com.intellij.ide.util.MemberChooser/0.23.1440.806@0.23.1440.806" timestamp="1587078355922" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587062025716">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1587062025716" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1586428564157" />
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1587069966629">
+    <state x="465" y="288" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1587079819949">
+      <screen x="0" y="23" width="1440" height="806" />
+    </state>
+    <state x="465" y="288" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.805@0.23.1440.805" timestamp="1587078003653" />
+    <state x="465" y="288" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.806@0.23.1440.806" timestamp="1587079819949" />
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom" timestamp="1587080166096">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587069966629" />
-    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1586876451152" />
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587080166096" />
+    <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1587078141678" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1587069966628">
+    <state width="1398" height="169" key="GridCell.Tab.0.center" timestamp="1587080166095">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587069966628" />
-    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
+    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587080166095" />
+    <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1587078141677" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1587069966628">
+    <state width="1398" height="169" key="GridCell.Tab.0.left" timestamp="1587080166095">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587069966628" />
-    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1586876451150" />
+    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587080166095" />
+    <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1587078141665" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1587036509656" />
-    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1587069966629">
+    <state width="1398" height="169" key="GridCell.Tab.0.right" timestamp="1587080166096">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587069966629" />
-    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1586876451151" />
+    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587080166096" />
+    <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1587078141678" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
     <state width="1398" height="256" key="GridCell.Tab.1.bottom" timestamp="1586778889870">
       <screen x="0" y="23" width="1440" height="806" />
@@ -359,6 +387,10 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="256" key="GridCell.Tab.1.right/0.23.1440.806@0.23.1440.806" timestamp="1586778889869" />
+    <state x="221" y="64" key="SettingsEditor" timestamp="1587072335301">
+      <screen x="0" y="23" width="1440" height="805" />
+    </state>
+    <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1587072335301" />
     <state x="621" y="327" width="350" height="220" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1586532823496">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -385,10 +417,10 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="482" y="48" key="refactoring.ChangeSignatureDialog/0.23.1440.806@0.23.1440.806" timestamp="1586875902123" />
-    <state x="385" y="152" width="670" height="677" key="search.everywhere.popup" timestamp="1586871794349">
-      <screen x="0" y="23" width="1440" height="806" />
+    <state x="385" y="152" width="670" height="676" key="search.everywhere.popup" timestamp="1587075665402">
+      <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="385" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1586774356197" />
+    <state x="385" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1587075665402" />
     <state x="385" y="152" width="670" height="677" key="search.everywhere.popup/0.23.1440.806@0.23.1440.806" timestamp="1586871794349" />
   </component>
   <component name="XDebuggerManager">

@@ -13,7 +13,6 @@ public class DBManager {
             Connection conn = null;
             String url = "jdbc:sqlite:cafe94.db";
             conn = DriverManager.getConnection(url);
-            System.out.println("Connection to the database server has been successful");
             return conn;
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error occured here: " + e.getMessage());

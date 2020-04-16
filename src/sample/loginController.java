@@ -1,4 +1,6 @@
+
 package sample;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +79,7 @@ public class loginController {
     }
 
     public void managerScreen(ActionEvent event) throws IOException, SQLException {
-        AnchorPane temp = FXMLLoader.load(getClass().getResource("ManagerScreen/mainScreen.fxml"));
+        AnchorPane temp = FXMLLoader.load(getClass().getResource("ManagerScreen/MainScreen.fxml"));
         logModel.connection.close();
 
         Stage primaryStage = (Stage) rootPane.getScene().getWindow();
