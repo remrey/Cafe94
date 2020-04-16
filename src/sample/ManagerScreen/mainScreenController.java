@@ -61,8 +61,6 @@ public class mainScreenController {
 
     public ObservableList<Report> list = FXCollections.observableArrayList();
 
-
-
     public void onAddCustomerPressButton(ActionEvent Event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/sample/signUpScreen.fxml"));
         Stage stage = new Stage();
@@ -107,10 +105,11 @@ public class mainScreenController {
     }
 
     public void onRemoveCustomerPressButton(ActionEvent event) throws SQLException, IOException {
-        int id = customerTable.getSelectionModel().getSelectedItem().getId();
-        String query = "DELETE from users where id = ?;";
-        connection1 = DBManager.DBConnection();
+
         try {
+            int id = customerTable.getSelectionModel().getSelectedItem().getId();
+            String query = "DELETE from users where id = ?;";
+            connection1 = DBManager.DBConnection();
             pst = connection1.prepareStatement(query);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -178,10 +177,11 @@ public class mainScreenController {
     }
 
     public void onRemoveEmployeePressButton(ActionEvent event) throws SQLException, IOException {
-        int id = staffTable.getSelectionModel().getSelectedItem().getId();
-        String query = "DELETE from staff where id = ?;";
-        connection = DBManager.DBConnection();
+
         try {
+            int id = staffTable.getSelectionModel().getSelectedItem().getId();
+            String query = "DELETE from staff where id = ?;";
+            connection = DBManager.DBConnection();
             pst = connection.prepareStatement(query);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -198,13 +198,18 @@ public class mainScreenController {
     }
 
     public void onEditEmployeePressButton(ActionEvent event) throws SQLException, IOException {
-        employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
-        System.out.println(employeeIdFromTable);
-        Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Employee");
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+            System.out.println(employeeIdFromTable);
+            Parent root = FXMLLoader.load(getClass().getResource("editEmployee.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Edit Employee");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (Exception e ){
+            System.out.println("Problem is here " + e);
+        }
 
     }
 
@@ -226,6 +231,21 @@ public class mainScreenController {
         tableViewCount.setCellValueFactory(new PropertyValueFactory<Report,Integer>("Amount"));
         table.setItems(list);
 
+    }
+
+    public void onAddHoursButtonPushed(ActionEvent event) throws IOException {
+       try {
+           employeeIdFromTable = staffTable.getSelectionModel().getSelectedItem().getId();
+           System.out.println(employeeIdFromTable);
+           Parent root = FXMLLoader.load(getClass().getResource("addHours.fxml"));
+           Stage stage = new Stage();
+           stage.setTitle("Add Hours");
+           stage.setScene(new Scene(root));
+           stage.show();
+       }
+       catch (Exception e){
+           System.out.println("Problem is in here: " + e);
+       }
     }
 
     public void logoutButtonPushed(ActionEvent event) throws IOException, SQLException {

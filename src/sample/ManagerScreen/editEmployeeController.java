@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.DBManager;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,7 +57,11 @@ public class editEmployeeController {
         }
     }
 
-    public void onButtonPressed(ActionEvent event) throws SQLException {
+    public void onPressCancel(ActionEvent event) throws IOException, SQLException {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+
+    public void onButtonPressed(ActionEvent event) throws SQLException, IOException {
         String editFirstName = firstName.getText();
         String editLastName = lastName.getText();
         String editType = typeComboBox.getSelectionModel().getSelectedItem();
@@ -79,6 +84,7 @@ public class editEmployeeController {
         }finally {
             pst.close();
             connection.close();
+
 
         }
 

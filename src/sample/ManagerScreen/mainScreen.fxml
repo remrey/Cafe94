@@ -141,6 +141,7 @@
                               <Button fx:id="addEmployee" layoutX="31.0" layoutY="38.0" mnemonicParsing="false" onAction="#onPressButton" prefHeight="27.0" prefWidth="120.0" text="Add Employee" />
                               <Button fx:id="showEmployee" layoutX="193.0" layoutY="38.0" mnemonicParsing="false" onAction="#onShowEmployeePressButton" prefHeight="27.0" prefWidth="120.0" text="Show Employee" />
                               <Button fx:id="showEmployee2" layoutX="349.0" layoutY="38.0" mnemonicParsing="false" onAction="#onEditEmployeePressButton" prefHeight="27.0" prefWidth="120.0" text="Edit Employee" />
+                              <Button layoutX="648.0" layoutY="37.0" mnemonicParsing="false" onAction="#onAddHoursButtonPushed" prefHeight="27.0" prefWidth="118.0" text="Edit/Add Hours" />
                            </children>
                         </AnchorPane>
                     </items>

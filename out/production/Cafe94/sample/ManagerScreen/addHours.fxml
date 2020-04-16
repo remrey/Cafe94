@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerScreen.addHourController">
+   <children>
+      <Label fx:id="hourAdded" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="158.0" prefHeight="17.0" prefWidth="364.0" />
+      <Button fx:id="closeButton" layoutX="169.0" layoutY="205.0" mnemonicParsing="false" onAction="#onPressCancel" prefHeight="50.0" prefWidth="155.0" text="Close" />
+      <Button fx:id="addButton" layoutX="343.0" layoutY="51.0" mnemonicParsing="false" onAction="#onAddHourPressButton" prefHeight="27.0" prefWidth="98.0" text="Add Hours" />
+      <ComboBox fx:id="hourComboBox" layoutX="166.0" layoutY="51.0" prefHeight="27.0" prefWidth="161.0" promptText="Hours to Add " />
+      <Label layoutX="16.0" layoutY="126.0" text="Change Hours to Work" />
+      <Label layoutX="16.0" layoutY="56.0" text="Hours to Add" />
+      <Button layoutX="343.0" layoutY="121.0" mnemonicParsing="false" onAction="#onChangePressButton" prefHeight="27.0" prefWidth="98.0" text="Change Hours" />
+      <Label fx:id="hourToWorkChanged" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="175.0" prefHeight="17.0" prefWidth="364.0" />
+      <TextField fx:id="changeHoursToWorkLabel" layoutX="166.0" layoutY="121.0" prefHeight="27.0" prefWidth="161.0" />
+   </children>
+</AnchorPane>
