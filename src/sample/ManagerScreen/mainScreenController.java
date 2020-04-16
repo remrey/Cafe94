@@ -218,7 +218,7 @@ public class mainScreenController {
     public void onResfreshButtonPush() throws SQLException{
         list.clear();
         String itemQuery = "SELECT itemName, COUNT('itemName') AS 'value_occurence' FROM Orders GROUP BY itemName ORDER BY 'value_occurence' ASC LIMIT 1;";
-        String customerQuery = "SELECT customerID, COUNT('customerID') AS 'value_occurence' FROM Orders GROUP BY customerID ORDER BY 'value_occurence' ASC LIMIT 1;";
+        String customerQuery = "SELECT customerID, COUNT('customerID') AS 'value_occurence' FROM Orders WHERE customerID>0 GROUP BY customerID ORDER BY 'value_occurence' ASC LIMIT 1;";
         String bookingQuery = "SELECT timePeriod, COUNT('timePeriod') AS 'value_occurence' FROM booking GROUP BY timePeriod ORDER BY 'value_occurence' DESC LIMIT 1;";
         connection3 = DBManager.DBConnection();
         pstItem = connection3.prepareStatement(itemQuery);
