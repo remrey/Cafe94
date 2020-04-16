@@ -23,7 +23,7 @@ import java.sql.SQLException;
 
 public class waiterMainScreenController {
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> favoriteList;
+    @FXML private ComboBox<item> dailyList;
     @FXML private ComboBox<item> starterList;
     @FXML private ComboBox<item> mainList;
     @FXML private ComboBox<item> sideList;
@@ -77,7 +77,7 @@ public class waiterMainScreenController {
     PreparedStatement pst = null;
 
 
-    public ObservableList<item> favoriteObservableList = FXCollections.observableArrayList();
+    public ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
     public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
     public ObservableList<item> mainObservableList = FXCollections.observableArrayList();
     public ObservableList<item> sideObservableList = FXCollections.observableArrayList();
@@ -107,7 +107,7 @@ public class waiterMainScreenController {
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
             fillMenuLists(rs);
-            favoriteList.setItems(favoriteObservableList);
+            dailyList.setItems(dailyObservableList);
             starterList.setItems(starterObservableList);
             mainList.setItems(mainObservableList);
             sideList.setItems(sideObservableList);
@@ -238,7 +238,7 @@ public class waiterMainScreenController {
             temp.setPrice(rs.getDouble("price") );
             String type = rs.getString("type");
             temp.setType(type);
-            if(type.equals("favorite")) favoriteObservableList.add(temp);
+            if (type.equals("dailySpecial")) dailyObservableList.add(temp);
             else if(type.equals("starter")) starterObservableList.add(temp);
             else if(type.equals("main")) mainObservableList.add(temp);
             else if(type.equals("side")) sideObservableList.add(temp);
@@ -247,10 +247,10 @@ public class waiterMainScreenController {
         }
     }
 
-    public void onAddFavoriteButtonPressed(ActionEvent event){
+    public void onAddDailyButtonPressed(ActionEvent event){
         try{
-            if(!favoriteList.getSelectionModel().isEmpty()) {
-                item temp = favoriteList.getSelectionModel().getSelectedItem();
+            if(!dailyList.getSelectionModel().isEmpty()) {
+                item temp = dailyList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
                 itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
                 itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
