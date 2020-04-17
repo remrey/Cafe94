@@ -2,25 +2,33 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * Class to start and run the programme.
+ * @author George, Emre, Luis, Lorcan
+ * @version 1.0
+ */
 public class Main extends Application {
     private Stage primaryStage;
     private AnchorPane rootPane;
-    Connection connection = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
+    private Connection connection = null;
+    private ResultSet rs = null;
+    private PreparedStatement pst = null;
 
-
+    /**
+     * Starts the programme.
+     * @param primaryStage Is an event:
+     * "Used to get information in current scene.
+     * @throws Exception Check if there is a fault on start.
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(final Stage primaryStage) throws Exception {
         String sql = "CREATE TABLE IF NOT EXISTS users(\n"
                 + "	id integer PRIMARY KEY,\n"
                 + " userName varchar(255) unique, \n"
@@ -29,7 +37,9 @@ public class Main extends Application {
                 + " password varchar(255) NOT NULL, \n"
                 + " type varchar(255) NOT NULL \n"
                 + ");";
-        String admin = "INSERT or IGNORE INTO users(id, userName ,firstName, lastName, password,type) VALUES(1,'Admin' ,'Admin', 'admin','admin','Manager')";
+        String admin = "INSERT or IGNORE INTO users" +
+                "(id, userName ,firstName, lastName, password,type)" +
+                " VALUES(1,'Admin' ,'Admin', 'admin','admin','Manager')";
         connection = DBManager.DBConnection();
         PreparedStatement tableCheck = connection.prepareStatement(sql);
         tableCheck.executeUpdate();
@@ -37,9 +47,6 @@ public class Main extends Application {
         addAdmin.executeUpdate();
         tableCheck.close();
         addAdmin.close();
-
-
-
         String menuQuery = "CREATE TABLE IF NOT EXISTS menu(\n"
                 + "	id integer PRIMARY KEY,\n"
                 + "	name varchar(255) NOT NULL,\n"
@@ -68,13 +75,10 @@ public class Main extends Application {
                 + "(18, 'Cola', '3.00', 'drink'),\n"
                 + "(19, 'Lemonade', '3.00', 'drink'),\n"
                 + "(20, 'Beer', '4.50', 'drink');";
-
         PreparedStatement menuCheck = connection.prepareStatement(menuQuery);
         menuCheck.executeUpdate();
         PreparedStatement menuItemCheck = connection.prepareStatement(addMenuItemsQuery);
         menuItemCheck.executeUpdate();
-
-
         String orderQuery = "CREATE TABLE IF NOT EXISTS orders(\n"
                 + "	orderID integer PRIMARY KEY ,\n"
                 + " orderNo integer ,\n"
@@ -93,14 +97,12 @@ public class Main extends Application {
                 + ");";
         PreparedStatement orderCheck = connection.prepareStatement(orderQuery);
         orderCheck.executeUpdate();
-
         String orderTableQuery = "CREATE TABLE IF NOT EXISTS ordertable(\n"
                 + "	id integer PRIMARY KEY,\n"
                 + " table_id integer NOT NULL \n"
                 + ");";
         PreparedStatement orderTableCheck = connection.prepareStatement(orderTableQuery);
         orderTableCheck.executeUpdate();
-
         String bookingQuery = "CREATE TABLE IF NOT EXISTS booking (\n"
                 + "	bookingID integer PRIMARY KEY ,\n"
                 + " date date NOT NULL,\n"
@@ -111,21 +113,19 @@ public class Main extends Application {
                 + " checked boolean NOT NULL, \n"
                 + " customerID integer NOT NULL"
                 + ");";
-
         PreparedStatement bookingCheck = connection.prepareStatement(bookingQuery);
         bookingCheck.executeUpdate();
-
-
         rootPane = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-
-
-
-    public static void main(String[] args) {
+    /**
+     * Entry point to the systems
+     * @param args Arguments passed to method.
+     */
+    public static void main(final String[] args) {
         launch(args);
     }
 }
