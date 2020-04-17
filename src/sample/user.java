@@ -9,7 +9,7 @@ public class User{
     private SimpleStringProperty lastName;
     private SimpleStringProperty address;
 
-    public User(SimpleIntegerProperty id, SimpleStringProperty firstName, SimpleStringProperty lastName, SimpleStringProperty address) {
+    public User(final SimpleIntegerProperty id, final SimpleStringProperty firstName, final SimpleStringProperty lastName, final SimpleStringProperty address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,11 +24,11 @@ public class User{
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(final String address) {
         this.address.set(address);
     }
 
-    public User(){
+    public User() {
         this.id = new SimpleIntegerProperty(0);
         this.firstName = new SimpleStringProperty("zero");
         this.lastName = new SimpleStringProperty("zero");
@@ -43,7 +43,7 @@ public class User{
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id.set(id);
     }
 
@@ -55,7 +55,7 @@ public class User{
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName.set(firstName);
     }
 
@@ -67,7 +67,7 @@ public class User{
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName.set(lastName);
     }
 }
