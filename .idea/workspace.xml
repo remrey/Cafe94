@@ -3,6 +3,41 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafe94.db" beforeDir="false" afterPath="$PROJECT_DIR$/cafe94.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefChangeItem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ChefScreen/ChefChangeItem.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefChangeItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ChefScreen/ChefChangeItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ChefScreen/ChefMainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ChefScreen/chefMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ChefScreen/ChefMainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/PersonOverviewcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/PersonOverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/customerCreateBooking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/CustomerCreateBooking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/customerCreateBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/CustomerCreateBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/customerHomeScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/CustomerHomeScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/customerHomeScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/CustomerHomeScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/deliveryOrder.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/DeliveryOrder.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/deliveryOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/DeliveryOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/Menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/personOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/PersonOverview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/takeawayOrder.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/TakeawayOrder.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CustomerScreen/takeawayOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CustomerScreen/TakeawayOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DeliveryDriverScreen/deliveryDriverMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DeliveryDriverScreen/DeliveryDriverMainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DeliveryDriverScreen/deliveryDriverMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DeliveryDriverScreen/DeliveryDriverMainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/AddEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/AddEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addHourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/AddHourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/addHours.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/AddHours.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/editEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/EditEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ManagerScreen/mainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ManagerScreen/MainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/WaiterMainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/WaiterScreen/waiterMainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WaiterScreen/WaiterMainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/loginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/LoginManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/signUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/signUpScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SignUpScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/user.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/wrongInputLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WrongInputLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,11 +174,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/source" />
       <recent name="$PROJECT_DIR$/src/sample/DeliveryDriverScreen" />
       <recent name="$PROJECT_DIR$/src/sample" />
       <recent name="$PROJECT_DIR$/src/sample/CustomerScreen" />
       <recent name="$PROJECT_DIR$/src/sample/ChefScreen" />
-      <recent name="$PROJECT_DIR$/src/sample/WaiterScreen" />
     </key>
   </component>
   <component name="RunManager">
@@ -281,7 +316,7 @@
       <workItem from="1586270648136" duration="9967000" />
       <workItem from="1586427502342" duration="44445000" />
       <workItem from="1586630278219" duration="117126000" />
-      <workItem from="1587072289401" duration="14048000" />
+      <workItem from="1587072289401" duration="14772000" />
     </task>
     <servers />
   </component>
@@ -322,28 +357,28 @@
     </state>
     <state x="465" y="288" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.805@0.23.1440.805" timestamp="1587084179166" />
     <state x="465" y="288" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.806@0.23.1440.806" timestamp="1587079819949" />
-    <state width="1398" height="168" key="GridCell.Tab.0.bottom" timestamp="1587086764458">
+    <state width="1398" height="168" key="GridCell.Tab.0.bottom" timestamp="1587087450791">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="168" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587086764458" />
+    <state width="1398" height="168" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1587087450791" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1587078141678" />
     <state width="1398" height="169" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="168" key="GridCell.Tab.0.center" timestamp="1587086764457">
+    <state width="1398" height="168" key="GridCell.Tab.0.center" timestamp="1587087450790">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="168" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587086764457" />
+    <state width="1398" height="168" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1587087450790" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1587078141677" />
     <state width="1398" height="169" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
-    <state width="1398" height="168" key="GridCell.Tab.0.left" timestamp="1587086764457">
+    <state width="1398" height="168" key="GridCell.Tab.0.left" timestamp="1587087450790">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="168" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587086764457" />
+    <state width="1398" height="168" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1587087450790" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1587078141665" />
     <state width="1398" height="169" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1587036509656" />
-    <state width="1398" height="168" key="GridCell.Tab.0.right" timestamp="1587086764458">
+    <state width="1398" height="168" key="GridCell.Tab.0.right" timestamp="1587087450790">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state width="1398" height="168" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587086764458" />
+    <state width="1398" height="168" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1587087450790" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1587078141678" />
     <state width="1398" height="169" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1587036509657" />
     <state width="1398" height="256" key="GridCell.Tab.1.bottom" timestamp="1586778889870">
