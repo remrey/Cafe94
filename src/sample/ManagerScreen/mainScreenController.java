@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import sample.DBManager;
 import sample.Report;
 import sample.Staff;
-import sample.user;
+import sample.User;
 
 
 
@@ -44,10 +44,10 @@ public class MainScreenController {
     @FXML private TableColumn<Staff, Integer> staffHoursToWork;
     @FXML private TableColumn<Staff, Integer> staffTotalHoursWorked;
     @FXML private TableColumn<Staff, String> staffType;
-    @FXML private TableView<user> customerTable;
-    @FXML private TableColumn<user, Integer> customerId;
-    @FXML private TableColumn<user, String> customerFirstName;
-    @FXML private TableColumn<user, String> customerLastName;
+    @FXML private TableView<User> customerTable;
+    @FXML private TableColumn<User, Integer> customerId;
+    @FXML private TableColumn<User, String> customerFirstName;
+    @FXML private TableColumn<User, String> customerLastName;
 
     private Connection connection = null;
     private Connection connection1 = null;
@@ -100,10 +100,10 @@ public class MainScreenController {
         try {
             pst = connection1.prepareStatement(query);
             rsCustomer = pst.executeQuery();
-            ObservableList<user> userList = getUserList(rsCustomer);
-            customerId.setCellValueFactory(new PropertyValueFactory<user, Integer>("id"));
-            customerFirstName.setCellValueFactory(new PropertyValueFactory<user, String>("firstName"));
-            customerLastName.setCellValueFactory(new PropertyValueFactory<user, String>("lastName"));
+            ObservableList<User> userList = getUserList(rsCustomer);
+            customerId.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+            customerFirstName.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
+            customerLastName.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
             customerTable.setItems(userList);
 
         } catch (SQLException e) {
@@ -121,10 +121,10 @@ public class MainScreenController {
      * @return the populated user list.
      * @throws SQLException if the resultset is empty.
      */
-    private ObservableList<user> getUserList(final ResultSet rs) throws SQLException {
-        ObservableList<user> tempUserList = FXCollections.observableArrayList();
+    private ObservableList<User> getUserList(final ResultSet rs) throws SQLException {
+        ObservableList<User> tempUserList = FXCollections.observableArrayList();
         while (rs.next()) {
-            user temp = new user();
+            User temp = new User();
             temp.setId(rs.getInt("id"));
             temp.setFirstName(rs.getString("firstName"));
             temp.setLastName(rs.getString("lastName"));

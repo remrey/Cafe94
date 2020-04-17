@@ -3,13 +3,13 @@ package sample;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class user{
+public class User{
     private SimpleIntegerProperty id;
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
     private SimpleStringProperty address;
 
-    public user(SimpleIntegerProperty id, SimpleStringProperty firstName, SimpleStringProperty lastName, SimpleStringProperty address) {
+    public User(SimpleIntegerProperty id, SimpleStringProperty firstName, SimpleStringProperty lastName, SimpleStringProperty address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,7 +28,7 @@ public class user{
         this.address.set(address);
     }
 
-    public user(){
+    public User(){
         this.id = new SimpleIntegerProperty(0);
         this.firstName = new SimpleStringProperty("zero");
         this.lastName = new SimpleStringProperty("zero");
