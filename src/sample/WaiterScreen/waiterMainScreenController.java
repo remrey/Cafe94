@@ -7,10 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.*;
+import sample.Booking;
+import sample.DBManager;
+import sample.Item;
+import sample.Order;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,15 +33,15 @@ import java.sql.SQLException;
  */
 public class WaiterMainScreenController {
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> dailyList;
-    @FXML private ComboBox<item> starterList;
-    @FXML private ComboBox<item> mainList;
-    @FXML private ComboBox<item> sideList;
-    @FXML private ComboBox<item> dessertList;
-    @FXML private ComboBox<item> drinkList;
-    @FXML private TableView<item> finalOrderView;
-    @FXML private TableColumn<item, String> itemName;
-    @FXML private TableColumn<item, Double> itemPrice;
+    @FXML private ComboBox<Item> dailyList;
+    @FXML private ComboBox<Item> starterList;
+    @FXML private ComboBox<Item> mainList;
+    @FXML private ComboBox<Item> sideList;
+    @FXML private ComboBox<Item> dessertList;
+    @FXML private ComboBox<Item> drinkList;
+    @FXML private TableView<Item> finalOrderView;
+    @FXML private TableColumn<Item, String> itemName;
+    @FXML private TableColumn<Item, Double> itemPrice;
     @FXML private Label menuResultPrice;
     @FXML private RadioButton table1;
     @FXML private RadioButton table2;
@@ -71,13 +80,13 @@ public class WaiterMainScreenController {
     private Connection connection = null;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
-    private ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> starterObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> mainObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> sideObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> dessertObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> resultList = FXCollections.observableArrayList();
+    private ObservableList<Item> dailyObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> starterObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> mainObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> sideObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> dessertObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> drinkObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> resultList = FXCollections.observableArrayList();
     private ObservableList<Booking> data = FXCollections.observableArrayList();
 
     /**
@@ -108,7 +117,7 @@ public class WaiterMainScreenController {
             sideList.setItems(sideObservableList);
             dessertList.setItems(dessertObservableList);
             drinkList.setItems(drinkObservableList);
-        } catch (Exception e ) {
+        } catch (Exception e) {
             System.out.println("Reason of the problem is: " + e);
         }
     }
@@ -214,7 +223,7 @@ public class WaiterMainScreenController {
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);
-            pst.setInt(1,orderNo);
+            pst.setInt(1, orderNo);
             ResultSet rs = pst.executeQuery();
             ObservableList<Order> orderList = fillDeliveryRequestTable(rs);
             deliveryItemIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("itemID"));
@@ -255,7 +264,7 @@ public class WaiterMainScreenController {
      */
     public void fillMenuLists(final ResultSet rs) throws SQLException {
         while (rs.next()) {
-            item temp = new item();
+            Item temp = new Item();
             temp.setId(rs.getInt("id"));
             temp.setItemName(rs.getString("name"));
             temp.setPrice(rs.getDouble("price"));
@@ -263,15 +272,15 @@ public class WaiterMainScreenController {
             temp.setType(type);
             if (type.equals("dailySpecial")) {
                 dailyObservableList.add(temp);
-            } else if(type.equals("starter")) {
+            } else if (type.equals("starter")) {
                 starterObservableList.add(temp);
-            } else if(type.equals("main")) {
+            } else if (type.equals("main")) {
                 mainObservableList.add(temp);
-            } else if(type.equals("side")) {
+            } else if (type.equals("side")) {
                 sideObservableList.add(temp);
-            } else if(type.equals("dessert")) {
+            } else if (type.equals("dessert")) {
                 dessertObservableList.add(temp);
-            } else if(type.equals("drink")) {
+            } else if (type.equals("drink")) {
                 drinkObservableList.add(temp);
             }
         }
@@ -284,10 +293,10 @@ public class WaiterMainScreenController {
     public void onAddDailyButtonPressed(final ActionEvent event) {
         try {
             if (!dailyList.getSelectionModel().isEmpty()) {
-                item temp = dailyList.getSelectionModel().getSelectedItem();
+                Item temp = dailyList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
@@ -304,10 +313,10 @@ public class WaiterMainScreenController {
     public void onAddStarterButtonPressed(final ActionEvent event) {
         try {
             if (!starterList.getSelectionModel().isEmpty()) {
-                item temp = starterList.getSelectionModel().getSelectedItem();
+                Item temp = starterList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
@@ -321,19 +330,18 @@ public class WaiterMainScreenController {
      * Add a main to the menu.
      * @param event Used to get information in current scene.
      */
-    public void onAddMainButtonPressed(ActionEvent event) {
+    public void onAddMainButtonPressed(final ActionEvent event) {
         try {
             if (!mainList.getSelectionModel().isEmpty()) {
-                item temp = mainList.getSelectionModel().getSelectedItem();
+                Item temp = mainList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -342,13 +350,13 @@ public class WaiterMainScreenController {
      * Add a side to the menu.
      * @param event Used to get information in current scene.
      */
-    public void onAddSideButtonPressed(ActionEvent event) {
+    public void onAddSideButtonPressed(final ActionEvent event) {
         try {
             if (!sideList.getSelectionModel().isEmpty()) {
-                item temp = sideList.getSelectionModel().getSelectedItem();
+                Item temp = sideList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
@@ -365,10 +373,10 @@ public class WaiterMainScreenController {
     public void onAddDessertButtonPressed(final ActionEvent event) {
         try {
             if (!dessertList.getSelectionModel().isEmpty()) {
-                item temp = dessertList.getSelectionModel().getSelectedItem();
+                Item temp = dessertList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setText(tableChoice + String.valueOf(totalCost));
@@ -385,10 +393,10 @@ public class WaiterMainScreenController {
     public void onAddDrinkButtonPressed(final ActionEvent event) {
         try {
             if (!drinkList.getSelectionModel().isEmpty()) {
-                item temp = drinkList.getSelectionModel().getSelectedItem();
+                Item temp = drinkList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setStyle("-fx-text-fill: green");
@@ -438,10 +446,10 @@ public class WaiterMainScreenController {
      * @param event Used to get information in current scene.
      * @throws SQLException Throws if SQLite query fails.
      */
-    public void onRefreshButtonPressed (final ActionEvent event) throws SQLException {
-        String query = "SELECT * FROM orders WHERE " +
-                "(waiterServed = 'False' and chefCompleted ='True'and" +
-                " (orderType = 'eatin' or orderType = 'takeaway'));";
+    public void onRefreshButtonPressed(final ActionEvent event) throws SQLException {
+        String query = "SELECT * FROM orders WHERE "
+                + "(waiterServed = 'False' and chefCompleted ='True'and"
+                + " (orderType = 'eatin' or orderType = 'takeaway'));";
         connection = DBManager.DBConnection();
         try {
             pst = connection.prepareStatement(query);
@@ -453,7 +461,7 @@ public class WaiterMainScreenController {
             statusColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("waiterServed"));
             tableIdColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("tableID"));
             standingOrderTableView.setItems(outStandingOrderList);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Problem is here: " + e);
         }
     }
@@ -490,8 +498,8 @@ public class WaiterMainScreenController {
         } else {
             try {
                 String tableId = selectedRadioButton.getText();
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost = 0.0;
                 menuResultPrice.setStyle("-fx-text-fill: green");
@@ -510,8 +518,8 @@ public class WaiterMainScreenController {
                 int id = lastId.getInt(1);
                 //put all items in the order to a new table
                 // with the orders id
-                String insertOrder = "INSERT INTO Orders(orderNo,itemID,itemName,customerID,orderType,deliveryAddress" +
-                        ",chefCompleted,delivered,waiterServed,orderDate,pickupTime,driverID,tableID) "
+                String insertOrder = "INSERT INTO Orders(orderNo,itemID,itemName,customerID,orderType,deliveryAddress"
+                        + ",chefCompleted,delivered,waiterServed,orderDate,pickupTime,driverID,tableID) "
                         + "VALUES("
                         + id + ", "
                         + "?, "
@@ -527,9 +535,9 @@ public class WaiterMainScreenController {
                         + "-1,"
                         + "?);";
                 PreparedStatement sendOrder = connection.prepareStatement(insertOrder);
-                String tempWord ="Table #";
+                String tempWord = "Table #";
                 String tableIdString = tableId.replaceAll(tempWord, "");
-                for(item i : resultList) {
+                for(Item i : resultList) {
                     String tempName = i.getItemName();
                     int tempID = i.getId();
                     sendOrder.setInt(1,tempID);

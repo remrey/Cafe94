@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.DBManager;
-import sample.item;
+import sample.Item;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -30,15 +30,15 @@ import java.sql.SQLException;
 public class DeliveryOrderController {
 
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> dailyList;
-    @FXML private ComboBox<item> starterList;
-    @FXML private ComboBox<item> mainList;
-    @FXML private ComboBox<item> sideList;
-    @FXML private ComboBox<item> dessertList;
-    @FXML private ComboBox<item> drinkList;
-    @FXML private TableView<item> finalOrderView;
-    @FXML private TableColumn<item, String> itemName;
-    @FXML private TableColumn<item, Double> itemPrice;
+    @FXML private ComboBox<Item> dailyList;
+    @FXML private ComboBox<Item> starterList;
+    @FXML private ComboBox<Item> mainList;
+    @FXML private ComboBox<Item> sideList;
+    @FXML private ComboBox<Item> dessertList;
+    @FXML private ComboBox<Item> drinkList;
+    @FXML private TableView<Item> finalOrderView;
+    @FXML private TableColumn<Item, String> itemName;
+    @FXML private TableColumn<Item, Double> itemPrice;
     @FXML private Label menuResultPrice;
 
     private double totalCost;
@@ -48,13 +48,13 @@ public class DeliveryOrderController {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    public ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> mainObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> sideObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> dessertObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> resultList = FXCollections.observableArrayList();
+    public ObservableList<Item> dailyObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> starterObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> mainObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> sideObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> dessertObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> drinkObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> resultList = FXCollections.observableArrayList();
 
     /**
      * Initialize function connects to the database and sets the list of
@@ -64,13 +64,7 @@ public class DeliveryOrderController {
     public void initialize() throws SQLException {
         String query = "SELECT * FROM menu";
         connection = DBManager.DBConnection();
-        try{
-//            PreparedStatement menuCheck= connection.prepareStatement(sql);
-//            menuCheck.executeUpdate();
-//
-//            PreparedStatement setMenu = connection.prepareStatement(addMenuQuery);
-//            setMenu.executeUpdate();
-
+        try {
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
             fillMenuLists(rs);
@@ -80,8 +74,7 @@ public class DeliveryOrderController {
             sideList.setItems(sideObservableList);
             dessertList.setItems(dessertObservableList);
             drinkList.setItems(drinkObservableList);
-        }
-        catch(Exception e ){
+        } catch (Exception e ) {
             System.out.println("Reason of the problem is: " + e);
         }
 
@@ -91,20 +84,27 @@ public class DeliveryOrderController {
      * @param rs Result of the query.
      * @throws SQLException Throws if SQLite query fails.
      */
-    public void fillMenuLists(ResultSet rs) throws SQLException {
-        while(rs.next()){
-            item temp = new item();
+    public void fillMenuLists(final ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            Item temp = new Item();
             temp.setId(rs.getInt("id"));
             temp.setItemName(rs.getString("name"));
             temp.setPrice(rs.getDouble("price") );
             String type = rs.getString("type");
             temp.setType(type);
-            if (type.equals("dailySpecial")) dailyObservableList.add(temp);
-            else if(type.equals("starter")) starterObservableList.add(temp);
-            else if(type.equals("main")) mainObservableList.add(temp);
-            else if(type.equals("side")) sideObservableList.add(temp);
-            else if(type.equals("dessert")) dessertObservableList.add(temp);
-            else if(type.equals("drink")) drinkObservableList.add(temp);
+            if (type.equals("dailySpecial")) {
+                dailyObservableList.add(temp);
+            } else if (type.equals("starter")) {
+                starterObservableList.add(temp);
+            } else if (type.equals("main")) {
+                mainObservableList.add(temp);
+            } else if (type.equals("side")) {
+                sideObservableList.add(temp);
+            } else if (type.equals("dessert")) {
+                dessertObservableList.add(temp);
+            } else if (type.equals("drink")) {
+                drinkObservableList.add(temp);
+            }
         }
     }
     /**
@@ -112,12 +112,12 @@ public class DeliveryOrderController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void backToMenuButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
+    public void backToMenuButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/Menu.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -127,12 +127,12 @@ public class DeliveryOrderController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void homeButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
+    public void homeButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -142,12 +142,12 @@ public class DeliveryOrderController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void bookingButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerBooking.fxml"));
+    public void bookingButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerCreateBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -157,12 +157,12 @@ public class DeliveryOrderController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void profileButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
+    public void profileButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/PersonOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -172,12 +172,12 @@ public class DeliveryOrderController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void logoutButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
+    public void logoutButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/Login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -187,20 +187,19 @@ public class DeliveryOrderController {
      * This function allows the Daily Specials to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddDailyButtonPressed(ActionEvent event){
-        try{
-            if(!starterList.getSelectionModel().isEmpty()) {
-                item temp = starterList.getSelectionModel().getSelectedItem();
+    public void onAddDailyButtonPressed(final ActionEvent event) {
+        try {
+            if (!starterList.getSelectionModel().isEmpty()) {
+                Item temp = starterList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
 
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -208,20 +207,19 @@ public class DeliveryOrderController {
      * This function allows the Starters to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddStarterButtonPressed(ActionEvent event){
-        try{
-            if(!starterList.getSelectionModel().isEmpty()) {
-                item temp = starterList.getSelectionModel().getSelectedItem();
+    public void onAddStarterButtonPressed(final ActionEvent event){
+        try {
+            if (!starterList.getSelectionModel().isEmpty()) {
+                Item temp = starterList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
 
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -229,20 +227,19 @@ public class DeliveryOrderController {
      * This function allows the Mains to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddMainButtonPressed(ActionEvent event){
-        try{
+    public void onAddMainButtonPressed(final ActionEvent event) {
+        try {
             if(!mainList.getSelectionModel().isEmpty()) {
-                item temp = mainList.getSelectionModel().getSelectedItem();
+                Item temp = mainList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
 
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -250,21 +247,20 @@ public class DeliveryOrderController {
      * This function allows the Sides to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddSideButtonPressed(ActionEvent event){
-        try{
-            if(!sideList.getSelectionModel().isEmpty()) {
-                item temp = sideList.getSelectionModel().getSelectedItem();
+    public void onAddSideButtonPressed(final ActionEvent event) {
+        try {
+            if (!sideList.getSelectionModel().isEmpty()) {
+                Item temp = sideList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
 
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -272,20 +268,19 @@ public class DeliveryOrderController {
      * This function allows the Desserts to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddDessertButtonPressed(ActionEvent event){
-        try{
+    public void onAddDessertButtonPressed(final ActionEvent event) {
+        try {
             if(!dessertList.getSelectionModel().isEmpty()) {
-                item temp = dessertList.getSelectionModel().getSelectedItem();
+                Item temp = dessertList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
 
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -293,21 +288,19 @@ public class DeliveryOrderController {
      * This function allows the Drinks to be added to the order.
      * @param event Used to get information in current scene.
      */
-    public void onAddDrinkButtonPressed(ActionEvent event){
-        try{
-            if(!drinkList.getSelectionModel().isEmpty()){
-                item temp = drinkList.getSelectionModel().getSelectedItem();
+    public void onAddDrinkButtonPressed(final ActionEvent event) {
+        try {
+            if (!drinkList.getSelectionModel().isEmpty()) {
+                Item temp = drinkList.getSelectionModel().getSelectedItem();
                 resultList.add(temp);
-                itemName.setCellValueFactory(new PropertyValueFactory<item, String>("itemName"));
-                itemPrice.setCellValueFactory(new PropertyValueFactory<item, Double>("price"));
+                itemName.setCellValueFactory(new PropertyValueFactory<Item, String>("itemName"));
+                itemPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("price"));
                 finalOrderView.setItems(resultList);
                 totalCost += temp.getPrice();
                 menuResultPrice.setStyle("-fx-text-fill: green");
                 menuResultPrice.setText(String.valueOf(totalCost));
             }
-
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -317,7 +310,7 @@ public class DeliveryOrderController {
      * This will add the order to the Orders database.
      * @param event Used to get information in current scene.
      */
-    public void onFinaliseOrderButtonPressed(ActionEvent event){
+    public void onFinaliseOrderButtonPressed(final ActionEvent event) {
         try {
             int curCustomer = sample.UserDetails.getInstance().getUserID();
             totalCost = 0.0;
@@ -339,8 +332,8 @@ public class DeliveryOrderController {
 
             //put all items in the order to a new table
             // with the orders id
-            String insertOrder = "INSERT INTO Orders(orderNo,itemID,itemName,customerID,orderType,deliveryAddress" +
-                    ",chefCompleted,delivered,waiterServed,orderDate,pickupTime,driverID,tableID) "
+            String insertOrder = "INSERT INTO Orders(orderNo,itemID,itemName,customerID,orderType,deliveryAddress"
+                    + ",chefCompleted,delivered,waiterServed,orderDate,pickupTime,driverID,tableID) "
                     + "VALUES("
                     + id + ", "
                     + "?, "
@@ -357,7 +350,7 @@ public class DeliveryOrderController {
                     + "-1);";
             PreparedStatement sendOrder = connection.prepareStatement(insertOrder);
 
-            for (item i : resultList) {
+            for (Item i : resultList) {
                 String tempName = i.getItemName();
                 int tempID = i.getId();
                 sendOrder.setInt(1, tempID);

@@ -25,7 +25,7 @@ public class CustomerHomeScreenController {
      * @throws IOException Throws if input fails.
      */
     public void viewMenuButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/Menu.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
@@ -40,7 +40,7 @@ public class CustomerHomeScreenController {
      * @throws IOException Throws if input fails.
      */
     public void makeBookingButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerCreateBooking.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerCreateBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
@@ -55,7 +55,7 @@ public class CustomerHomeScreenController {
      * @throws IOException Throws if input fails.
      */
     public void profileButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/PersonOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
@@ -70,7 +70,7 @@ public class CustomerHomeScreenController {
      * @throws IOException Throws if input fails.
      */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/Login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information

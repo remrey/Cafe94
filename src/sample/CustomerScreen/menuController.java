@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import sample.DBManager;
-import sample.item;
+import sample.Item;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -29,25 +29,25 @@ import java.sql.SQLException;
 public class MenuController {
 
     @FXML private ComboBox<String> tableList;
-    @FXML private ComboBox<item> dailyList;
-    @FXML private ComboBox<item> starterList;
-    @FXML private ComboBox<item> mainList;
-    @FXML private ComboBox<item> sideList;
-    @FXML private ComboBox<item> dessertList;
-    @FXML private ComboBox<item> drinkList;
+    @FXML private ComboBox<Item> dailyList;
+    @FXML private ComboBox<Item> starterList;
+    @FXML private ComboBox<Item> mainList;
+    @FXML private ComboBox<Item> sideList;
+    @FXML private ComboBox<Item> dessertList;
+    @FXML private ComboBox<Item> drinkList;
 
 
     Connection connection = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    public ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> starterObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> mainObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> sideObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> dessertObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
-    public ObservableList<item> resultList = FXCollections.observableArrayList();
+    public ObservableList<Item> dailyObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> starterObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> mainObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> sideObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> dessertObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> drinkObservableList = FXCollections.observableArrayList();
+    public ObservableList<Item> resultList = FXCollections.observableArrayList();
 
     /**
      * Initialize function connects to the database and sets the list of
@@ -57,13 +57,7 @@ public class MenuController {
     public void initialize() throws SQLException {
         String query = "SELECT * FROM menu";
         connection = DBManager.DBConnection();
-        try{
-//            PreparedStatement menuCheck= connection.prepareStatement(sql);
-//            menuCheck.executeUpdate();
-//
-//            PreparedStatement setMenu = connection.prepareStatement(addMenuQuery);
-//            setMenu.executeUpdate();
-
+        try {
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
             fillMenuLists(rs);
@@ -73,8 +67,7 @@ public class MenuController {
             sideList.setItems(sideObservableList);
             dessertList.setItems(dessertObservableList);
             drinkList.setItems(drinkObservableList);
-        }
-        catch(Exception e ){
+        } catch (Exception e ) {
             System.out.println("Reason of the problem is: " + e);
         }
 
@@ -84,20 +77,27 @@ public class MenuController {
      * @param rs Result of the query.
      * @throws SQLException Throws if SQLite query fails.
      */
-    public void fillMenuLists(ResultSet rs) throws SQLException {
-        while(rs.next()){
-            item temp = new item();
+    public void fillMenuLists(final ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            Item temp = new Item();
             temp.setId(rs.getInt("id"));
             temp.setItemName(rs.getString("name"));
             temp.setPrice(rs.getDouble("price") );
             String type = rs.getString("type");
             temp.setType(type);
-            if (type.equals("dailySpecial")) dailyObservableList.add(temp);
-            else if(type.equals("starter")) starterObservableList.add(temp);
-            else if(type.equals("main")) mainObservableList.add(temp);
-            else if(type.equals("side")) sideObservableList.add(temp);
-            else if(type.equals("dessert")) dessertObservableList.add(temp);
-            else if(type.equals("drink")) drinkObservableList.add(temp);
+            if (type.equals("dailySpecial")) {
+                dailyObservableList.add(temp);
+            } else if (type.equals("starter")) {
+                starterObservableList.add(temp);
+            } else if (type.equals("main")) {
+                mainObservableList.add(temp);
+            } else if (type.equals("side")) {
+                sideObservableList.add(temp);
+            } else if (type.equals("dessert")) {
+                dessertObservableList.add(temp);
+            } else if (type.equals("drink")) {
+                drinkObservableList.add(temp);
+            }
         }
     }
 
@@ -106,12 +106,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void placeTakeawayOrderButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/takeawayOrder.fxml"));
+    public void placeTakeawayOrderButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/TakeawayOrder.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -121,12 +121,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void placeDeliveryOrderButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/deliveryOrder.fxml"));
+    public void placeDeliveryOrderButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/DeliveryOrder.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -136,12 +136,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void homeButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
+    public void homeButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -151,12 +151,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void bookingButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerCreateBooking.fxml"));
+    public void bookingButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerCreateBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -166,12 +166,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void profileButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
+    public void profileButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/PersonOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();
@@ -181,12 +181,12 @@ public class MenuController {
      * @param event Used to get information in current scene.
      * @throws IOException Throws if input fails.
      */
-    public void logoutButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
+    public void logoutButtonPushed(final ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/Login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(tableViewScene);
         window.show();

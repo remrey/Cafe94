@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @version 1.0
  * @param <SimpleDoublePropertyrice>
  */
-public class item<SimpleDoublePropertyrice> {
+public class Item<SimpleDoublePropertyrice> {
     private SimpleIntegerProperty id;
     private SimpleStringProperty itemName;
     private SimpleDoubleProperty price;
@@ -26,7 +26,7 @@ public class item<SimpleDoublePropertyrice> {
      * @param isDailySpecial States whether the item is the daily special.
      * @param type Determines the course type of the menu item.
      */
-    public item(final SimpleIntegerProperty id, final SimpleStringProperty itemName, final SimpleDoubleProperty price,
+    public Item(final SimpleIntegerProperty id, final SimpleStringProperty itemName, final SimpleDoubleProperty price,
                 final SimpleBooleanProperty isDailySpecial, final SimpleStringProperty type) {
         this.id = id;
         this.itemName = itemName;
@@ -38,7 +38,7 @@ public class item<SimpleDoublePropertyrice> {
     /**
      * A default constructor to create a menu item.
      */
-    public item(){
+    public Item(){
         this.id = new SimpleIntegerProperty(0);
         this.itemName = new SimpleStringProperty("zero");
         this.price = new SimpleDoubleProperty(0.0);

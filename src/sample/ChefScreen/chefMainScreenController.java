@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.DBManager;
 import sample.Order;
-import sample.item;
+import sample.Item;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,12 +27,12 @@ import java.sql.SQLException;
  */
 public class ChefMainScreenController {
 
-    @FXML private ComboBox<item> dailyList;
-    @FXML private ComboBox<item> starterList;
-    @FXML private ComboBox<item> mainList;
-    @FXML private ComboBox<item> sideList;
-    @FXML private ComboBox<item> dessertList;
-    @FXML private ComboBox<item> drinkList;
+    @FXML private ComboBox<Item> dailyList;
+    @FXML private ComboBox<Item> starterList;
+    @FXML private ComboBox<Item> mainList;
+    @FXML private ComboBox<Item> sideList;
+    @FXML private ComboBox<Item> dessertList;
+    @FXML private ComboBox<Item> drinkList;
     @FXML private Button refreshButton;
     @FXML private Button completedButton;
     @FXML private TableView<Order> chefOrderView;
@@ -46,12 +46,12 @@ public class ChefMainScreenController {
     private ResultSet rsOrders = null;
     private PreparedStatement pst = null;
     private PreparedStatement pst2 = null;
-    private ObservableList<item> dailyObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> starterObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> mainObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> sideObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> dessertObservableList = FXCollections.observableArrayList();
-    private ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> dailyObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> starterObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> mainObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> sideObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> dessertObservableList = FXCollections.observableArrayList();
+    private ObservableList<Item> drinkObservableList = FXCollections.observableArrayList();
 
     /**
      * A method to show orders not completed by the chef. This is shown on start up.
@@ -59,8 +59,8 @@ public class ChefMainScreenController {
      */
     public void initialize() throws SQLException {
         String query = "SELECT * FROM menu";
-        String query2 = "SELECT orderID, orderNo, itemName, orderType " +
-                "FROM orders WHERE chefCompleted = 'False' ";
+        String query2 = "SELECT orderID, orderNo, itemName, orderType "
+                + "FROM orders WHERE chefCompleted = 'False' ";
         connection = DBManager.DBConnection();
         connection2 = DBManager.DBConnection();
         try {
@@ -99,7 +99,7 @@ public class ChefMainScreenController {
      */
     public void fillMenuLists(final ResultSet rs) throws SQLException {
         while (rs.next()) {
-            item temp = new item();
+            Item temp = new Item();
             temp.setId(rs.getInt("id"));
             temp.setItemName(rs.getString("name"));
             temp.setPrice(rs.getDouble("price"));

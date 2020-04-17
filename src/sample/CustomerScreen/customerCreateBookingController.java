@@ -231,7 +231,7 @@ public class CustomerCreateBookingController implements Initializable {
      * @throws IOException Throws if input fails.
      */
     public void homeButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/CustomerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -245,7 +245,7 @@ public class CustomerCreateBookingController implements Initializable {
      * @throws IOException Throws if input fails.
      */
     public void menuButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/Menu.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
@@ -261,7 +261,7 @@ public class CustomerCreateBookingController implements Initializable {
      * @throws IOException Throws if input fails.
      */
     public void profileButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/PersonOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
@@ -277,7 +277,7 @@ public class CustomerCreateBookingController implements Initializable {
      * @throws IOException Throws if input fails.
      */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/Login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
