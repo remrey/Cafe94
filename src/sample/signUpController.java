@@ -5,13 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+/**
+ * Makes a new customer for the users table in database.
+ * @author Emre.
+ * @version 1.0.
+ */
 
 public class signUpController {
     @FXML private TextField signUpFirstName;
@@ -25,8 +27,15 @@ public class signUpController {
     @FXML private Label passwordError;
 
     Connection connection = null;
-    ResultSet rs = null;
     PreparedStatement pst = null;
+
+    /**
+     * Inserts data from text boxes into the users table of the database.
+     * Checks to make sure no text boxes are empty, otherwise displays an error.
+     * Checks to make sure username entered doesn't already exist in database.
+     * @param event event is used to get information in current scene.
+     * @throws SQLException throws if SQLite query fails.
+     */
 
     public void onPressButton(ActionEvent event) throws SQLException {
         String query = "INSERT INTO users(userName,firstName, lastName, password,type) VALUES(?,?,?,?,'Customer')";
