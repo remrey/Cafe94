@@ -22,7 +22,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class deliveryDriverMainScreenController {
+/**
+ * The main screen for the Delivery Driver.
+ * From here they can view unassigned delivery orders
+ * and assign themselves to them along with mark them
+ * as delivered once delivered.
+ * @author Luis, Emre, George
+ * @version 1.0
+ */
+
+public class DeliveryDriverMainScreenController {
     @FXML Button assignButton;
     @FXML Button refreshButton;
     @FXML Button deliveredButton;
@@ -35,6 +44,12 @@ public class deliveryDriverMainScreenController {
     ResultSet rsOrder = null;
     PreparedStatement pst = null;
 
+    /**
+     * This create a temporary order for the screen to use.
+     * @param rsOrder Result of the query.
+     * @return Result of the query.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     private ObservableList<Order> getOrders(ResultSet rsOrder) throws SQLException {
         ObservableList<Order> tempItemList = FXCollections.observableArrayList();
         while(rsOrder.next()){
@@ -47,6 +62,12 @@ public class deliveryDriverMainScreenController {
         return tempItemList;
     }
 
+    @SuppressWarnings({"checkstyle:OperatorWrap", "checkstyle:WhitespaceAfter"})
+    /**
+     * Initialize function connects to the database and sets the list of
+     * viewable items from the orders.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void initialize() throws IOException, SQLException {
         int currentDriver = sample.UserDetails.getInstance().getUserID();
         String query = "SELECT * FROM orders WHERE (waiterServed = True " +
@@ -70,7 +91,12 @@ public class deliveryDriverMainScreenController {
             connection.close();
         }
     }
-
+    /**
+     * Allows the order to be marked as delivered upon a button press.
+     * @param event Used to get information in current scene
+     * @throws SQLException Throws if SQLite query fails.
+     * @throws IOException Throws if input fails.
+     */
     public void deliveredOrder(ActionEvent event) throws SQLException, IOException {
         connection = DBManager.DBConnection();
         int id = deliveryDriverView.getSelectionModel().getSelectedItem().getOrderNo();
@@ -90,7 +116,12 @@ public class deliveryDriverMainScreenController {
 
         }
     }
-
+    /**
+     * Allows the driver to to assign themselves to any empty orders.
+     * @param event Used to get information in current scene
+     * @throws SQLException Throws if SQLite query fails.
+     * @throws IOException Throws if input fails.
+     */
     public void assignDelivery(ActionEvent event) throws SQLException, IOException {
         int currentDriver = sample.UserDetails.getInstance().getUserID();
         connection = DBManager.DBConnection();
@@ -110,6 +141,12 @@ public class deliveryDriverMainScreenController {
             initialize();
         }
     }
+
+    /**
+     * This allows the driver to sign out of the system.
+     * @param event Used to get information in current scene
+     * @throws IOException Throws if input fails.
+     */
 
     public void logoutButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
