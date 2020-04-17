@@ -383,7 +383,7 @@
                                  <children>
                                     <TableView fx:id="bookingTable" onSort="#approveBooking" prefHeight="279.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
-                                          <TableColumn fx:id="iDColumn" prefWidth="124.0" text="Customer ID" />
+                                          <TableColumn fx:id="iDColumn" prefWidth="124.0" text="Booking ID" />
                                           <TableColumn fx:id="dateColumn" prefWidth="140.0" text="Date" />
                                           <TableColumn fx:id="timeColumn" prefWidth="167.8431396484375" text="Time" />
                                           <TableColumn fx:id="numberOfGuestsColumn" prefWidth="106.0" text="Number of Guests" />
