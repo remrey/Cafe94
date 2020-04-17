@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChefScreen.chefChangeItemController">
+<AnchorPane fx:id="employeePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChefScreen.ChefChangeItemController">
     <children>
         <Button fx:id="changeButton" layoutX="47.0" layoutY="347.0" mnemonicParsing="false" onAction="#onPressButton" text="Change Item" />
         <TextField fx:id="itemPrice" layoutX="163.0" layoutY="191.0" />

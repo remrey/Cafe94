@@ -5,7 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -13,9 +14,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
+/**
+ * A class that used to navigate the login screen.
+ * E.g. if the user is Chef, it leads to chef screen.
+ * @author F. Emre YILMAZ
+ * @version 1.0
+ */
 public class LoginController {
-    public loginManager logModel = new loginManager();
+    public LoginManager logModel = new LoginManager();
     @FXML private TextField user;
     @FXML private TextField pass;
     @FXML private Label signUpLabel;
@@ -87,7 +93,7 @@ public class LoginController {
      * @throws IOException if input fails.
      * @throws SQLException if SQLite query fails.
      */
-    public void wrongScreen(final ActionEvent event) throws IOException{
+    public void wrongScreen(final ActionEvent event) throws IOException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("wrongInputLogin.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Wrong input!");

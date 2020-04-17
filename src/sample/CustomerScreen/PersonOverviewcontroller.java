@@ -23,7 +23,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class personOverview {
+/**
+ * A controller for the customer profile screen.
+ * This allows the customer to view
+ * order history as well as their ID and details.
+ * @author George, Li, Luis
+ * @version 1.0
+ */
+
+public class PersonOverviewController {
 
     @FXML private TableView<Order> orderHistoryView;
     @FXML private TableColumn<Order, LocalDateTime> orderDateColumn;
@@ -39,6 +47,11 @@ public class personOverview {
     ResultSet rsOrders = null;
     PreparedStatement pst = null;
 
+    /**
+     * The following function can be used to go to the home screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void homeButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -49,7 +62,11 @@ public class personOverview {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the booking screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void bookingButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerCreateBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -60,7 +77,11 @@ public class personOverview {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the menu screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void menuButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -71,7 +92,11 @@ public class personOverview {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to sign out of the system.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -83,6 +108,10 @@ public class personOverview {
         window.show();
     }
 
+    /**
+     * Finds the customer details from the users database.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void initialize() throws SQLException {
         int userID = sample.UserDetails.getInstance().getUserID();
 
@@ -91,8 +120,6 @@ public class personOverview {
         firstNameLabel.setText(sample.UserDetails.getInstance().getUserFirst());
         lastNameLabel.setText(sample.UserDetails.getInstance().getUserLast());
         customerIDLabel.setText("" + userID);
-
-
 
 
         String query = "SELECT orderNo, itemName, orderType FROM orders WHERE customerID =" + userID;
@@ -106,6 +133,12 @@ public class personOverview {
         orderHistoryView.setItems(itemList);
     }
 
+    /**
+     * Gets the list of orders from specific customer and adds it to the database.
+     * @param rsOrders Result of the query.
+     * @return Result of the query.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     private ObservableList<Order> getOrderList(ResultSet rsOrders) throws SQLException {
         ObservableList<Order> tempItemList = FXCollections.observableArrayList();
         while(rsOrders.next()){

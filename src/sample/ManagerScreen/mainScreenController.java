@@ -24,6 +24,14 @@ import sample.Staff;
 import sample.user;
 
 
+
+/**
+ * Main screen for the manager.
+ * Can use to see/edit current employees,
+ * customer and reports.
+ * @author F. Emre YILMAZ, George, Luis, Lorcan
+ * @version 1.0
+ */
 public class MainScreenController {
     @FXML private TableView<Report> table;
     @FXML private TableColumn<Report, String> tableViewReport;
@@ -261,13 +269,13 @@ public class MainScreenController {
         list.clear();
         String itemQuery = "SELECT itemName, COUNT('itemName') AS 'value_occurence' "
                 + "FROM Orders GROUP BY itemName "
-                + "ORDER BY 'value_occurence' ASC LIMIT 1;";
+                + "ORDER BY value_occurence DESC LIMIT 1;";
         String customerQuery = "SELECT customerID, COUNT('customerID') AS 'value_occurence' "
                 + "FROM Orders WHERE customerID>0 GROUP BY customerID "
-                + "ORDER BY 'value_occurence' ASC LIMIT 1;";
+                + "ORDER BY value_occurence DESC LIMIT 1;";
         String bookingQuery = "SELECT timePeriod, COUNT('timePeriod') AS 'value_occurence'"
                 + " FROM booking GROUP BY timePeriod "
-                + "ORDER BY 'value_occurence' DESC LIMIT 1;";
+                + "ORDER BY value_occurence DESC LIMIT 1;";
         connection3 = DBManager.DBConnection();
         pstItem = connection3.prepareStatement(itemQuery);
         pstCustomer = connection3.prepareStatement(customerQuery);
