@@ -50,6 +50,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * Directs to delivery screen is the user a delivery driver.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
     public void deliveryDriverScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("DeliveryDriverScreen/deliveryDriverMainScreen.fxml"));
         logModel.connection.close();
@@ -59,6 +65,13 @@ public class LoginController {
         rootPane.getChildren().setAll(temp);
     }
 
+
+    /**
+     * Directs to customer screen is the user a customer.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
     public void customerScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("CustomerScreen/customerHomeScreen.fxml"));
         logModel.connection.close();
@@ -68,7 +81,13 @@ public class LoginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void wrongScreen(final ActionEvent event) throws IOException, SQLException {
+    /**
+     * Pops up wrong input screen if the inputs dont match with db.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
+    public void wrongScreen(final ActionEvent event) throws IOException{
         AnchorPane temp = FXMLLoader.load(getClass().getResource("wrongInputLogin.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Wrong input!");
@@ -76,7 +95,13 @@ public class LoginController {
         stage.show();
     }
 
-    public void signUpOnMouseClicked(MouseEvent event) throws IOException, SQLException {
+
+    /**
+     * Lead to signup screen for a new user creation.
+     * @param event is used to get information in current scene
+     * @throws IOException if input fails.
+     */
+    public void signUpOnMouseClicked(final MouseEvent event) throws IOException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("signUpScreen.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Sign Up!");
@@ -84,17 +109,33 @@ public class LoginController {
         stage.show();
     }
 
-    public void signUpOnMouseEnter(MouseEvent event) {
+    /**
+     * Changes the colour to red when mouse is over the label.
+     * @param event is used to get information in current scene
+     */
+    public void signUpOnMouseEnter(final MouseEvent event) {
         signUpLabel.setTextFill(Color.web("#ff0000", 0.8));
         signUpLabel.setUnderline(true);
     }
 
-    public void signUpOnMouseExit(MouseEvent event){
+
+    /**
+     * Changes the colour to blue when mouse is no longer over the label.
+     * @param event is used to get information in current scene
+     */
+    public void signUpOnMouseExit(final MouseEvent event) {
         signUpLabel.setTextFill(Color.web("#54a9cd", 0.8));
         signUpLabel.setUnderline(false);
     }
 
-    public void managerScreen(ActionEvent event) throws IOException, SQLException {
+
+    /**
+     *
+     * @param event is used to get information in current scene
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
+    public void managerScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("ManagerScreen/MainScreen.fxml"));
         logModel.connection.close();
 
@@ -104,7 +145,13 @@ public class LoginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void chefScreen(ActionEvent event) throws IOException, SQLException {
+    /**
+     * Directs to chef screen is the user chef.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
+    public void chefScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("ChefScreen/chefMainScreen.fxml"));
         logModel.connection.close();
 
@@ -114,7 +161,14 @@ public class LoginController {
         rootPane.getChildren().setAll(temp);
     }
 
-    public void waiterScreen(ActionEvent event) throws IOException, SQLException {
+
+    /**
+     * Directs to waiterscreen is the user waiter.
+     * @param event is used to get information in current scene.
+     * @throws IOException if input fails.
+     * @throws SQLException if SQLite query fails.
+     */
+    public void waiterScreen(final ActionEvent event) throws IOException, SQLException {
         AnchorPane temp = FXMLLoader.load(getClass().getResource("WaiterScreen/waiterMainScreen.fxml"));
         logModel.connection.close();
 
