@@ -13,17 +13,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.DBManager;
 import sample.item;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class takeawayOrderController {
-    /**
-     * FXML assignments
-     */
+/**
+ * A controller for the customer's takeaway order screen. This screen allows the customers to place
+ * a takeaway order within the system.
+ * @author George, Emre
+ * @version 1.0
+ */
+public class TakeawayOrderController {
+
     @FXML private ComboBox<String> tableList;
     @FXML private ComboBox<item> dailyList;
     @FXML private ComboBox<item> starterList;
@@ -51,6 +54,11 @@ public class takeawayOrderController {
     public ObservableList<item> drinkObservableList = FXCollections.observableArrayList();
     public ObservableList<item> resultList = FXCollections.observableArrayList();
 
+    /**
+     * Initialize function connects to the database and sets the list of
+     * viewable items from the menu.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void initialize() throws SQLException {
 
         String query = "SELECT * FROM menu;";
@@ -72,8 +80,11 @@ public class takeawayOrderController {
         }
 
     }
-
-
+    /**
+     * Fills the menu lists based in the menu database.
+     * @param rs Result of the query.
+     * @throws SQLException Throws if SQLite query fails.
+     */
     public void fillMenuLists(ResultSet rs) throws SQLException {
         while(rs.next()){
             item temp = new item();
@@ -91,7 +102,9 @@ public class takeawayOrderController {
         }
     }
     /**
-     * This will send you back to the menu screen.
+     * The following function can be used to go to the menu screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
      */
     public void backToMenuButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/menu.fxml"));
@@ -103,11 +116,12 @@ public class takeawayOrderController {
         window.setScene(tableViewScene);
         window.show();
     }
-
     /**
-     * This will finish the order.
+     * This function is used when the finalise order button is pushed.
+     * This will add the order to the Orders database.
+     * @param event
+     * @throws IOException
      */
-
     public void finaliseOrderButtonPushed(ActionEvent event) throws IOException {
         try {
             int curCustomer = sample.UserDetails.getInstance().getUserID();
@@ -163,11 +177,11 @@ public class takeawayOrderController {
             ex.printStackTrace();
         }
     }
-
-        /**
-     * This will allow you to check what you have already ordered.
+    /**
+     * The following function can be used to go to the home screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
      */
-
     public void homeButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerHomeScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -178,7 +192,11 @@ public class takeawayOrderController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the booking screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void bookingButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/customerBooking.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -189,7 +207,11 @@ public class takeawayOrderController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to go to the profile screen.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void profileButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/CustomerScreen/personOverview.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -200,7 +222,11 @@ public class takeawayOrderController {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /**
+     * The following function can be used to sign out of the system.
+     * @param event Used to get information in current scene.
+     * @throws IOException Throws if input fails.
+     */
     public void logoutButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/sample/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -212,6 +238,10 @@ public class takeawayOrderController {
         window.show();
     }
 
+    /**
+     * This allows the Daily Specials to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddDailyButtonPressed(ActionEvent event){
         try{
             if(!dailyList.getSelectionModel().isEmpty()) {
@@ -230,6 +260,10 @@ public class takeawayOrderController {
             System.out.println(e);
         }
     }
+    /**
+     * This allows the Starters to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddStarterButtonPressed(ActionEvent event){
         try{
             if(!starterList.getSelectionModel().isEmpty()) {
@@ -247,7 +281,10 @@ public class takeawayOrderController {
             System.out.println(e);
         }
     }
-
+    /**
+     * This allows the Main to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddMainButtonPressed(ActionEvent event){
         try{
             if(!mainList.getSelectionModel().isEmpty()) {
@@ -265,7 +302,10 @@ public class takeawayOrderController {
             System.out.println(e);
         }
     }
-
+    /**
+     * This allows the Sides to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddSideButtonPressed(ActionEvent event){
         try{
             if(!sideList.getSelectionModel().isEmpty()) {
@@ -284,7 +324,10 @@ public class takeawayOrderController {
             System.out.println(e);
         }
     }
-
+    /**
+     * This allows the Dessert to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddDessertButtonPressed(ActionEvent event){
         try{
             if(!dessertList.getSelectionModel().isEmpty()) {
@@ -302,7 +345,10 @@ public class takeawayOrderController {
             System.out.println(e);
         }
     }
-
+    /**
+     * This allows the Drinks to be added to the order
+     * @param event Used to get information in current scene
+     */
     public void onAddDrinkButtonPressed(ActionEvent event){
         try{
             if(!drinkList.getSelectionModel().isEmpty()){
