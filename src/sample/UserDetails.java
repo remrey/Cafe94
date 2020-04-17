@@ -23,7 +23,7 @@ public final class UserDetails {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    private UserDetails(){};
+    private UserDetails() { } ;
 
     /**
      * Creates instance of UserDetails and ensures only one exists.
@@ -63,8 +63,7 @@ public final class UserDetails {
             id = rs.getInt("id");
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             connection.close();
             pst.close();
             return id;
@@ -88,8 +87,7 @@ public final class UserDetails {
             firstName = rs.getString(1);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             connection.close();
             pst.close();
             return firstName;
@@ -113,8 +111,7 @@ public final class UserDetails {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             connection.close();
             pst.close();
             return lastName;
@@ -126,7 +123,7 @@ public final class UserDetails {
      * @return users username.
      */
 
-    public String getUsern(){
+    public String getUsern() {
         return usern;
     }
 }
